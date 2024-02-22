@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -46,7 +45,10 @@ namespace CustomerManagementApp
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-
-

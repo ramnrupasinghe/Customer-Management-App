@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CustomerManagementApp
@@ -15,7 +17,16 @@ namespace CustomerManagementApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+            LoadInitialCustomerData();
             RefreshDataGridView();
+        }
+
+        private void LoadInitialCustomerData()
+        {
+           
+            customers.Add(new Customer { Name = "John Doe", Email = "john@example.com", Phone = "1234567890" });
+            customers.Add(new Customer { Name = "Jane Smith", Email = "jane@example.com", Phone = "9876543210" });
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -53,13 +64,98 @@ namespace CustomerManagementApp
             }
         }
 
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            using (var writer = new StreamWriter("customers.csv"))
+            {
+                writer.WriteLine("Name,Email,Phone");
+                foreach (var customer in customers)
+                {
+                    writer.WriteLine($"{customer.Name},{customer.Email},{customer.Phone}");
+                }
+            }
+
+            MessageBox.Show("Customer data exported successfully!", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+      
+        private void btnSort_Click(object sender, EventArgs e)
+        {
+            
+            string sortingCriteria = null;
+            if (rbSortByName.Checked)
+                sortingCriteria = "Name";
+            else if (rbSortByEmail.Checked)
+                sortingCriteria = "Email";
+            else if (rbSortByPhone.Checked)
+                sortingCriteria = "Phone";
+
+            
+            if (!string.IsNullOrEmpty(sortingCriteria))
+            {
+                List<Customer> sortedCustomers = new List<Customer>();
+                switch (sortingCriteria)
+                {
+                    case "Name":
+                        sortedCustomers = customers.OrderBy(c => c.Name).ToList();
+                        break;
+                    case "Email":
+                        sortedCustomers = customers.OrderBy(c => c.Email).ToList();
+                        break;
+                    case "Phone":
+                        sortedCustomers = customers.OrderBy(c => c.Phone).ToList();
+                        break;
+                }
+                dataGridViewCustomers.DataSource = null;
+                dataGridViewCustomers.DataSource = sortedCustomers;
+            }
+        }
+
         private void RefreshDataGridView()
         {
             dataGridViewCustomers.DataSource = null;
             dataGridViewCustomers.DataSource = customers;
         }
 
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text.ToLower();
+            List<Customer> filteredCustomers = customers.Where(c =>
+                c.Name.ToLower().Contains(searchText) ||
+                c.Email.ToLower().Contains(searchText) ||
+                c.Phone.ToLower().Contains(searchText)
+            ).ToList();
+
+            dataGridViewCustomers.DataSource = null;
+            dataGridViewCustomers.DataSource = filteredCustomers;
+        }
+
+        private void dataGridViewCustomers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+        }
+
+        private void rbSortByName_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void dataGridViewCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
+                Customer selectedCustomer = customers[selectedIndex];
+                CustomerDetailsForm detailsForm = new CustomerDetailsForm(selectedCustomer);
+                detailsForm.ShowDialog();
+            }
+        }
+
+        private void dataGridViewCustomers_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }
