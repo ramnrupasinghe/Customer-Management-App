@@ -17,16 +17,14 @@ namespace CustomerManagementApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
             LoadInitialCustomerData();
             RefreshDataGridView();
         }
 
         private void LoadInitialCustomerData()
         {
-           
-            customers.Add(new Customer { Name = "John Doe", Email = "john@example.com", Phone = "1234567890" });
-            customers.Add(new Customer { Name = "Jane Smith", Email = "jane@example.com", Phone = "9876543210" });
+            customers.Add(new Customer { Name = "John Doe", Email = "john@example.com", Phone = "1234567890", Address = "123 Main St", CompanyName = "ABC Inc.", Notes = "Regular customer" });
+            customers.Add(new Customer { Name = "Jane Smith", Email = "jane@example.com", Phone = "9876543210", Address = "456 Elm St", CompanyName = "XYZ Corp", Notes = "VIP customer" });
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -68,19 +66,18 @@ namespace CustomerManagementApp
         {
             using (var writer = new StreamWriter("customers.csv"))
             {
-                writer.WriteLine("Name,Email,Phone");
+                writer.WriteLine("Name,Email,Phone,Address,CompanyName,Notes");
                 foreach (var customer in customers)
                 {
-                    writer.WriteLine($"{customer.Name},{customer.Email},{customer.Phone}");
+                    writer.WriteLine($"{customer.Name},{customer.Email},{customer.Phone},{customer.Address},{customer.CompanyName},{customer.Notes}");
                 }
             }
 
             MessageBox.Show("Customer data exported successfully!", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-      
+
         private void btnSort_Click(object sender, EventArgs e)
         {
-            
             string sortingCriteria = null;
             if (rbSortByName.Checked)
                 sortingCriteria = "Name";
@@ -89,7 +86,6 @@ namespace CustomerManagementApp
             else if (rbSortByPhone.Checked)
                 sortingCriteria = "Phone";
 
-            
             if (!string.IsNullOrEmpty(sortingCriteria))
             {
                 List<Customer> sortedCustomers = new List<Customer>();
@@ -114,6 +110,7 @@ namespace CustomerManagementApp
         {
             dataGridViewCustomers.DataSource = null;
             dataGridViewCustomers.DataSource = customers;
+            dataGridViewCustomers.AutoResizeColumns();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -122,26 +119,14 @@ namespace CustomerManagementApp
             List<Customer> filteredCustomers = customers.Where(c =>
                 c.Name.ToLower().Contains(searchText) ||
                 c.Email.ToLower().Contains(searchText) ||
-                c.Phone.ToLower().Contains(searchText)
+                c.Phone.ToLower().Contains(searchText) ||
+                c.Address.ToLower().Contains(searchText) ||
+                c.CompanyName.ToLower().Contains(searchText) ||
+                c.Notes.ToLower().Contains(searchText)
             ).ToList();
 
             dataGridViewCustomers.DataSource = null;
             dataGridViewCustomers.DataSource = filteredCustomers;
-        }
-
-        private void dataGridViewCustomers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            
-        }
-
-        private void rbSortByName_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridViewCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -159,6 +144,11 @@ namespace CustomerManagementApp
         {
 
         }
+
+        private void dataGridViewCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
     public class Customer
@@ -166,6 +156,9 @@ namespace CustomerManagementApp
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public string Address { get; set; }
+        public string CompanyName { get; set; }
+        public string Notes { get; set; }
 
         public override string ToString()
         {

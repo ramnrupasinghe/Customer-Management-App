@@ -17,6 +17,9 @@ namespace CustomerManagementApp
             txtName.Text = customer.Name;
             txtEmail.Text = customer.Email;
             txtPhone.Text = customer.Phone;
+            txtAddress.Text = customer.Address; // Populate address field
+            txtCompanyName.Text = customer.CompanyName; // Populate company name field
+            txtNotes.Text = customer.Notes;
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
@@ -25,6 +28,24 @@ namespace CustomerManagementApp
         }
 
         private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void txtCompanyName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void txtNotes_TextChanged(object sender, EventArgs e)
         {
 
         }

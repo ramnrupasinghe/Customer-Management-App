@@ -54,8 +54,7 @@
             this.dataGridViewCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewCustomers.Size = new System.Drawing.Size(533, 218);
             this.dataGridViewCustomers.TabIndex = 0;
-            this.dataGridViewCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomers_CellContentClick_1);
-            this.dataGridViewCustomers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewCustomers_ColumnHeaderMouseClick);
+            this.dataGridViewCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomers_CellContentClick);
             // 
             // btnAdd
             // 
@@ -118,7 +117,6 @@
             this.rbSortByName.TabStop = true;
             this.rbSortByName.Text = "Name";
             this.rbSortByName.UseVisualStyleBackColor = true;
-            this.rbSortByName.CheckedChanged += new System.EventHandler(this.rbSortByName_CheckedChanged);
             // 
             // rbSortByEmail
             // 
