@@ -88,7 +88,6 @@ namespace CustomerManagementApp
                     writer.WriteLine("Name,Email,Phone,Address,CompanyName,Notes,Tags");
                     foreach (var customer in customers)
                     {
-                        // Handle null values gracefully by replacing them with empty strings
                         string name = customer.Name ?? "";
                         string email = customer.Email ?? "";
                         string phone = customer.Phone ?? "";
@@ -195,6 +194,23 @@ namespace CustomerManagementApp
 
         }
 
+
+        private void btnAddReminder_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
+                Customer selectedCustomer = customers[selectedIndex];
+
+                AddReminderForm addReminderForm = new AddReminderForm(selectedCustomer);
+                if (addReminderForm.ShowDialog() == DialogResult.OK)
+                {
+                    Reminder reminder = addReminderForm.Reminder;
+                    reminders.Add(reminder);
+                    MessageBox.Show("Reminder added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
     }
 
     public class Customer

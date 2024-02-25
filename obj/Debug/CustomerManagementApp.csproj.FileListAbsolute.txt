@@ -11,3 +11,4 @@ D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\CustomerManagemen
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.exe
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.pdb
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.CustomerDetailsForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.AddReminderForm.resources
