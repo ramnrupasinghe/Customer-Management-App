@@ -19,9 +19,9 @@ namespace CustomerManagementApp
             txtName.Text = customer.Name;
             txtEmail.Text = customer.Email;
             txtPhone.Text = customer.Phone;
-            txtAddress.Text = customer.Address; // Populate address field
-            txtCompanyName.Text = customer.CompanyName; // Populate company name field
-            txtNotes.Text = customer.Notes; // Populate notes field
+            txtAddress.Text = customer.Address; 
+            txtCompanyName.Text = customer.CompanyName; 
+            txtNotes.Text = customer.Notes; 
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -49,9 +49,9 @@ namespace CustomerManagementApp
                 Name = txtName.Text,
                 Email = txtEmail.Text,
                 Phone = txtPhone.Text,
-                Address = txtAddress.Text, // Retrieve address field data
-                CompanyName = txtCompanyName.Text, // Retrieve company name field data
-                Notes = txtNotes.Text // Retrieve notes field data
+                Address = txtAddress.Text, 
+                CompanyName = txtCompanyName.Text, 
+                Notes = txtNotes.Text 
             };
 
             DialogResult = DialogResult.OK;
@@ -60,14 +60,13 @@ namespace CustomerManagementApp
 
         private bool IsValidEmail(string email)
         {
-            // Simple email validation using regular expression
+           
             string pattern = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
             return Regex.IsMatch(email, pattern);
         }
 
         private bool IsValidPhoneNumber(string phone)
         {
-            // Simple phone number validation allowing only numeric characters
             return Regex.IsMatch(phone, @"^[0-9]+$");
         }
 
@@ -79,8 +78,7 @@ namespace CustomerManagementApp
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            // This method is required to handle the Load event of the form
-            // Add your code here if you need to perform any actions when the form is loaded
+            
         }
     }
 }

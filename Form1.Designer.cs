@@ -13,6 +13,7 @@
         private System.Windows.Forms.RadioButton rbSortByEmail;
         private System.Windows.Forms.RadioButton rbSortByPhone;
         private System.Windows.Forms.Button btnSort;
+        private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button button1;
 
         protected override void Dispose(bool disposing)
@@ -36,12 +37,11 @@
             this.rbSortByEmail = new System.Windows.Forms.RadioButton();
             this.rbSortByPhone = new System.Windows.Forms.RadioButton();
             this.btnSort = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomers)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridViewCustomers
-            // 
+          
             this.dataGridViewCustomers.AllowUserToAddRows = false;
             this.dataGridViewCustomers.AllowUserToDeleteRows = false;
             this.dataGridViewCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -54,10 +54,8 @@
             this.dataGridViewCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewCustomers.Size = new System.Drawing.Size(533, 218);
             this.dataGridViewCustomers.TabIndex = 0;
-            this.dataGridViewCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomers_CellContentClick);
-            // 
-            // btnAdd
-            // 
+            this.dataGridViewCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomers_CellContentClick_1);
+          
             this.btnAdd.Location = new System.Drawing.Point(16, 268);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
@@ -66,9 +64,7 @@
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnEdit
-            // 
+           
             this.btnEdit.Location = new System.Drawing.Point(124, 268);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
@@ -77,9 +73,7 @@
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnDelete
-            // 
+           
             this.btnDelete.Location = new System.Drawing.Point(232, 268);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
@@ -88,27 +82,21 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // txtSearch
-            // 
+         
             this.txtSearch.Location = new System.Drawing.Point(73, 12);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(205, 22);
             this.txtSearch.TabIndex = 4;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // lblSearch
-            // 
+           
             this.lblSearch.AutoSize = true;
             this.lblSearch.Location = new System.Drawing.Point(13, 15);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(53, 16);
             this.lblSearch.TabIndex = 5;
             this.lblSearch.Text = "Search:";
-            // 
-            // rbSortByName
-            // 
+            
             this.rbSortByName.AutoSize = true;
             this.rbSortByName.Location = new System.Drawing.Point(285, 12);
             this.rbSortByName.Name = "rbSortByName";
@@ -117,9 +105,7 @@
             this.rbSortByName.TabStop = true;
             this.rbSortByName.Text = "Name";
             this.rbSortByName.UseVisualStyleBackColor = true;
-            // 
-            // rbSortByEmail
-            // 
+            
             this.rbSortByEmail.AutoSize = true;
             this.rbSortByEmail.Location = new System.Drawing.Point(357, 12);
             this.rbSortByEmail.Name = "rbSortByEmail";
@@ -128,9 +114,7 @@
             this.rbSortByEmail.TabStop = true;
             this.rbSortByEmail.Text = "Email";
             this.rbSortByEmail.UseVisualStyleBackColor = true;
-            // 
-            // rbSortByPhone
-            // 
+           
             this.rbSortByPhone.AutoSize = true;
             this.rbSortByPhone.Location = new System.Drawing.Point(429, 12);
             this.rbSortByPhone.Name = "rbSortByPhone";
@@ -139,9 +123,8 @@
             this.rbSortByPhone.TabStop = true;
             this.rbSortByPhone.Text = "Phone";
             this.rbSortByPhone.UseVisualStyleBackColor = true;
-            // 
-            // btnSort
-            // 
+            
+         
             this.btnSort.Location = new System.Drawing.Point(511, 12);
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(51, 25);
@@ -149,23 +132,28 @@
             this.btnSort.Text = "Sort";
             this.btnSort.UseVisualStyleBackColor = true;
             this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(347, 268);
+           
+            this.btnExport.Location = new System.Drawing.Point(470, 268);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(79, 28);
+            this.btnExport.TabIndex = 10;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+          
+            this.button1.Location = new System.Drawing.Point(338, 268);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(126, 28);
-            this.button1.TabIndex = 10;
+            this.button1.TabIndex = 11;
             this.button1.Text = "View Detail";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Form1
-            // 
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 311);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnDelete);

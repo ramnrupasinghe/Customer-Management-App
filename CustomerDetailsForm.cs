@@ -17,8 +17,8 @@ namespace CustomerManagementApp
             txtName.Text = customer.Name;
             txtEmail.Text = customer.Email;
             txtPhone.Text = customer.Phone;
-            txtAddress.Text = customer.Address; // Populate address field
-            txtCompanyName.Text = customer.CompanyName; // Populate company name field
+            txtAddress.Text = customer.Address; 
+            txtCompanyName.Text = customer.CompanyName; 
             txtNotes.Text = customer.Notes;
         }
 
