@@ -45,7 +45,7 @@ namespace CustomerManagementApp
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(190, 230);
+            this.btnCancel.Location = new System.Drawing.Point(227, 230);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 13;

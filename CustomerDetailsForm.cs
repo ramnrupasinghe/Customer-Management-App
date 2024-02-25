@@ -34,7 +34,7 @@ namespace CustomerManagementApp
             customer.Notes = txtNotes.Text;
             MessageBox.Show("Changes saved successfully!");
         }
-
+     
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DisplayCustomerDetails(customer);
@@ -66,6 +66,11 @@ namespace CustomerManagementApp
         }
 
         private void txtNotes_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
