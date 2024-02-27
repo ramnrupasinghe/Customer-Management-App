@@ -19,9 +19,9 @@ namespace CustomerManagementApp
             txtName.Text = customer.Name;
             txtEmail.Text = customer.Email;
             txtPhone.Text = customer.Phone;
-            txtAddress.Text = customer.Address; 
-            txtCompanyName.Text = customer.CompanyName; 
-            txtNotes.Text = customer.Notes; 
+            txtAddress.Text = customer.Address;
+            txtCompanyName.Text = customer.CompanyName;
+            txtNotes.Text = customer.Notes;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -49,9 +49,9 @@ namespace CustomerManagementApp
                 Name = txtName.Text,
                 Email = txtEmail.Text,
                 Phone = txtPhone.Text,
-                Address = txtAddress.Text, 
-                CompanyName = txtCompanyName.Text, 
-                Notes = txtNotes.Text 
+                Address = txtAddress.Text,
+                CompanyName = txtCompanyName.Text,
+                Notes = txtNotes.Text
             };
 
             DialogResult = DialogResult.OK;
@@ -60,7 +60,6 @@ namespace CustomerManagementApp
 
         private bool IsValidEmail(string email)
         {
-           
             string pattern = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
             return Regex.IsMatch(email, pattern);
         }
@@ -76,14 +75,16 @@ namespace CustomerManagementApp
             Close();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label6_Click(object sender, EventArgs e)
+       
+        private void button1_Click(object sender, EventArgs e)
         {
 
+            txtName.Text = "";
+            txtEmail.Text = "";
+            txtPhone.Text = "";
+            txtAddress.Text = "";
+            txtCompanyName.Text = "";
+            txtNotes.Text = "";
         }
     }
 }

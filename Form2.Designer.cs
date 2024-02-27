@@ -16,7 +16,7 @@
             {
                 components.Dispose();
             }
-            base.Dispose(disposing);   
+            base.Dispose(disposing);
         }
 
         private void InitializeComponent()
@@ -35,8 +35,9 @@
             this.txtCompanyName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-
+           
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -44,7 +45,7 @@
             this.label1.Size = new System.Drawing.Size(44, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
-            
+           
             this.txtName.Location = new System.Drawing.Point(117, 15);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
@@ -58,7 +59,7 @@
             this.label2.Size = new System.Drawing.Size(41, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Email";
-           
+            
             this.txtEmail.Location = new System.Drawing.Point(117, 47);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
@@ -72,14 +73,14 @@
             this.label3.Size = new System.Drawing.Size(46, 16);
             this.label3.TabIndex = 4;
             this.label3.Text = "Phone";
-            
+           
             this.txtPhone.Location = new System.Drawing.Point(117, 79);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(265, 22);
             this.txtPhone.TabIndex = 5;
-             
-            this.btnOK.Location = new System.Drawing.Point(176, 248);
+            
+            this.btnOK.Location = new System.Drawing.Point(19, 249);
             this.btnOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(100, 28);
@@ -96,7 +97,7 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-             
+            
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(16, 114);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -104,13 +105,13 @@
             this.label4.Size = new System.Drawing.Size(58, 16);
             this.label4.TabIndex = 8;
             this.label4.Text = "Address";
-             
+            
             this.txtAddress.Location = new System.Drawing.Point(117, 111);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(265, 22);
             this.txtAddress.TabIndex = 9;
-             
+            
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(16, 146);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -118,7 +119,7 @@
             this.label5.Size = new System.Drawing.Size(105, 16);
             this.label5.TabIndex = 10;
             this.label5.Text = "Company Name";
-            
+             
             this.txtCompanyName.Location = new System.Drawing.Point(117, 143);
             this.txtCompanyName.Margin = new System.Windows.Forms.Padding(4);
             this.txtCompanyName.Name = "txtCompanyName";
@@ -132,8 +133,7 @@
             this.label6.Size = new System.Drawing.Size(43, 16);
             this.label6.TabIndex = 12;
             this.label6.Text = "Notes";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-             
+            
             this.txtNotes.Location = new System.Drawing.Point(117, 175);
             this.txtNotes.Margin = new System.Windows.Forms.Padding(4);
             this.txtNotes.Multiline = true;
@@ -141,9 +141,19 @@
             this.txtNotes.Size = new System.Drawing.Size(265, 60);
             this.txtNotes.TabIndex = 13;
             
+            this.button1.Location = new System.Drawing.Point(152, 249);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 28);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Clear";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+             
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 300);
+            this.ClientSize = new System.Drawing.Size(400, 290);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtPhone);
@@ -161,7 +171,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form2";
             this.Text = "Customer Details";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,5 +184,6 @@
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button button1;
     }
 }

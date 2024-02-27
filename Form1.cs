@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace CustomerManagementApp
@@ -175,32 +177,21 @@ namespace CustomerManagementApp
             if (addReminderForm.ShowDialog() == DialogResult.OK)
             {
                 Reminder reminder = addReminderForm.Reminder;
-                reminder.AssociatedCustomer = customer; 
-                reminders.Add(reminder); 
-                RefreshDataGridView(); 
+                reminder.AssociatedCustomer = customer;
+                reminders.Add(reminder);
+                RefreshDataGridView();
                 MessageBox.Show("Reminder added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void UpdateCustomerReminders(Customer customer)
         {
-           
+            
         }
 
         private void RemoveCustomerReminders(Customer customer)
         {
-            
             reminders.RemoveAll(r => r.AssociatedCustomer == customer);
-        }
-
-        private void dataGridViewCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridViewCustomers_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btnViewReminder_Click(object sender, EventArgs e)
@@ -250,6 +241,44 @@ namespace CustomerManagementApp
                 }
             }
         }
+
+        private void btnSendEmail_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+
+                List<Customer> selectedCustomers = new List<Customer>();
+                foreach (DataGridViewRow row in dataGridViewCustomers.SelectedRows)
+                {
+                    selectedCustomers.Add(row.DataBoundItem as Customer);
+                }
+
+
+                using (SmtpClient smtpClient = new SmtpClient("smtp.example.com"))
+                {
+                    smtpClient.Port = 587;
+                    smtpClient.Credentials = new NetworkCredential("your_email@example.com", "your_password");
+                    smtpClient.EnableSsl = true;
+
+                    foreach (Customer customer in selectedCustomers)
+                    {
+                        MailMessage mailMessage = new MailMessage();
+                        mailMessage.From = new MailAddress("your_email@example.com");
+                        mailMessage.To.Add(customer.Email);
+                        mailMessage.Subject = "Subject of your email";
+                        mailMessage.Body = "Body of your email";
+
+                        smtpClient.Send(mailMessage);
+                    }
+
+                    MessageBox.Show("Emails sent successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select customers to send emails.", "No Customers Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 
     public class Customer
@@ -261,10 +290,30 @@ namespace CustomerManagementApp
         public string CompanyName { get; set; }
         public string Notes { get; set; }
         public List<string> Tags { get; set; }
+        public List<Transaction> Transactions { get; set; }
+
+        public Customer()
+        {
+            Transactions = new List<Transaction>();
+        }
 
         public override string ToString()
         {
             return Name;
+        }
+    }
+
+    public class Transaction
+    {
+        public DateTime Date { get; set; }
+        public decimal Amount { get; set; }
+        public string Description { get; set; }
+
+        public Transaction(DateTime date, decimal amount, string description)
+        {
+            Date = date;
+            Amount = amount;
+            Description = description;
         }
     }
 
@@ -273,8 +322,8 @@ namespace CustomerManagementApp
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
         public Customer AssociatedCustomer { get; set; }
-        public string Priority { get; set; } 
-        public string Category { get; set; } 
+        public string Priority { get; set; }
+        public string Category { get; set; }
     }
 
     public class Analytics
