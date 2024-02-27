@@ -171,17 +171,26 @@ namespace CustomerManagementApp
 
         private void AddCustomerReminders(Customer customer)
         {
-
+            AddReminderForm addReminderForm = new AddReminderForm(customer);
+            if (addReminderForm.ShowDialog() == DialogResult.OK)
+            {
+                Reminder reminder = addReminderForm.Reminder;
+                reminder.AssociatedCustomer = customer; 
+                reminders.Add(reminder); 
+                RefreshDataGridView(); 
+                MessageBox.Show("Reminder added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void UpdateCustomerReminders(Customer customer)
         {
-
+           
         }
 
         private void RemoveCustomerReminders(Customer customer)
         {
-
+            
+            reminders.RemoveAll(r => r.AssociatedCustomer == customer);
         }
 
         private void dataGridViewCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -194,8 +203,37 @@ namespace CustomerManagementApp
 
         }
 
+        private void btnViewReminder_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
+                Customer selectedCustomer = customers[selectedIndex];
 
-        private void btnAddReminder_Click_1(object sender, EventArgs e)
+                var customerReminders = reminders.Where(r => r.AssociatedCustomer == selectedCustomer).ToList();
+
+                if (customerReminders.Count > 0)
+                {
+                    string reminderDetails = "Reminders for " + selectedCustomer.Name + ":\n";
+                    foreach (var reminder in customerReminders)
+                    {
+                        reminderDetails += $"Description: {reminder.Description}, Due Date: {reminder.DueDate}\n";
+                    }
+
+                    MessageBox.Show(reminderDetails, "Reminders", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No reminders found for the selected customer.", "No Reminders", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridViewCustomers.SelectedRows.Count > 0)
             {
@@ -207,6 +245,7 @@ namespace CustomerManagementApp
                 {
                     Reminder reminder = addReminderForm.Reminder;
                     reminders.Add(reminder);
+                    RefreshDataGridView();
                     MessageBox.Show("Reminder added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -234,6 +273,8 @@ namespace CustomerManagementApp
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
         public Customer AssociatedCustomer { get; set; }
+        public string Priority { get; set; } 
+        public string Category { get; set; } 
     }
 
     public class Analytics
