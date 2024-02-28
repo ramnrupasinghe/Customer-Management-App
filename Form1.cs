@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CustomerManagementApp
@@ -17,6 +18,8 @@ namespace CustomerManagementApp
         public Form1()
         {
             InitializeComponent();
+            dataGridViewCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewCustomers.MultiSelect = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -164,10 +167,28 @@ namespace CustomerManagementApp
         {
             if (dataGridViewCustomers.SelectedRows.Count > 0)
             {
-                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
-                Customer selectedCustomer = customers[selectedIndex];
-                CustomerDetailsForm detailsForm = new CustomerDetailsForm(selectedCustomer);
+                StringBuilder detailsBuilder = new StringBuilder();
+
+                foreach (DataGridViewRow row in dataGridViewCustomers.SelectedRows)
+                {
+                    Customer selectedCustomer = row.DataBoundItem as Customer;
+                    detailsBuilder.AppendLine($"Name: {selectedCustomer.Name}");
+                    detailsBuilder.AppendLine($"Email: {selectedCustomer.Email}");
+                    detailsBuilder.AppendLine($"Phone: {selectedCustomer.Phone}");
+                    detailsBuilder.AppendLine($"Address: {selectedCustomer.Address}");
+                    detailsBuilder.AppendLine($"Company Name: {selectedCustomer.CompanyName}");
+                    detailsBuilder.AppendLine($"Notes: {selectedCustomer.Notes}");
+                    detailsBuilder.AppendLine($"Tags: {string.Join(", ", selectedCustomer.Tags)}");
+                    detailsBuilder.AppendLine();
+                }
+
+                MultipleCustomerDetailsForm detailsForm = new MultipleCustomerDetailsForm();
+                detailsForm.DisplayCustomerDetails(detailsBuilder.ToString());
                 detailsForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select customers first.", "No Customers Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -186,7 +207,7 @@ namespace CustomerManagementApp
 
         private void UpdateCustomerReminders(Customer customer)
         {
-            
+
         }
 
         private void RemoveCustomerReminders(Customer customer)

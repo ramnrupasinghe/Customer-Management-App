@@ -28,3 +28,5 @@ D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.Memory.xml
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.Numerics.Vectors.xml
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.csproj.CopyComplete
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.MultipleCustomerDetailsForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.EditCustomerForm.resources
