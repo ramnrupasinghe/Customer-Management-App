@@ -44,6 +44,18 @@ namespace CustomerManagementApp
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(txtAddress.Text))
+            {
+                MessageBox.Show("Please enter an address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtCompanyName.Text))
+            {
+                MessageBox.Show("Please enter a company name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Customer = new Customer
             {
                 Name = txtName.Text,
@@ -75,16 +87,24 @@ namespace CustomerManagementApp
             Close();
         }
 
-       
         private void button1_Click(object sender, EventArgs e)
         {
-
             txtName.Text = "";
             txtEmail.Text = "";
             txtPhone.Text = "";
             txtAddress.Text = "";
             txtCompanyName.Text = "";
             txtNotes.Text = "";
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNotes_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

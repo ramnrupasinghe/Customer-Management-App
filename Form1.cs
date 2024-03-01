@@ -300,6 +300,84 @@ namespace CustomerManagementApp
                 MessageBox.Show("Please select customers to send emails.", "No Customers Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            saveFileDialog.Title = "Export Reminder Data";
+            saveFileDialog.FileName = "reminders.csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string exportFilePath = saveFileDialog.FileName;
+
+                using (var writer = new StreamWriter(exportFilePath))
+                {
+                    writer.WriteLine("Customer Name,Description,Due Date,Priority,Category");
+                    foreach (var reminder in reminders)
+                    {
+                        string customerName = reminder.AssociatedCustomer.Name ?? "";
+                        string description = reminder.Description ?? "";
+                        string dueDate = reminder.DueDate.ToString() ?? "";
+                        string priority = reminder.Priority ?? "";
+                        string category = reminder.Category ?? "";
+
+                        writer.WriteLine($"{customerName},{description},{dueDate},{priority},{category}");
+                    }
+                }
+
+                MessageBox.Show($"Reminder data exported successfully to:\n{exportFilePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
+                Customer selectedCustomer = customers[selectedIndex];
+
+                StringBuilder transactionDetails = new StringBuilder();
+                transactionDetails.AppendLine($"Transaction History for {selectedCustomer.Name}:");
+
+                foreach (Transaction transaction in selectedCustomer.Transactions)
+                {
+                    transactionDetails.AppendLine($"Date: {transaction.Date}, Amount: {transaction.Amount}, Description: {transaction.Description}");
+                }
+
+                MessageBox.Show(transactionDetails.ToString(), "Transaction History", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
+                Customer selectedCustomer = customers[selectedIndex];
+
+               
+                decimal amount = decimal.Parse(txtTransactionAmount.Text);
+                string description = txtTransactionDescription.Text;
+                DateTime transactionDate = DateTime.Now;
+
+               
+                Transaction transaction = new Transaction(transactionDate, amount, description);
+
+               
+                selectedCustomer.Transactions.Add(transaction);
+
+                MessageBox.Show("Transaction completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 
     public class Customer
@@ -310,6 +388,8 @@ namespace CustomerManagementApp
         public string Address { get; set; }
         public string CompanyName { get; set; }
         public string Notes { get; set; }
+        public string Password { get; set; } 
+        public DateTime DateOfBirth { get; set; }
         public List<string> Tags { get; set; }
         public List<Transaction> Transactions { get; set; }
 
