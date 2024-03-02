@@ -30,3 +30,4 @@ D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.Runtime.Co
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.csproj.CopyComplete
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.MultipleCustomerDetailsForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.EditCustomerForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.TransactionForm.resources

@@ -331,6 +331,33 @@ namespace CustomerManagementApp
             }
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
+                Customer selectedCustomer = customers[selectedIndex];
+
+                TransactionForm transactionForm = new TransactionForm();
+                if (transactionForm.ShowDialog() == DialogResult.OK)
+                {
+                    decimal amount = transactionForm.TransactionAmount;
+                    string description = transactionForm.TransactionDescription;
+                    DateTime transactionDate = transactionForm.TransactionDate;
+
+                    Transaction transaction = new Transaction(transactionDate, amount, description);
+
+                    selectedCustomer.Transactions.Add(transaction);
+                    MessageBox.Show("Transaction completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
         private void button4_Click(object sender, EventArgs e)
         {
             if (dataGridViewCustomers.SelectedRows.Count > 0)
@@ -338,8 +365,10 @@ namespace CustomerManagementApp
                 int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
                 Customer selectedCustomer = customers[selectedIndex];
 
+
                 StringBuilder transactionDetails = new StringBuilder();
                 transactionDetails.AppendLine($"Transaction History for {selectedCustomer.Name}:");
+
 
                 foreach (Transaction transaction in selectedCustomer.Transactions)
                 {
@@ -353,32 +382,11 @@ namespace CustomerManagementApp
                 MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewCustomers.SelectedRows.Count > 0)
-            {
-                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
-                Customer selectedCustomer = customers[selectedIndex];
 
-               
-                decimal amount = decimal.Parse(txtTransactionAmount.Text);
-                string description = txtTransactionDescription.Text;
-                DateTime transactionDate = DateTime.Now;
-
-               
-                Transaction transaction = new Transaction(transactionDate, amount, description);
-
-               
-                selectedCustomer.Transactions.Add(transaction);
-
-                MessageBox.Show("Transaction completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+       
     }
+
+}
 
     public class Customer
     {
@@ -388,7 +396,7 @@ namespace CustomerManagementApp
         public string Address { get; set; }
         public string CompanyName { get; set; }
         public string Notes { get; set; }
-        public string Password { get; set; } 
+        public string Password { get; set; }
         public DateTime DateOfBirth { get; set; }
         public List<string> Tags { get; set; }
         public List<Transaction> Transactions { get; set; }
@@ -436,4 +444,3 @@ namespace CustomerManagementApp
 
         }
     }
-}

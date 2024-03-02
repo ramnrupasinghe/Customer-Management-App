@@ -20,8 +20,8 @@
         private System.Windows.Forms.Button btnSendEmail;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox txtTransactionAmount; // Added text box for transaction amount
-        private System.Windows.Forms.TextBox txtTransactionDescription; // Added text box for transaction description
+        private System.Windows.Forms.TextBox txtTransactionAmount; 
+        private System.Windows.Forms.TextBox txtTransactionDescription; 
 
         protected override void Dispose(bool disposing)
         {
@@ -56,7 +56,7 @@
             this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomers)).BeginInit();
             this.SuspendLayout();
-           
+            
             this.dataGridViewCustomers.AllowUserToAddRows = false;
             this.dataGridViewCustomers.AllowUserToDeleteRows = false;
             this.dataGridViewCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -69,7 +69,7 @@
             this.dataGridViewCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewCustomers.Size = new System.Drawing.Size(671, 218);
             this.dataGridViewCustomers.TabIndex = 0;
-            
+             
             this.btnAdd.Location = new System.Drawing.Point(42, 269);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
@@ -96,7 +96,7 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-             
+            
             this.txtSearch.Location = new System.Drawing.Point(73, 12);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
@@ -110,7 +110,7 @@
             this.lblSearch.Size = new System.Drawing.Size(53, 16);
             this.lblSearch.TabIndex = 5;
             this.lblSearch.Text = "Search:";
-           
+            
             this.rbSortByName.AutoSize = true;
             this.rbSortByName.Location = new System.Drawing.Point(285, 12);
             this.rbSortByName.Name = "rbSortByName";
@@ -128,7 +128,7 @@
             this.rbSortByEmail.TabStop = true;
             this.rbSortByEmail.Text = "Email";
             this.rbSortByEmail.UseVisualStyleBackColor = true;
-           
+            
             this.rbSortByPhone.AutoSize = true;
             this.rbSortByPhone.Location = new System.Drawing.Point(501, 12);
             this.rbSortByPhone.Name = "rbSortByPhone";
@@ -145,7 +145,7 @@
             this.btnSort.Text = "Sort";
             this.btnSort.UseVisualStyleBackColor = true;
             this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
-             
+            
             this.btnExport.Location = new System.Drawing.Point(406, 268);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(111, 40);
@@ -161,7 +161,7 @@
             this.button1.Text = "View Detail";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-             
+            
             this.btnViewReminder.Location = new System.Drawing.Point(558, 269);
             this.btnViewReminder.Name = "btnViewReminder";
             this.btnViewReminder.Size = new System.Drawing.Size(121, 40);
@@ -169,7 +169,7 @@
             this.btnViewReminder.Text = "View Reminder";
             this.btnViewReminder.UseVisualStyleBackColor = true;
             this.btnViewReminder.Click += new System.EventHandler(this.btnViewReminder_Click);
-            
+           
             this.button3.Location = new System.Drawing.Point(406, 323);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(111, 40);
@@ -185,8 +185,8 @@
             this.btnSendEmail.Text = "Send Email";
             this.btnSendEmail.UseVisualStyleBackColor = true;
             this.btnSendEmail.Click += new System.EventHandler(this.btnSendEmail_Click);
-           
-            this.button2.Location = new System.Drawing.Point(137, 382);
+            
+            this.button2.Location = new System.Drawing.Point(42, 396);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(126, 56);
             this.button2.TabIndex = 15;
@@ -194,25 +194,25 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             
-            this.button4.Location = new System.Drawing.Point(334, 382);
+            this.button4.Location = new System.Drawing.Point(306, 396);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(111, 56);
             this.button4.TabIndex = 16;
             this.button4.Text = "Transaction History";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-           
-            this.txtTransactionAmount.Location = new System.Drawing.Point(16, 446);
+             
+            this.txtTransactionAmount.Location = new System.Drawing.Point(0, 0);
             this.txtTransactionAmount.Name = "txtTransactionAmount";
             this.txtTransactionAmount.Size = new System.Drawing.Size(100, 22);
-            this.txtTransactionAmount.TabIndex = 17;
-            
-            this.txtTransactionDescription.Location = new System.Drawing.Point(128, 446);
-            this.txtTransactionDescription.Name = "txtTransactionDescription";
-            this.txtTransactionDescription.Size = new System.Drawing.Size(200, 22);
-            this.txtTransactionDescription.TabIndex = 18;
+            this.txtTransactionAmount.TabIndex = 21;
            
-            this.button5.Location = new System.Drawing.Point(515, 382);
+            this.txtTransactionDescription.Location = new System.Drawing.Point(0, 0);
+            this.txtTransactionDescription.Name = "txtTransactionDescription";
+            this.txtTransactionDescription.Size = new System.Drawing.Size(100, 22);
+            this.txtTransactionDescription.TabIndex = 20;
+            
+            this.button5.Location = new System.Drawing.Point(526, 396);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(111, 56);
             this.button5.TabIndex = 19;
@@ -222,7 +222,7 @@
             
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 500);
+            this.ClientSize = new System.Drawing.Size(718, 473);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.txtTransactionDescription);
             this.Controls.Add(this.txtTransactionAmount);
