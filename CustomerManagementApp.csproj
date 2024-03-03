@@ -115,6 +115,7 @@
       <DependentUpon>MultipleCustomerDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Prompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionForm.cs">
       <SubType>Form</SubType>

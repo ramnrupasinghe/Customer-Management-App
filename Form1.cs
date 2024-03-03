@@ -382,11 +382,7 @@ namespace CustomerManagementApp
                 MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-       
     }
-
-}
 
     public class Customer
     {
@@ -396,8 +392,6 @@ namespace CustomerManagementApp
         public string Address { get; set; }
         public string CompanyName { get; set; }
         public string Notes { get; set; }
-        public string Password { get; set; }
-        public DateTime DateOfBirth { get; set; }
         public List<string> Tags { get; set; }
         public List<Transaction> Transactions { get; set; }
 
@@ -444,3 +438,4 @@ namespace CustomerManagementApp
 
         }
     }
+}
