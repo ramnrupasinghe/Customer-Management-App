@@ -31,3 +31,4 @@ D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagemen
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.MultipleCustomerDetailsForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.EditCustomerForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.TransactionForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.EditTransactionForm.resources

@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Windows.Forms;
+using CustomerManagementApp;
 
 namespace CustomerManagementApp
 {
@@ -345,7 +346,9 @@ namespace CustomerManagementApp
                     string description = transactionForm.TransactionDescription;
                     DateTime transactionDate = transactionForm.TransactionDate;
 
-                    Transaction transaction = new Transaction(transactionDate, amount, description);
+                    Transaction transaction = new Transaction(transactionDate, amount, description, "Sample category", "Sample currency");
+
+
 
                     selectedCustomer.Transactions.Add(transaction);
                     MessageBox.Show("Transaction completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -356,7 +359,6 @@ namespace CustomerManagementApp
                 MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -372,7 +374,7 @@ namespace CustomerManagementApp
 
                 foreach (Transaction transaction in selectedCustomer.Transactions)
                 {
-                    transactionDetails.AppendLine($"Date: {transaction.Date}, Amount: {transaction.Amount}, Description: {transaction.Description}");
+                    transactionDetails.AppendLine($"Date: {transaction.Date}, Amount: {transaction.TransactionAmount}, Description: {transaction.Description}");
                 }
 
                 MessageBox.Show(transactionDetails.ToString(), "Transaction History", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -383,6 +385,8 @@ namespace CustomerManagementApp
             }
         }
     }
+
+  
 
     public class Customer
     {
@@ -403,20 +407,6 @@ namespace CustomerManagementApp
         public override string ToString()
         {
             return Name;
-        }
-    }
-
-    public class Transaction
-    {
-        public DateTime Date { get; set; }
-        public decimal Amount { get; set; }
-        public string Description { get; set; }
-
-        public Transaction(DateTime date, decimal amount, string description)
-        {
-            Date = date;
-            Amount = amount;
-            Description = description;
         }
     }
 
