@@ -417,6 +417,7 @@ namespace CustomerManagementApp
         public Customer AssociatedCustomer { get; set; }
         public string Priority { get; set; }
         public string Category { get; set; }
+        public DateTime ReminderTime { get; set; }
     }
 
     public class Analytics

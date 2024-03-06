@@ -8,7 +8,6 @@ namespace CustomerManagementApp
         public Reminder Reminder { get; private set; }
         private Customer customer;
 
-        
         private const int MaxDescriptionLength = 100;
 
         public AddReminderForm(Customer customer)
@@ -20,11 +19,22 @@ namespace CustomerManagementApp
 
             cbPriority.Items.AddRange(new string[] { "Low", "Medium", "High" });
             cbCategory.Items.AddRange(new string[] { "Work", "Personal", "Shopping" });
+
+           
+            timePickerReminderTime.Value = DateTime.Now.AddHours(1);
+
+            UpdateCharacterCounter();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             string description = txtDescription.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                MessageBox.Show("Description cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (description.Length > MaxDescriptionLength)
             {
@@ -32,23 +42,29 @@ namespace CustomerManagementApp
                 return;
             }
 
-            if (datePickerDueDate.Value.Date < DateTime.Today)
+            if (cbPriority.SelectedItem == null)
             {
-                MessageBox.Show("Due date cannot be in the past.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a priority.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            string priority = cbPriority.SelectedItem?.ToString();
-            string category = cbCategory.SelectedItem?.ToString();
+            if (cbCategory.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a category.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            
+            string priority = cbPriority.SelectedItem.ToString();
+            string category = cbCategory.SelectedItem.ToString();
+
             Reminder = new Reminder
             {
                 Description = description,
                 DueDate = datePickerDueDate.Value,
                 AssociatedCustomer = customer,
                 Priority = priority,
-                Category = category
+                Category = category,
+                ReminderTime = timePickerReminderTime.Value 
             };
 
             DialogResult = DialogResult.OK;
@@ -63,19 +79,23 @@ namespace CustomerManagementApp
 
         private void txtDescription_TextChanged(object sender, EventArgs e)
         {
-            
+            UpdateCharacterCounter();
+        }
+
+        private void UpdateCharacterCounter()
+        {
+            int remainingCharacters = MaxDescriptionLength - txtDescription.TextLength;
+            lblCharacterCounter.Text = $"{remainingCharacters} characters remaining";
         }
 
         private void cbPriority_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedPriority = cbPriority.SelectedItem?.ToString();
-            MessageBox.Show($"Priority selected: {selectedPriority}", "Priority Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
         }
 
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedCategory = cbCategory.SelectedItem?.ToString();
-            MessageBox.Show($"Category selected: {selectedCategory}", "Category Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
         }
     }
 }

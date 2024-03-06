@@ -36,5 +36,15 @@ namespace CustomerManagementApp
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void txtTransactionDescription_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTransactionAmount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

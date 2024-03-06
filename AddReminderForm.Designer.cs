@@ -9,8 +9,12 @@
         private System.Windows.Forms.DateTimePicker datePickerDueDate;
         private System.Windows.Forms.Label lblCustomerName;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.ComboBox cbPriority; 
+        private System.Windows.Forms.ComboBox cbPriority;
         private System.Windows.Forms.ComboBox cbCategory;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCharacterCounter;
+        private System.Windows.Forms.DateTimePicker timePickerReminderTime;
 
         protected override void Dispose(bool disposing)
         {
@@ -34,20 +38,23 @@
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblCharacterCounter = new System.Windows.Forms.Label();
+            this.timePickerReminderTime = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
-           
-            this.btnSave.Location = new System.Drawing.Point(57, 296);
+            
+            this.btnSave.Location = new System.Drawing.Point(59, 314);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 42);
+            this.btnSave.Size = new System.Drawing.Size(103, 23);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             
-            this.btnCancel.Location = new System.Drawing.Point(235, 296);
+            this.btnCancel.Location = new System.Drawing.Point(202, 314);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 42);
+            this.btnCancel.Size = new System.Drawing.Size(97, 23);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -59,24 +66,24 @@
             this.txtDescription.Size = new System.Drawing.Size(298, 134);
             this.txtDescription.TabIndex = 2;
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
-             
+            
             this.datePickerDueDate.Location = new System.Drawing.Point(35, 185);
             this.datePickerDueDate.Name = "datePickerDueDate";
             this.datePickerDueDate.Size = new System.Drawing.Size(298, 22);
             this.datePickerDueDate.TabIndex = 3;
-             
+            
             this.lblCustomerName.AutoSize = true;
             this.lblCustomerName.Location = new System.Drawing.Point(32, 15);
             this.lblCustomerName.Name = "lblCustomerName";
             this.lblCustomerName.Size = new System.Drawing.Size(130, 16);
             this.lblCustomerName.TabIndex = 4;
             this.lblCustomerName.Text = "Adding reminder for: ";
-            
+             
             this.errorProvider.ContainerControl = this;
             
             this.cbPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPriority.FormattingEnabled = true;
-            this.cbPriority.Location = new System.Drawing.Point(35, 250);
+            this.cbPriority.Location = new System.Drawing.Point(38, 240);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(121, 24);
             this.cbPriority.TabIndex = 5;
@@ -84,7 +91,7 @@
             
             this.cbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.Location = new System.Drawing.Point(212, 250);
+            this.cbCategory.Location = new System.Drawing.Point(212, 240);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(121, 24);
             this.cbCategory.TabIndex = 6;
@@ -104,9 +111,32 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Select Category";
             
+            this.lblCharacterCounter.AutoSize = true;
+            this.lblCharacterCounter.Location = new System.Drawing.Point(35, 350);
+            this.lblCharacterCounter.Name = "lblCharacterCounter";
+            this.lblCharacterCounter.Size = new System.Drawing.Size(0, 16);
+            this.lblCharacterCounter.TabIndex = 9;
+            
+            this.timePickerReminderTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.timePickerReminderTime.Location = new System.Drawing.Point(99, 286);
+            this.timePickerReminderTime.Name = "timePickerReminderTime";
+            this.timePickerReminderTime.ShowUpDown = true;
+            this.timePickerReminderTime.Size = new System.Drawing.Size(200, 22);
+            this.timePickerReminderTime.TabIndex = 10;
+            
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(146, 267);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 16);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Remind me at :";
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 350);
+            this.ClientSize = new System.Drawing.Size(384, 400);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.timePickerReminderTime);
+            this.Controls.Add(this.lblCharacterCounter);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbCategory);
@@ -128,7 +158,6 @@
 
         }
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
