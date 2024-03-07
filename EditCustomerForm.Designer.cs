@@ -31,6 +31,7 @@
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTags = new System.Windows.Forms.TextBox();
+            this.txtCustomerDetails = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
            
             this.btnSave.Location = new System.Drawing.Point(77, 407);
@@ -150,10 +151,18 @@
             this.txtTags.Name = "txtTags";
             this.txtTags.Size = new System.Drawing.Size(235, 22);
             this.txtTags.TabIndex = 15;
-             
+
+            this.txtCustomerDetails.Location = new System.Drawing.Point(185, 300);
+            this.txtCustomerDetails.Multiline = true;
+            this.txtCustomerDetails.Name = "txtCustomerDetails";
+            this.txtCustomerDetails.Size = new System.Drawing.Size(235, 100);
+            this.txtCustomerDetails.TabIndex = 16;
+
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(471, 476);
+            this.Controls.Add(this.txtCustomerDetails);
             this.Controls.Add(this.txtTags);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtNotes);
@@ -194,5 +203,6 @@
         private System.Windows.Forms.TextBox txtNotes;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtTags;
+        private System.Windows.Forms.TextBox txtCustomerDetails;
     }
 }

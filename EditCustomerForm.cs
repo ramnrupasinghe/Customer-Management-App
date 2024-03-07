@@ -5,7 +5,11 @@ namespace CustomerManagementApp
 {
     public partial class EditCustomerForm : Form
     {
-        public string CustomerDetails { get; private set; }
+        public string CustomerDetails
+        {
+            get { return txtCustomerDetails.Text; }
+            set { txtCustomerDetails.Text = value; }
+        }
 
         public EditCustomerForm()
         {

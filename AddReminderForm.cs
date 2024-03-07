@@ -97,5 +97,10 @@ namespace CustomerManagementApp
         {
             
         }
+
+        private void timePickerReminderTime_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

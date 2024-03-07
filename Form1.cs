@@ -384,9 +384,24 @@ namespace CustomerManagementApp
                 MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void rbSortByPhone_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbSortByEmail_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbSortByName_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
-  
+
 
     public class Customer
     {
