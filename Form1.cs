@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Windows.Forms;
-using CustomerManagementApp;
 
 namespace CustomerManagementApp
 {
@@ -27,7 +26,6 @@ namespace CustomerManagementApp
         {
             LoadInitialCustomerData();
             RefreshDataGridView();
-
             analytics.AnalyzeSalesData(customers);
         }
 
@@ -44,7 +42,6 @@ namespace CustomerManagementApp
             {
                 customers.Add(customerForm.Customer);
                 RefreshDataGridView();
-
                 AddCustomerReminders(customerForm.Customer);
             }
         }
@@ -60,7 +57,6 @@ namespace CustomerManagementApp
                 {
                     customers[selectedIndex] = customerForm.Customer;
                     RefreshDataGridView();
-
                     UpdateCustomerReminders(customerForm.Customer);
                 }
             }
@@ -71,7 +67,6 @@ namespace CustomerManagementApp
             if (dataGridViewCustomers.SelectedRows.Count > 0)
             {
                 int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
-
                 RemoveCustomerReminders(customers[selectedIndex]);
                 customers.RemoveAt(selectedIndex);
                 RefreshDataGridView();
@@ -246,35 +241,15 @@ namespace CustomerManagementApp
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewCustomers.SelectedRows.Count > 0)
-            {
-                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
-                Customer selectedCustomer = customers[selectedIndex];
-
-                AddReminderForm addReminderForm = new AddReminderForm(selectedCustomer);
-                if (addReminderForm.ShowDialog() == DialogResult.OK)
-                {
-                    Reminder reminder = addReminderForm.Reminder;
-                    reminders.Add(reminder);
-                    RefreshDataGridView();
-                    MessageBox.Show("Reminder added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
-
         private void btnSendEmail_Click(object sender, EventArgs e)
         {
             if (dataGridViewCustomers.SelectedRows.Count > 0)
             {
-
                 List<Customer> selectedCustomers = new List<Customer>();
                 foreach (DataGridViewRow row in dataGridViewCustomers.SelectedRows)
                 {
                     selectedCustomers.Add(row.DataBoundItem as Customer);
                 }
-
 
                 using (SmtpClient smtpClient = new SmtpClient("smtp.example.com"))
                 {
@@ -339,38 +314,8 @@ namespace CustomerManagementApp
                 int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
                 Customer selectedCustomer = customers[selectedIndex];
 
-                TransactionForm transactionForm = new TransactionForm();
-                if (transactionForm.ShowDialog() == DialogResult.OK)
-                {
-                    decimal amount = transactionForm.TransactionAmount;
-                    string description = transactionForm.TransactionDescription;
-                    DateTime transactionDate = transactionForm.TransactionDate;
-
-                    Transaction transaction = new Transaction(transactionDate, amount, description, "Sample category", "Sample currency");
-
-
-
-                    selectedCustomer.Transactions.Add(transaction);
-                    MessageBox.Show("Transaction completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewCustomers.SelectedRows.Count > 0)
-            {
-                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
-                Customer selectedCustomer = customers[selectedIndex];
-
-
                 StringBuilder transactionDetails = new StringBuilder();
                 transactionDetails.AppendLine($"Transaction History for {selectedCustomer.Name}:");
-
 
                 foreach (Transaction transaction in selectedCustomer.Transactions)
                 {
@@ -385,23 +330,47 @@ namespace CustomerManagementApp
             }
         }
 
-        private void rbSortByPhone_CheckedChanged(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
+                Customer selectedCustomer = customers[selectedIndex];
 
+                TransactionReminderForm reminderForm = new TransactionReminderForm(selectedCustomer);
+                reminderForm.ShowDialog(); 
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
-        private void rbSortByEmail_CheckedChanged(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
+                Customer selectedCustomer = customers[selectedIndex];
 
-        }
+                TransactionForm transactionForm = new TransactionForm();
+                if (transactionForm.ShowDialog() == DialogResult.OK)
+                {
+                    decimal amount = transactionForm.TransactionAmount;
+                    string description = transactionForm.TransactionDescription;
+                    DateTime transactionDate = transactionForm.TransactionDate;
 
-        private void rbSortByName_CheckedChanged(object sender, EventArgs e)
-        {
-
+                    Transaction transaction = new Transaction(transactionDate, amount, description, "Sample category", "Sample currency");
+                    selectedCustomer.Transactions.Add(transaction);
+                    MessageBox.Show("Transaction completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
-
-
 
     public class Customer
     {
@@ -433,6 +402,24 @@ namespace CustomerManagementApp
         public string Priority { get; set; }
         public string Category { get; set; }
         public DateTime ReminderTime { get; set; }
+    }
+
+    public class Transaction
+    {
+        public DateTime Date { get; set; }
+        public decimal TransactionAmount { get; set; }
+        public string Description { get; set; }
+        public string Category { get; set; }
+        public string Currency { get; set; }
+
+        public Transaction(DateTime date, decimal amount, string description, string category, string currency)
+        {
+            Date = date;
+            TransactionAmount = amount;
+            Description = description;
+            Category = category;
+            Currency = currency;
+        }
     }
 
     public class Analytics

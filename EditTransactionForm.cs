@@ -12,20 +12,28 @@ namespace CustomerManagementApp
             InitializeComponent();
             editedTransaction = transaction;
 
+            
             txtTransactionAmount.Text = editedTransaction.TransactionAmount.ToString();
             txtTransactionDescription.Text = editedTransaction.Description;
             dateTimePickerTransactionDate.Value = editedTransaction.Date;
-            cboTransactionCategory.SelectedItem = editedTransaction.TransactionCategory;
-            cboTransactionCurrency.SelectedItem = editedTransaction.TransactionCurrency;
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            editedTransaction.TransactionAmount = decimal.Parse(txtTransactionAmount.Text);
+            
+            if (!decimal.TryParse(txtTransactionAmount.Text, out decimal amount))
+            {
+                MessageBox.Show("Please enter a valid transaction amount.", "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            editedTransaction.TransactionAmount = amount;
             editedTransaction.Description = txtTransactionDescription.Text;
             editedTransaction.Date = dateTimePickerTransactionDate.Value;
-            editedTransaction.TransactionCategory = cboTransactionCategory.SelectedItem.ToString();
-            editedTransaction.TransactionCurrency = cboTransactionCurrency.SelectedItem.ToString();
+           
+
 
             DialogResult = DialogResult.OK;
             Close();
@@ -33,18 +41,9 @@ namespace CustomerManagementApp
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+          
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void txtTransactionDescription_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTransactionAmount_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

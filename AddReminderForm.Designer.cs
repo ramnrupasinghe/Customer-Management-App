@@ -43,9 +43,7 @@
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnSave
-            // 
+             
             this.btnSave.Location = new System.Drawing.Point(59, 314);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(103, 23);
@@ -53,9 +51,7 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnCancel
-            // 
+           
             this.btnCancel.Location = new System.Drawing.Point(202, 314);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(97, 23);
@@ -63,38 +59,28 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // txtDescription
-            // 
+            
             this.txtDescription.Location = new System.Drawing.Point(35, 45);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(298, 134);
             this.txtDescription.TabIndex = 2;
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
-            // 
-            // datePickerDueDate
-            // 
+           
             this.datePickerDueDate.Location = new System.Drawing.Point(35, 185);
             this.datePickerDueDate.Name = "datePickerDueDate";
             this.datePickerDueDate.Size = new System.Drawing.Size(298, 22);
             this.datePickerDueDate.TabIndex = 3;
-            // 
-            // lblCustomerName
-            // 
+           
             this.lblCustomerName.AutoSize = true;
             this.lblCustomerName.Location = new System.Drawing.Point(32, 15);
             this.lblCustomerName.Name = "lblCustomerName";
             this.lblCustomerName.Size = new System.Drawing.Size(130, 16);
             this.lblCustomerName.TabIndex = 4;
             this.lblCustomerName.Text = "Adding reminder for: ";
-            // 
-            // errorProvider
-            // 
+             
             this.errorProvider.ContainerControl = this;
-            // 
-            // cbPriority
-            // 
+            
             this.cbPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPriority.FormattingEnabled = true;
             this.cbPriority.Location = new System.Drawing.Point(38, 240);
@@ -102,9 +88,7 @@
             this.cbPriority.Size = new System.Drawing.Size(121, 24);
             this.cbPriority.TabIndex = 5;
             this.cbPriority.SelectedIndexChanged += new System.EventHandler(this.cbPriority_SelectedIndexChanged);
-            // 
-            // cbCategory
-            // 
+             
             this.cbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategory.FormattingEnabled = true;
             this.cbCategory.Location = new System.Drawing.Point(212, 240);
@@ -112,35 +96,27 @@
             this.cbCategory.Size = new System.Drawing.Size(121, 24);
             this.cbCategory.TabIndex = 6;
             this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.cbCategory_SelectedIndexChanged);
-            // 
-            // label1
-            // 
+             
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(54, 221);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 16);
             this.label1.TabIndex = 7;
             this.label1.Text = "Select Priority";
-            // 
-            // label2
-            // 
+            
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(220, 221);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 16);
             this.label2.TabIndex = 8;
             this.label2.Text = "Select Category";
-            // 
-            // lblCharacterCounter
-            // 
+            
             this.lblCharacterCounter.AutoSize = true;
             this.lblCharacterCounter.Location = new System.Drawing.Point(35, 350);
             this.lblCharacterCounter.Name = "lblCharacterCounter";
             this.lblCharacterCounter.Size = new System.Drawing.Size(0, 16);
             this.lblCharacterCounter.TabIndex = 9;
-            // 
-            // timePickerReminderTime
-            // 
+            
             this.timePickerReminderTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.timePickerReminderTime.Location = new System.Drawing.Point(99, 286);
             this.timePickerReminderTime.Name = "timePickerReminderTime";
@@ -148,18 +124,14 @@
             this.timePickerReminderTime.Size = new System.Drawing.Size(200, 22);
             this.timePickerReminderTime.TabIndex = 10;
             this.timePickerReminderTime.ValueChanged += new System.EventHandler(this.timePickerReminderTime_ValueChanged);
-            // 
-            // label3
-            // 
+           
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(146, 267);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 16);
             this.label3.TabIndex = 11;
             this.label3.Text = "Remind me at :";
-            // 
-            // AddReminderForm
-            // 
+             
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 400);
@@ -181,6 +153,7 @@
             this.Name = "AddReminderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Reminder";
+            this.Load += new System.EventHandler(this.AddReminderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
