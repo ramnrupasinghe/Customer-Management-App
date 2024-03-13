@@ -62,7 +62,9 @@ namespace CustomerManagementApp
             this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomers)).BeginInit();
             this.SuspendLayout();
-           
+            // 
+            // dataGridViewCustomers
+            // 
             this.dataGridViewCustomers.AllowUserToAddRows = false;
             this.dataGridViewCustomers.AllowUserToDeleteRows = false;
             this.dataGridViewCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -76,49 +78,63 @@ namespace CustomerManagementApp
             this.dataGridViewCustomers.Size = new System.Drawing.Size(671, 218);
             this.dataGridViewCustomers.TabIndex = 0;
             this.dataGridViewCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomers_CellContentClick);
-             
-            this.btnAdd.Location = new System.Drawing.Point(42, 269);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnAdd.Location = new System.Drawing.Point(46, 280);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(122, 39);
+            this.btnAdd.Size = new System.Drawing.Size(122, 56);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-          
-            
-            this.btnEdit.Location = new System.Drawing.Point(42, 321);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnEdit.Location = new System.Drawing.Point(223, 280);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(122, 44);
+            this.btnEdit.Size = new System.Drawing.Size(122, 56);
             this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            
-            this.btnDelete.Location = new System.Drawing.Point(224, 268);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDelete.Location = new System.Drawing.Point(565, 447);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(126, 40);
+            this.btnDelete.Size = new System.Drawing.Size(122, 56);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-           
+            // 
+            // txtSearch
+            // 
             this.txtSearch.Location = new System.Drawing.Point(73, 12);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(205, 22);
             this.txtSearch.TabIndex = 4;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-             
+            // 
+            // lblSearch
+            // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Location = new System.Drawing.Point(13, 15);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(53, 16);
             this.lblSearch.TabIndex = 5;
             this.lblSearch.Text = "Search:";
-           
+            // 
+            // rbSortByName
+            // 
             this.rbSortByName.AutoSize = true;
             this.rbSortByName.Location = new System.Drawing.Point(285, 12);
             this.rbSortByName.Name = "rbSortByName";
@@ -128,7 +144,9 @@ namespace CustomerManagementApp
             this.rbSortByName.Text = "Name";
             this.rbSortByName.UseVisualStyleBackColor = true;
             this.rbSortByName.CheckedChanged += new System.EventHandler(this.rbSortByName_CheckedChanged);
-             
+            // 
+            // rbSortByEmail
+            // 
             this.rbSortByEmail.AutoSize = true;
             this.rbSortByEmail.Location = new System.Drawing.Point(383, 14);
             this.rbSortByEmail.Name = "rbSortByEmail";
@@ -138,7 +156,9 @@ namespace CustomerManagementApp
             this.rbSortByEmail.Text = "Email";
             this.rbSortByEmail.UseVisualStyleBackColor = true;
             this.rbSortByEmail.CheckedChanged += new System.EventHandler(this.rbSortByEmail_CheckedChanged);
-           
+            // 
+            // rbSortByPhone
+            // 
             this.rbSortByPhone.AutoSize = true;
             this.rbSortByPhone.Location = new System.Drawing.Point(501, 12);
             this.rbSortByPhone.Name = "rbSortByPhone";
@@ -148,7 +168,9 @@ namespace CustomerManagementApp
             this.rbSortByPhone.Text = "Phone";
             this.rbSortByPhone.UseVisualStyleBackColor = true;
             this.rbSortByPhone.CheckedChanged += new System.EventHandler(this.rbSortByPhone_CheckedChanged);
-           
+            // 
+            // btnSort
+            // 
             this.btnSort.Location = new System.Drawing.Point(628, 10);
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(51, 25);
@@ -156,82 +178,110 @@ namespace CustomerManagementApp
             this.btnSort.Text = "Sort";
             this.btnSort.UseVisualStyleBackColor = true;
             this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
-             
-            this.btnExport.Location = new System.Drawing.Point(406, 268);
+            // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnExport.Location = new System.Drawing.Point(395, 280);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(111, 40);
+            this.btnExport.Size = new System.Drawing.Size(122, 56);
             this.btnExport.TabIndex = 10;
             this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            
-            this.button1.Location = new System.Drawing.Point(224, 321);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button1.Location = new System.Drawing.Point(42, 447);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 40);
+            this.button1.Size = new System.Drawing.Size(126, 56);
             this.button1.TabIndex = 11;
             this.button1.Text = "View Detail";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            
-            this.btnViewReminder.Location = new System.Drawing.Point(558, 269);
+            // 
+            // btnViewReminder
+            // 
+            this.btnViewReminder.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnViewReminder.Location = new System.Drawing.Point(224, 447);
             this.btnViewReminder.Name = "btnViewReminder";
-            this.btnViewReminder.Size = new System.Drawing.Size(121, 40);
+            this.btnViewReminder.Size = new System.Drawing.Size(121, 56);
             this.btnViewReminder.TabIndex = 12;
             this.btnViewReminder.Text = "View Reminder";
-            this.btnViewReminder.UseVisualStyleBackColor = true;
+            this.btnViewReminder.UseVisualStyleBackColor = false;
             this.btnViewReminder.Click += new System.EventHandler(this.btnViewReminder_Click);
-           
-            this.button3.Location = new System.Drawing.Point(406, 323);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button3.Location = new System.Drawing.Point(395, 356);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(111, 40);
+            this.button3.Size = new System.Drawing.Size(122, 56);
             this.button3.TabIndex = 13;
             this.button3.Text = "Add Reminder";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            
-            
-            this.btnSendEmail.Location = new System.Drawing.Point(558, 325);
+            // 
+            // btnSendEmail
+            // 
+            this.btnSendEmail.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnSendEmail.Location = new System.Drawing.Point(565, 356);
             this.btnSendEmail.Name = "btnSendEmail";
-            this.btnSendEmail.Size = new System.Drawing.Size(121, 40);
+            this.btnSendEmail.Size = new System.Drawing.Size(121, 56);
             this.btnSendEmail.TabIndex = 14;
             this.btnSendEmail.Text = "Send Email";
-            this.btnSendEmail.UseVisualStyleBackColor = true;
+            this.btnSendEmail.UseVisualStyleBackColor = false;
             this.btnSendEmail.Click += new System.EventHandler(this.btnSendEmail_Click);
-             
-            this.button2.Location = new System.Drawing.Point(42, 396);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button2.Location = new System.Drawing.Point(395, 447);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 56);
+            this.button2.Size = new System.Drawing.Size(122, 56);
             this.button2.TabIndex = 15;
             this.button2.Text = "Export Reminders";
-            this.button2.UseVisualStyleBackColor = true;
-             
-            this.button4.Location = new System.Drawing.Point(224, 396);
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button4.Location = new System.Drawing.Point(46, 356);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(126, 56);
+            this.button4.Size = new System.Drawing.Size(122, 56);
             this.button4.TabIndex = 16;
-            this.button4.Text = "Transaction Reminder";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Text = "Add Transaction Reminder";
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-           
-            this.button5.Location = new System.Drawing.Point(558, 396);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button5.Location = new System.Drawing.Point(229, 356);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(121, 56);
             this.button5.TabIndex = 19;
             this.button5.Text = "Transaction History";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            
-            this.button6.Location = new System.Drawing.Point(406, 396);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button6.Location = new System.Drawing.Point(565, 280);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(111, 56);
+            this.button6.Size = new System.Drawing.Size(122, 56);
             this.button6.TabIndex = 20;
             this.button6.Text = "Add Transaction";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-             
+            // 
+            // Form1
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 483);
+            this.ClientSize = new System.Drawing.Size(720, 530);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);

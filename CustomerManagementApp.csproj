@@ -124,6 +124,12 @@
     <Compile Include="Prompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reminder.cs" />
+    <Compile Include="SnoozeDurationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SnoozeDurationForm.Designer.cs">
+      <DependentUpon>SnoozeDurationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionForm.cs">
       <SubType>Form</SubType>
@@ -167,6 +173,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SnoozeDurationForm.resx">
+      <DependentUpon>SnoozeDurationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TransactionForm.resx">
       <DependentUpon>TransactionForm.cs</DependentUpon>
     </EmbeddedResource>

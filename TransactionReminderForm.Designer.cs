@@ -30,32 +30,35 @@
             this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-          
+            
             this.datePicker.Location = new System.Drawing.Point(105, 21);
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(200, 22);
             this.datePicker.TabIndex = 0;
-          
+            this.datePicker.ValueChanged += new System.EventHandler(this.datePicker_ValueChanged);
+            
             this.lblDueDate.AutoSize = true;
             this.lblDueDate.Location = new System.Drawing.Point(24, 21);
             this.lblDueDate.Name = "lblDueDate";
-            this.lblDueDate.Size = new System.Drawing.Size(68, 17);
+            this.lblDueDate.Size = new System.Drawing.Size(64, 16);
             this.lblDueDate.TabIndex = 1;
             this.lblDueDate.Text = "Due Date";
-         
+            
             this.lblDescription.AutoSize = true;
             this.lblDescription.Location = new System.Drawing.Point(24, 60);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(79, 17);
+            this.lblDescription.Size = new System.Drawing.Size(75, 16);
             this.lblDescription.TabIndex = 2;
             this.lblDescription.Text = "Description";
-          
+           
             this.txtDescription.Location = new System.Drawing.Point(105, 57);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(200, 60);
             this.txtDescription.TabIndex = 3;
+            this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
            
             this.cmbPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPriority.FormattingEnabled = true;
@@ -67,21 +70,21 @@
             this.cmbPriority.Name = "cmbPriority";
             this.cmbPriority.Size = new System.Drawing.Size(121, 24);
             this.cmbPriority.TabIndex = 4;
-          
+            
             this.lblPriority.AutoSize = true;
             this.lblPriority.Location = new System.Drawing.Point(24, 133);
             this.lblPriority.Name = "lblPriority";
-            this.lblPriority.Size = new System.Drawing.Size(52, 17);
+            this.lblPriority.Size = new System.Drawing.Size(48, 16);
             this.lblPriority.TabIndex = 5;
             this.lblPriority.Text = "Priority";
-           
+             
             this.lblCategory.AutoSize = true;
             this.lblCategory.Location = new System.Drawing.Point(24, 173);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(65, 17);
+            this.lblCategory.Size = new System.Drawing.Size(62, 16);
             this.lblCategory.TabIndex = 6;
             this.lblCategory.Text = "Category";
-         
+             
             this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCategory.FormattingEnabled = true;
             this.cmbCategory.Items.AddRange(new object[] {
@@ -93,8 +96,8 @@
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(121, 24);
             this.cmbCategory.TabIndex = 7;
-          
-            this.btnOK.Location = new System.Drawing.Point(105, 226);
+           
+            this.btnOK.Location = new System.Drawing.Point(41, 226);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 8;
@@ -109,10 +112,19 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-          
+            
+            this.button1.Location = new System.Drawing.Point(139, 226);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Snooze";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 268);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.cmbCategory);
@@ -125,6 +137,7 @@
             this.Controls.Add(this.datePicker);
             this.Name = "TransactionReminderForm";
             this.Text = "Transaction Reminder";
+            this.Load += new System.EventHandler(this.TransactionReminderForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +155,6 @@
         private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button button1;
     }
 }
