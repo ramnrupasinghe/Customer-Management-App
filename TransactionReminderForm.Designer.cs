@@ -167,6 +167,7 @@
             this.listBoxAttachedFiles.Name = "listBoxAttachedFiles";
             this.listBoxAttachedFiles.Size = new System.Drawing.Size(315, 36);
             this.listBoxAttachedFiles.TabIndex = 12;
+            this.listBoxAttachedFiles.SelectedIndexChanged += new System.EventHandler(this.listBoxAttachedFiles_SelectedIndexChanged);
             // 
             // label1
             // 

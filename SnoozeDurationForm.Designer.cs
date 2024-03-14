@@ -19,7 +19,7 @@
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
-            
+           
             this.numericUpDown1.Location = new System.Drawing.Point(106, 52);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.numericUpDown1.Name = "numericUpDown1";
@@ -39,7 +39,7 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-           
+          
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
@@ -71,14 +71,14 @@
             this.comboBoxUnits.Size = new System.Drawing.Size(150, 24);
             this.comboBoxUnits.TabIndex = 3;
             this.comboBoxUnits.SelectedIndexChanged += new System.EventHandler(this.comboBoxUnits_SelectedIndexChanged);
-            
+           
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(118, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Select Duration Unit";
-           
+            
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(164)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
@@ -90,7 +90,7 @@
             this.button1.Text = "Reset";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            
+           
             this.comboBoxPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPriority.FormattingEnabled = true;
             this.comboBoxPriority.Items.AddRange(new object[] {
@@ -102,14 +102,15 @@
             this.comboBoxPriority.Name = "comboBoxPriority";
             this.comboBoxPriority.Size = new System.Drawing.Size(150, 24);
             this.comboBoxPriority.TabIndex = 6;
-           
+            this.comboBoxPriority.SelectedIndexChanged += new System.EventHandler(this.comboBoxPriority_SelectedIndexChanged);
+            
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(155, 143);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Priority";
-           
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(378, 278);

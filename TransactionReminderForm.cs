@@ -131,5 +131,10 @@ namespace CustomerManagementApp
         {
 
         }
+
+        private void listBoxAttachedFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

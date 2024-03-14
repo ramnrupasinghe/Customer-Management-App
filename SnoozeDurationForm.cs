@@ -70,8 +70,6 @@ namespace CustomerManagementApp
         private void SnoozeDurationForm_Load(object sender, EventArgs e)
         {
           
-            comboBoxPriority.Items.AddRange(new object[] { "Low", "Medium", "High" });
-            comboBoxPriority.SelectedIndex = 0; 
         }
 
         private void comboBoxUnits_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,6 +78,11 @@ namespace CustomerManagementApp
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxPriority_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
