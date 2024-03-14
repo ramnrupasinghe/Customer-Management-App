@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace CustomerManagementApp
 {
     public partial class TransactionReminderForm : Form
     {
-        public Reminder Reminder { get; private set; }
+        public RReminder Reminder { get; private set; }
         public bool IsSnooze { get; private set; }
 
         public TransactionReminderForm(Customer customer)
@@ -20,28 +21,28 @@ namespace CustomerManagementApp
             string priority = cmbPriority.SelectedItem?.ToString();
             string category = cmbCategory.SelectedItem?.ToString();
 
-            
+
             if (string.IsNullOrWhiteSpace(description))
             {
                 MessageBox.Show("Please enter a description for the reminder.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-        
+
             if (string.IsNullOrWhiteSpace(priority))
             {
                 MessageBox.Show("Please select a priority for the reminder.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-          
+
             if (string.IsNullOrWhiteSpace(category))
             {
                 MessageBox.Show("Please select a category for the reminder.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            Reminder = new Reminder
+            Reminder = new RReminder
             {
                 DueDate = dueDate,
                 Description = description,
@@ -60,8 +61,6 @@ namespace CustomerManagementApp
             Close();
         }
 
-      
-
         private void TransactionReminderForm_Load(object sender, EventArgs e)
         {
         }
@@ -73,32 +72,64 @@ namespace CustomerManagementApp
         private void txtDescription_TextChanged(object sender, EventArgs e)
         {
         }
+
         private void StartSnoozeTimer(TimeSpan snoozeDuration)
         {
             IsSnooze = true;
-            Hide(); 
+            Hide();
 
-            
+
             Timer snoozeTimer = new Timer();
             snoozeTimer.Interval = (int)snoozeDuration.TotalMilliseconds;
             snoozeTimer.Tick += (sender, e) =>
             {
                 snoozeTimer.Stop();
                 IsSnooze = false;
-                Show(); 
+                Show();
             };
             snoozeTimer.Start();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             using (var snoozeDurationForm = new SnoozeDurationForm())
             {
                 if (snoozeDurationForm.ShowDialog() == DialogResult.OK)
                 {
-                    
                     StartSnoozeTimer(TimeSpan.FromMinutes(snoozeDurationForm.SnoozeDuration));
                 }
             }
+        }
+
+        private void btnAttachFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "All Files (*.*)|*.*";
+            DialogResult result = openFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                Reminder = new RReminder();
+
+                foreach (string filePath in openFileDialog.FileNames)
+                {
+                    Reminder.AttachedFiles.Add(filePath);
+                }
+
+
+                listBoxAttachedFiles.Items.Clear();
+
+                foreach (string filePath in Reminder.AttachedFiles)
+                {
+                    listBoxAttachedFiles.Items.Add(filePath);
+                }
+            }
+        }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

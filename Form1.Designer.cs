@@ -82,6 +82,7 @@ namespace CustomerManagementApp
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAdd.Location = new System.Drawing.Point(46, 280);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
@@ -94,6 +95,7 @@ namespace CustomerManagementApp
             // btnEdit
             // 
             this.btnEdit.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnEdit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnEdit.Location = new System.Drawing.Point(223, 280);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
@@ -106,6 +108,7 @@ namespace CustomerManagementApp
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnDelete.Location = new System.Drawing.Point(565, 447);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
@@ -182,6 +185,7 @@ namespace CustomerManagementApp
             // btnExport
             // 
             this.btnExport.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnExport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnExport.Location = new System.Drawing.Point(395, 280);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(122, 56);
@@ -193,6 +197,7 @@ namespace CustomerManagementApp
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(42, 447);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(126, 56);
@@ -204,6 +209,7 @@ namespace CustomerManagementApp
             // btnViewReminder
             // 
             this.btnViewReminder.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnViewReminder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnViewReminder.Location = new System.Drawing.Point(224, 447);
             this.btnViewReminder.Name = "btnViewReminder";
             this.btnViewReminder.Size = new System.Drawing.Size(121, 56);
@@ -215,6 +221,7 @@ namespace CustomerManagementApp
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button3.Location = new System.Drawing.Point(395, 356);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(122, 56);
@@ -226,6 +233,7 @@ namespace CustomerManagementApp
             // btnSendEmail
             // 
             this.btnSendEmail.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnSendEmail.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSendEmail.Location = new System.Drawing.Point(565, 356);
             this.btnSendEmail.Name = "btnSendEmail";
             this.btnSendEmail.Size = new System.Drawing.Size(121, 56);
@@ -237,6 +245,7 @@ namespace CustomerManagementApp
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(395, 447);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 56);
@@ -247,9 +256,10 @@ namespace CustomerManagementApp
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button4.Location = new System.Drawing.Point(46, 356);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(122, 56);
+            this.button4.Size = new System.Drawing.Size(122, 67);
             this.button4.TabIndex = 16;
             this.button4.Text = "Add Transaction Reminder";
             this.button4.UseVisualStyleBackColor = false;
@@ -258,6 +268,7 @@ namespace CustomerManagementApp
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button5.Location = new System.Drawing.Point(229, 356);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(121, 56);
@@ -269,6 +280,7 @@ namespace CustomerManagementApp
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button6.Location = new System.Drawing.Point(565, 280);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(122, 56);

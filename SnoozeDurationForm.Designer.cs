@@ -4,8 +4,6 @@
     {
         private System.ComponentModel.IContainer components = null;
 
-       
-
         #region Windows Form Designer generated code
 
         private void InitializeComponent()
@@ -17,20 +15,23 @@
             this.comboBoxUnits = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBoxPriority = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
-           
+            
             this.numericUpDown1.Location = new System.Drawing.Point(106, 52);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(150, 22);
             this.numericUpDown1.TabIndex = 0;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             
             this.btnOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(12, 153);
+            this.btnOK.Location = new System.Drawing.Point(12, 221);
             this.btnOK.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(100, 30);
@@ -42,7 +43,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(250, 153);
+            this.btnCancel.Location = new System.Drawing.Point(266, 221);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 30);
@@ -50,14 +51,14 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-          
+            
             this.lblSelectDuration.AutoSize = true;
             this.lblSelectDuration.Location = new System.Drawing.Point(109, 18);
             this.lblSelectDuration.Name = "lblSelectDuration";
             this.lblSelectDuration.Size = new System.Drawing.Size(147, 16);
             this.lblSelectDuration.TabIndex = 2;
             this.lblSelectDuration.Text = "Select Snooze Duration";
-            
+           
             this.comboBoxUnits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUnits.FormattingEnabled = true;
             this.comboBoxUnits.Items.AddRange(new object[] {
@@ -69,6 +70,7 @@
             this.comboBoxUnits.Name = "comboBoxUnits";
             this.comboBoxUnits.Size = new System.Drawing.Size(150, 24);
             this.comboBoxUnits.TabIndex = 3;
+            this.comboBoxUnits.SelectedIndexChanged += new System.EventHandler(this.comboBoxUnits_SelectedIndexChanged);
             
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(118, 84);
@@ -76,11 +78,11 @@
             this.label1.Size = new System.Drawing.Size(124, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Select Duration Unit";
-          
+           
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(164)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(131, 153);
+            this.button1.Location = new System.Drawing.Point(142, 221);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 30);
@@ -88,10 +90,31 @@
             this.button1.Text = "Reset";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            
+            this.comboBoxPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPriority.FormattingEnabled = true;
+            this.comboBoxPriority.Items.AddRange(new object[] {
+            "Low",
+            "Medium",
+            "High"});
+            this.comboBoxPriority.Location = new System.Drawing.Point(106, 177);
+            this.comboBoxPriority.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.comboBoxPriority.Name = "comboBoxPriority";
+            this.comboBoxPriority.Size = new System.Drawing.Size(150, 24);
+            this.comboBoxPriority.TabIndex = 6;
+           
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(155, 143);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 16);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Priority";
            
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 202);
+            this.ClientSize = new System.Drawing.Size(378, 278);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBoxPriority);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxUnits);
@@ -116,10 +139,12 @@
 
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnCancel; 
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblSelectDuration;
-        private System.Windows.Forms.ComboBox comboBoxUnits; 
+        private System.Windows.Forms.ComboBox comboBoxUnits;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBoxPriority;
+        private System.Windows.Forms.Label label2;
     }
 }

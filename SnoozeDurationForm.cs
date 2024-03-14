@@ -6,6 +6,8 @@ namespace CustomerManagementApp
     public partial class SnoozeDurationForm : Form
     {
         public int SnoozeDuration { get; private set; }
+        public string CustomLabel { get; private set; }
+        public string PriorityLevel { get; private set; }
 
         public SnoozeDurationForm()
         {
@@ -43,33 +45,43 @@ namespace CustomerManagementApp
                     break;
             }
 
+            PriorityLevel = comboBoxPriority.SelectedItem.ToString(); 
             DialogResult = DialogResult.OK;
             Close();
 
             MessageBox.Show(message, "Snooze Duration Set", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
-           
             SnoozeDuration = 0;
+            CustomLabel = "";
+            PriorityLevel = ""; 
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            numericUpDown1.Value = 0;
+            comboBoxUnits.SelectedIndex = 0;
+        }
+
         private void SnoozeDurationForm_Load(object sender, EventArgs e)
+        {
+          
+            comboBoxPriority.Items.AddRange(new object[] { "Low", "Medium", "High" });
+            comboBoxPriority.SelectedIndex = 0; 
+        }
+
+        private void comboBoxUnits_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-      
-            numericUpDown1.Value = 0;
 
-           
-            comboBoxUnits.SelectedIndex = 0;
         }
     }
 }
