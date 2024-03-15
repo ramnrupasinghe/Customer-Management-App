@@ -136,5 +136,33 @@ namespace CustomerManagementApp
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Sound Files (*.wav;*.mp3)|*.wav;*.mp3|All Files (*.*)|*.*";
+            DialogResult result = openFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                
+                string selectedSoundFilePath = openFileDialog.FileName;
+
+                MessageBox.Show($"Custom sound selected: {selectedSoundFilePath}", "Custom Sound Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (var recurrencePatternForm = new RecurrencePatternForm())
+            {
+                if (recurrencePatternForm.ShowDialog() == DialogResult.OK)
+                {
+                     Reminder = new RReminder();
+                  
+                    Reminder.RecurrencePattern = recurrencePatternForm.SelectedRecurrencePattern;
+                }
+            }
+        }
     }
 }
