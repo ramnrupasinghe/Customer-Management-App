@@ -6,12 +6,15 @@ namespace CustomerManagementApp
 {
     public partial class TransactionReminderForm : Form
     {
+        private System.Windows.Forms.TextBox textBoxUrl;
+
         public RReminder Reminder { get; private set; }
         public bool IsSnooze { get; private set; }
 
         public TransactionReminderForm(Customer customer)
         {
             InitializeComponent();
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -145,7 +148,7 @@ namespace CustomerManagementApp
 
             if (result == DialogResult.OK)
             {
-                
+
                 string selectedSoundFilePath = openFileDialog.FileName;
 
                 MessageBox.Show($"Custom sound selected: {selectedSoundFilePath}", "Custom Sound Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -158,11 +161,36 @@ namespace CustomerManagementApp
             {
                 if (recurrencePatternForm.ShowDialog() == DialogResult.OK)
                 {
-                     Reminder = new RReminder();
-                  
+                    Reminder = new RReminder();
+
                     Reminder.RecurrencePattern = recurrencePatternForm.SelectedRecurrencePattern;
                 }
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string url = Microsoft.VisualBasic.Interaction.InputBox("Enter URL:", "Add URL", "");
+
+           
+            if (!string.IsNullOrWhiteSpace(url))
+            {
+                
+                listBoxAttachedUrls.Items.Add(url);
+            }
+        }
+        private void listBoxAttachedUrls_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+        private void cmbPriority_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

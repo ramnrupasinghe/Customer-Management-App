@@ -241,41 +241,7 @@ namespace CustomerManagementApp
             }
         }
 
-        private void btnSendEmail_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewCustomers.SelectedRows.Count > 0)
-            {
-                List<Customer> selectedCustomers = new List<Customer>();
-                foreach (DataGridViewRow row in dataGridViewCustomers.SelectedRows)
-                {
-                    selectedCustomers.Add(row.DataBoundItem as Customer);
-                }
-
-                using (SmtpClient smtpClient = new SmtpClient("smtp.example.com"))
-                {
-                    smtpClient.Port = 587;
-                    smtpClient.Credentials = new NetworkCredential("your_email@example.com", "your_password");
-                    smtpClient.EnableSsl = true;
-
-                    foreach (Customer customer in selectedCustomers)
-                    {
-                        MailMessage mailMessage = new MailMessage();
-                        mailMessage.From = new MailAddress("your_email@example.com");
-                        mailMessage.To.Add(customer.Email);
-                        mailMessage.Subject = "Subject of your email";
-                        mailMessage.Body = "Body of your email";
-
-                        smtpClient.Send(mailMessage);
-                    }
-
-                    MessageBox.Show("Emails sent successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select customers to send emails.", "No Customers Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+       
 
         private void button2_Click(object sender, EventArgs e)
         {

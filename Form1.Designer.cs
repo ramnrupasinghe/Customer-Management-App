@@ -109,7 +109,7 @@ namespace CustomerManagementApp
             // 
             this.btnDelete.BackColor = System.Drawing.Color.OrangeRed;
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDelete.Location = new System.Drawing.Point(565, 447);
+            this.btnDelete.Location = new System.Drawing.Point(524, 447);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(122, 56);
@@ -170,7 +170,6 @@ namespace CustomerManagementApp
             this.rbSortByPhone.TabStop = true;
             this.rbSortByPhone.Text = "Phone";
             this.rbSortByPhone.UseVisualStyleBackColor = true;
-            this.rbSortByPhone.CheckedChanged += new System.EventHandler(this.rbSortByPhone_CheckedChanged);
             // 
             // btnSort
             // 
@@ -198,7 +197,7 @@ namespace CustomerManagementApp
             // 
             this.button1.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(42, 447);
+            this.button1.Location = new System.Drawing.Point(73, 447);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(126, 56);
             this.button1.TabIndex = 11;
@@ -210,7 +209,7 @@ namespace CustomerManagementApp
             // 
             this.btnViewReminder.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnViewReminder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnViewReminder.Location = new System.Drawing.Point(224, 447);
+            this.btnViewReminder.Location = new System.Drawing.Point(297, 447);
             this.btnViewReminder.Name = "btnViewReminder";
             this.btnViewReminder.Size = new System.Drawing.Size(121, 56);
             this.btnViewReminder.TabIndex = 12;
@@ -232,21 +231,16 @@ namespace CustomerManagementApp
             // 
             // btnSendEmail
             // 
-            this.btnSendEmail.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnSendEmail.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSendEmail.Location = new System.Drawing.Point(565, 356);
+            this.btnSendEmail.Location = new System.Drawing.Point(0, 0);
             this.btnSendEmail.Name = "btnSendEmail";
-            this.btnSendEmail.Size = new System.Drawing.Size(121, 56);
-            this.btnSendEmail.TabIndex = 14;
-            this.btnSendEmail.Text = "Send Email";
-            this.btnSendEmail.UseVisualStyleBackColor = false;
-            this.btnSendEmail.Click += new System.EventHandler(this.btnSendEmail_Click);
+            this.btnSendEmail.Size = new System.Drawing.Size(75, 23);
+            this.btnSendEmail.TabIndex = 21;
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(395, 447);
+            this.button2.Location = new System.Drawing.Point(565, 356);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 56);
             this.button2.TabIndex = 15;

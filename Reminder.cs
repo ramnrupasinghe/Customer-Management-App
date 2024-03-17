@@ -12,7 +12,7 @@ namespace CustomerManagementApp
         public string Category { get; set; }
         public DateTime ReminderTime { get; set; }
         public List<string> AttachedFiles { get; set; }
-
+        public List<string> AttachedUrls { get; set; } = new List<string>();
         public RecurrencePattern RecurrencePattern { get; set; }
 
 

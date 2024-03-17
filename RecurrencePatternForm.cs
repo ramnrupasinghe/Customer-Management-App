@@ -45,6 +45,11 @@ namespace CustomerManagementApp
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void groupBoxRecurrencePattern_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public enum RecurrencePattern
