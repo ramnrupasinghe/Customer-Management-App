@@ -86,6 +86,12 @@
     <Compile Include="AddReminderForm.Designer.cs">
       <DependentUpon>AddReminderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatForm.Designer.cs">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,7 +137,7 @@
     <Compile Include="RecurrencePatternForm.Designer.cs">
       <DependentUpon>RecurrencePatternForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reminder.cs" />
+    <Compile Include="RReminder.cs" />
     <Compile Include="SnoozeDurationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </Compile>
     <EmbeddedResource Include="AddReminderForm.resx">
       <DependentUpon>AddReminderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatForm.resx">
+      <DependentUpon>ChatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerDetailsForm.resx">
       <DependentUpon>CustomerDetailsForm.cs</DependentUpon>

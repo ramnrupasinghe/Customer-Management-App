@@ -35,3 +35,4 @@ D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagemen
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.TransactionReminderForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.SnoozeDurationForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.RecurrencePatternForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.ChatForm.resources

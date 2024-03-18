@@ -70,10 +70,10 @@ namespace CustomerManagementApp
                     if (editForm.ShowDialog() == DialogResult.OK)
                     {
                         
-                        previousAmount = editForm.editedTransaction.TransactionAmount;
-                        previousDescription = editForm.editedTransaction.Description;
-                        previousDate = editForm.editedTransaction.Date;
-                        
+                        previousAmount = editForm.editedTransaction.Transactionn;
+                        previousDescription = editForm.editedTransaction.Descriptionn;
+                        previousDate = editForm.editedTransaction.TransactionDate;
+
 
                         MessageBox.Show("Transaction edited successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -136,5 +136,10 @@ namespace CustomerManagementApp
         public DateTime TransactionDate { get; private set; }
         public string TransactionCategory { get; private set; }
         public string TransactionCurrency { get; private set; }
+
+        private void TransactionForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

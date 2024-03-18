@@ -13,10 +13,10 @@ namespace CustomerManagementApp
             editedTransaction = transaction;
 
             
-            txtTransactionAmount.Text = editedTransaction.TransactionAmount.ToString();
-            txtTransactionDescription.Text = editedTransaction.Description;
-            dateTimePickerTransactionDate.Value = editedTransaction.Date;
-            
+            txtTransactionAmount.Text = editedTransaction.Transactionn.ToString();
+            txtTransactionDescription.Text = editedTransaction.Descriptionn;
+            dateTimePickerTransactionDate.Value = editedTransaction.TransactionDate;
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -29,9 +29,9 @@ namespace CustomerManagementApp
             }
 
 
-            editedTransaction.TransactionAmount = amount;
-            editedTransaction.Description = txtTransactionDescription.Text;
-            editedTransaction.Date = dateTimePickerTransactionDate.Value;
+            editedTransaction.Transactionn = amount;
+            editedTransaction.Descriptionn = txtTransactionDescription.Text;
+            editedTransaction.TransactionDate = dateTimePickerTransactionDate.Value;
            
 
 

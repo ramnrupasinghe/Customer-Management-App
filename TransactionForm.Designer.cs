@@ -248,6 +248,7 @@
             this.Name = "TransactionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Transaction";
+            this.Load += new System.EventHandler(this.TransactionForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

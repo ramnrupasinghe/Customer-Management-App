@@ -241,8 +241,6 @@ namespace CustomerManagementApp
             }
         }
 
-       
-
         private void button2_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -285,7 +283,7 @@ namespace CustomerManagementApp
 
                 foreach (Transaction transaction in selectedCustomer.Transactions)
                 {
-                    transactionDetails.AppendLine($"Date: {transaction.Date}, Amount: {transaction.TransactionAmount}, Description: {transaction.Description}");
+                    transactionDetails.AppendLine($"Date: {transaction.TransactionDate}, Amount: {transaction.Transactionn}, Description: {transaction.Descriptionn}");
                 }
 
                 MessageBox.Show(transactionDetails.ToString(), "Transaction History", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -304,7 +302,7 @@ namespace CustomerManagementApp
                 Customer selectedCustomer = customers[selectedIndex];
 
                 TransactionReminderForm reminderForm = new TransactionReminderForm(selectedCustomer);
-                reminderForm.ShowDialog(); 
+                reminderForm.ShowDialog();
             }
             else
             {
@@ -336,65 +334,76 @@ namespace CustomerManagementApp
                 MessageBox.Show("Please select a customer first.", "Select Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-    }
 
-    public class Customer
-    {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public string CompanyName { get; set; }
-        public string Notes { get; set; }
-        public List<string> Tags { get; set; }
-        public List<Transaction> Transactions { get; set; }
-
-        public Customer()
+        private void button7_Click(object sender, EventArgs e)
         {
-            Transactions = new List<Transaction>();
+            OpenChatForm();
         }
 
-        public override string ToString()
+        private void OpenChatForm()
         {
-            return Name;
+            ChatForm chatForm = new ChatForm();
+            chatForm.ShowDialog();
         }
     }
+}
 
-    public class Reminder
+public class Customer
+{
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public string Phone { get; set; }
+    public string Address { get; set; }
+    public string CompanyName { get; set; }
+    public string Notes { get; set; }
+    public List<string> Tags { get; set; }
+    public List<Transaction> Transactions { get; set; }
+
+    public Customer()
     {
-        public string Description { get; set; }
-        public DateTime DueDate { get; set; }
-        public Customer AssociatedCustomer { get; set; }
-        public string Priority { get; set; }
-        public string Category { get; set; }
-        public DateTime ReminderTime { get; set; }
+        Transactions = new List<Transaction>();
     }
 
-    public class Transaction
+    public override string ToString()
     {
-        public DateTime Date { get; set; }
-        public decimal TransactionAmount { get; set; }
-        public string Description { get; set; }
-        public string Category { get; set; }
-        public string Currency { get; set; }
-
-        public Transaction(DateTime date, decimal amount, string description, string category, string currency)
-        {
-            Date = date;
-            TransactionAmount = amount;
-            Description = description;
-            Category = category;
-            Currency = currency;
-        }
+        return Name;
     }
+}
 
-    public class Analytics
+public class Reminder
+{
+    public string Description { get; set; }
+    public DateTime DueDate { get; set; }
+    public Customer AssociatedCustomer { get; set; }
+    public string Priority { get; set; }
+    public string Category { get; set; }
+    public DateTime ReminderTime { get; set; }
+}
+
+public class Transaction
+{
+    public DateTime TransactionDate { get; set; }
+    public decimal Transactionn { get; set; }
+    public string Descriptionn { get; set; }
+    public string Category { get; set; }
+    public string Currency { get; set; }
+
+    public Transaction(DateTime transactionDate, decimal Amount, string description, string category, string currency)
     {
-        public Dictionary<DateTime, int> SalesData { get; set; }
+        TransactionDate = transactionDate;
+        Transactionn = Amount;
+        Descriptionn = description;
+        Category = category;
+        Currency = currency;
+    }
+}
 
-        public void AnalyzeSalesData(List<Customer> customers)
-        {
+public class Analytics
+{
+    public Dictionary<DateTime, int> SalesData { get; set; }
 
-        }
+    public void AnalyzeSalesData(List<Customer> customers)
+    { 
+
     }
 }

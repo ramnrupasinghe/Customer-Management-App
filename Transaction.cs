@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Transaction
+public class Transactionn
 {
     public DateTime Date { get; set; }
     public decimal TransactionAmount { get; set; }
@@ -8,7 +8,7 @@ public class Transaction
     public string TransactionCategory { get; set; }
     public string TransactionCurrency { get; set; }
 
-    public Transaction(DateTime date, decimal amount, string description, string category, string currency)
+    public Transactionn(DateTime date, decimal amount, string description, string category, string currency)
     {
         Date = date;
         TransactionAmount = amount;
