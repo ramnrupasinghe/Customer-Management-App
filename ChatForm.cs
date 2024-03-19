@@ -14,17 +14,14 @@ namespace CustomerManagementApp
     {
         private List<ChatMessage> chatMessages = new List<ChatMessage>();
         private TextBox txtUserMessage;
-        private Timer responseTimer; // Add a timer for delayed response
+        private bool isRecording = false;
+        private string audioFilePath;
+        private string attachedFilePath;
 
         public ChatForm()
         {
             InitializeComponent();
             InitializeChatInput();
-
-            // Initialize the timer
-            responseTimer = new Timer();
-            responseTimer.Interval = 2000; // Set interval to 2000 milliseconds (2 seconds)
-            responseTimer.Tick += ResponseTimer_Tick; // Attach event handler
         }
 
         private void InitializeChatInput()
@@ -57,14 +54,37 @@ namespace CustomerManagementApp
             lstChat.Items.Clear();
             foreach (var message in chatMessages)
             {
-                lstChat.Items.Add($"{message.Sender}: {message.Message}");
+                lstChat.Items.Add($"{message.Sender}: {message.Message} ");
             }
             lstChat.ForeColor = Color.White;
         }
 
         private void lstChat_DrawItem(object sender, DrawItemEventArgs e)
         {
-            // Your existing code for drawing chat messages
+            e.DrawBackground();
+
+            if (e.Index >= 0)
+            {
+                string message = lstChat.Items[e.Index].ToString();
+                Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Brushes.White : Brushes.Black;
+
+                string[] parts = message.Split(':');
+                string senderName = parts[0];
+                string messageText = parts.Length > 1 ? parts[1] : "";
+
+                Color senderColor = senderName.Equals("You") ? Color.LightYellow : Color.Purple;
+
+                using (Font senderFont = new Font("Arial", 10, FontStyle.Bold))
+                {
+                    e.Graphics.DrawString(senderName, senderFont, new SolidBrush(senderColor), e.Bounds.Left, e.Bounds.Top);
+                }
+
+                using (Font messageFont = new Font("Arial", 10))
+                {
+                    e.Graphics.DrawString(messageText, messageFont, brush, e.Bounds.Left, e.Bounds.Top + 20);
+                }
+            }
+            e.DrawFocusRectangle();
         }
 
         public class ChatMessage
@@ -81,31 +101,94 @@ namespace CustomerManagementApp
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRecord_Click(object sender, EventArgs e)
         {
-            string messageText = txtUserMessage.Text.Trim();
-            if (!string.IsNullOrEmpty(messageText))
+            if (isRecording)
             {
-                // Add user message to the chat
-                ChatMessage userMessage = new ChatMessage("Customer Support", messageText, DateTime.Now);
-                chatMessages.Add(userMessage);
-                DisplayChatMessages(); // Display the updated chat messages
-
-                // Start the timer after the user sends a message
-                responseTimer.Start();
-                txtUserMessage.Clear(); // Clear the user input textbox
+                StopRecording();
+                isRecording = false;
+                btnRecord.Text = "Record";
+            }
+            else
+            {
+                StartRecording();
+                isRecording = true;
+                btnRecord.Text = "Stop";
             }
         }
 
-        private void ResponseTimer_Tick(object sender, EventArgs e)
+        private void StartRecording()
         {
-            // This method will be called after the delay
-            responseTimer.Stop(); // Stop the timer
+           
+            MessageBox.Show("Recording started...");
+        }
 
-            // Add the delayed response message to the chat
-            ChatMessage supportResponse = new ChatMessage("Jhon Doe", "Okay. Thank you so much", DateTime.Now);
-            chatMessages.Add(supportResponse);
-            DisplayChatMessages(); // Display the updated chat messages
+        private void StopRecording()
+        {
+          
+            MessageBox.Show("Recording stopped.");
+        }
+        private void picAttach_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void picRecord_Click(object sender, EventArgs e)
+        {
+          
+        }
+        private void btnAttach_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "All Files (*.*)|*.*";
+            openFileDialog.Multiselect = false;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                attachedFilePath = openFileDialog.FileName;
+                MessageBox.Show("File attached: " + attachedFilePath);
+            }
+        }
+        private void lstChat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string messageText = txtUserMessage.Text.Trim();
+            if (!string.IsNullOrEmpty(messageText) || !string.IsNullOrEmpty(audioFilePath) || !string.IsNullOrEmpty(attachedFilePath))
+            {
+               
+                if (!string.IsNullOrEmpty(messageText))
+                {
+                    ChatMessage userMessage = new ChatMessage("Customer Support", messageText, DateTime.Now);
+                    chatMessages.Add(userMessage);
+                }
+
+               
+                if (!string.IsNullOrEmpty(audioFilePath))
+                {
+                    ChatMessage audioMessage = new ChatMessage("Customer Support", "Audio Message", DateTime.Now);
+                    chatMessages.Add(audioMessage);
+                }
+
+               
+                if (!string.IsNullOrEmpty(attachedFilePath))
+                {
+                    ChatMessage fileMessage = new ChatMessage("Customer Support", "File Attachment", DateTime.Now);
+                    chatMessages.Add(fileMessage);
+                }
+
+                DisplayChatMessages();
+                txtUserMessage.Clear();
+                audioFilePath = null;
+                attachedFilePath = null;
+            }
+            else
+            {
+                MessageBox.Show("Please enter a message or attach a file.");
+            }
         }
     }
 }
