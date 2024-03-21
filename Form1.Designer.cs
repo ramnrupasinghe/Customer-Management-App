@@ -63,7 +63,7 @@ namespace CustomerManagementApp
             this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomers)).BeginInit();
             this.SuspendLayout();
-           
+          
             this.dataGridViewCustomers.AllowUserToAddRows = false;
             this.dataGridViewCustomers.AllowUserToDeleteRows = false;
             this.dataGridViewCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -77,7 +77,7 @@ namespace CustomerManagementApp
             this.dataGridViewCustomers.Size = new System.Drawing.Size(671, 218);
             this.dataGridViewCustomers.TabIndex = 0;
             this.dataGridViewCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomers_CellContentClick);
-            
+           
             this.btnAdd.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAdd.Location = new System.Drawing.Point(46, 280);
@@ -110,7 +110,7 @@ namespace CustomerManagementApp
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            
+          
             this.txtSearch.Location = new System.Drawing.Point(73, 12);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
@@ -134,7 +134,7 @@ namespace CustomerManagementApp
             this.rbSortByName.Text = "Name";
             this.rbSortByName.UseVisualStyleBackColor = true;
             this.rbSortByName.CheckedChanged += new System.EventHandler(this.rbSortByName_CheckedChanged);
-            
+             
             this.rbSortByEmail.AutoSize = true;
             this.rbSortByEmail.Location = new System.Drawing.Point(383, 14);
             this.rbSortByEmail.Name = "rbSortByEmail";
@@ -144,7 +144,7 @@ namespace CustomerManagementApp
             this.rbSortByEmail.Text = "Email";
             this.rbSortByEmail.UseVisualStyleBackColor = true;
             this.rbSortByEmail.CheckedChanged += new System.EventHandler(this.rbSortByEmail_CheckedChanged);
-            
+          
             this.rbSortByPhone.AutoSize = true;
             this.rbSortByPhone.Location = new System.Drawing.Point(501, 12);
             this.rbSortByPhone.Name = "rbSortByPhone";
@@ -161,7 +161,7 @@ namespace CustomerManagementApp
             this.btnSort.Text = "Sort";
             this.btnSort.UseVisualStyleBackColor = true;
             this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
-           
+            
             this.btnExport.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnExport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnExport.Location = new System.Drawing.Point(395, 280);
@@ -181,7 +181,7 @@ namespace CustomerManagementApp
             this.button1.Text = "View Detail";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            
+           
             this.btnViewReminder.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnViewReminder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnViewReminder.Location = new System.Drawing.Point(229, 438);
@@ -191,7 +191,7 @@ namespace CustomerManagementApp
             this.btnViewReminder.Text = "View Reminder";
             this.btnViewReminder.UseVisualStyleBackColor = false;
             this.btnViewReminder.Click += new System.EventHandler(this.btnViewReminder_Click);
-          
+           
             this.button3.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button3.Location = new System.Drawing.Point(395, 356);
@@ -201,7 +201,7 @@ namespace CustomerManagementApp
             this.button3.Text = "Add Reminder";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-           
+          
             this.btnSendEmail.Location = new System.Drawing.Point(0, 0);
             this.btnSendEmail.Name = "btnSendEmail";
             this.btnSendEmail.Size = new System.Drawing.Size(75, 23);
@@ -215,6 +215,7 @@ namespace CustomerManagementApp
             this.button2.TabIndex = 15;
             this.button2.Text = "Export Reminders";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             
             this.button4.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -235,7 +236,7 @@ namespace CustomerManagementApp
             this.button5.Text = "Transaction History";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            
+           
             this.button6.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button6.Location = new System.Drawing.Point(565, 280);

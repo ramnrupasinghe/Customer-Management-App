@@ -85,3 +85,4 @@ D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.ValueTuple
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.csproj.CopyComplete
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.exe
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.pdb
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.ActivityCenterForm.resources

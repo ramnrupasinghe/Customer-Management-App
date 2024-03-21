@@ -161,7 +161,7 @@ namespace CustomerManagementApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            if (dataGridViewCustomers.SelectedRows.Count > 1)
             {
                 StringBuilder detailsBuilder = new StringBuilder();
 
@@ -182,11 +182,24 @@ namespace CustomerManagementApp
                 detailsForm.DisplayCustomerDetails(detailsBuilder.ToString());
                 detailsForm.ShowDialog();
             }
+            else if (dataGridViewCustomers.SelectedRows.Count == 1)
+            {
+                int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
+                CustomerDetailsForm customerForm = new CustomerDetailsForm(customers[selectedIndex]); // Fix here
+                if (customerForm.ShowDialog() == DialogResult.OK)
+                {
+                    customers[selectedIndex] = customerForm.Customer;
+                    RefreshDataGridView();
+                    UpdateCustomerReminders(customerForm.Customer);
+                }
+            }
             else
             {
-                MessageBox.Show("Please select customers first.", "No Customers Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select at least one customer.", "No Customers Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+
 
         private void AddCustomerReminders(Customer customer)
         {
@@ -344,6 +357,11 @@ namespace CustomerManagementApp
         {
             ChatForm chatForm = new ChatForm();
             chatForm.ShowDialog();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using iText.Layout;
@@ -9,13 +10,14 @@ namespace CustomerManagementApp
 {
     public partial class CustomerDetailsForm : Form
     {
-        private Customer customer;
+        public Customer Customer { get; set; }
         private string[] previousData;
+        private List<ActivityLog> activityLogs = new List<ActivityLog>();
 
         public CustomerDetailsForm(Customer customer)
         {
             InitializeComponent();
-            this.customer = customer;
+            Customer = customer;
             DisplayCustomerDetails(customer);
         }
 
@@ -31,15 +33,15 @@ namespace CustomerManagementApp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            customer.Name = txtName.Text;
-            customer.Email = txtEmail.Text;
-            customer.Phone = txtPhone.Text;
-            customer.Address = txtAddress.Text;
-            customer.CompanyName = txtCompanyName.Text;
-            customer.Notes = txtNotes.Text;
+            Customer.Name = txtName.Text;
+            Customer.Email = txtEmail.Text;
+            Customer.Phone = txtPhone.Text;
+            Customer.Address = txtAddress.Text;
+            Customer.CompanyName = txtCompanyName.Text;
+            Customer.Notes = txtNotes.Text;
             MessageBox.Show("Changes saved successfully!");
 
-            SaveCustomerDetailsToPDF(customer);
+            SaveCustomerDetailsToPDF(Customer);
         }
 
         private void SaveCustomerDetailsToPDF(Customer customer)
@@ -59,17 +61,14 @@ namespace CustomerManagementApp
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf);
 
-                    // Add metadata
                     pdf.GetDocumentInfo().SetTitle("Customer Details");
                     pdf.GetDocumentInfo().SetSubject("Exported Customer Details");
                     pdf.GetDocumentInfo().SetCreator("Customer Management App");
 
-                    // Add header
                     Paragraph header = new Paragraph("Customer Details\n\n");
                     header.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
                     document.Add(header);
 
-                    // Add content
                     Table table = new Table(2, false);
                     table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
 
@@ -102,7 +101,7 @@ namespace CustomerManagementApp
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            DisplayCustomerDetails(customer);
+            DisplayCustomerDetails(Customer);
         }
 
         private void ClearTextBoxes()
@@ -149,6 +148,18 @@ namespace CustomerManagementApp
             }
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            List<ActivityLog> dummyActivityLogs = new List<ActivityLog>
+    {
+        new ActivityLog { CustomerName = "John Doe", ActivityType = "Call", ActivityDateTime = DateTime.Now.AddDays(-2), Details = "Called customer regarding product inquiry" },
+        new ActivityLog { CustomerName = "Jane Smith", ActivityType = "Email", ActivityDateTime = DateTime.Now.AddDays(-1), Details = "Sent follow-up email to customer" },
+        new ActivityLog { CustomerName = "John Doe", ActivityType = "Meeting", ActivityDateTime = DateTime.Now.AddDays(-3), Details = "Scheduled meeting with customer for next week" }
+    };
+            ActivityCenterForm activityCenterForm = new ActivityCenterForm(dummyActivityLogs);
+            activityCenterForm.ShowDialog();
+        }
+
         private void txtName_TextChanged(object sender, EventArgs e) { }
         private void txtPhone_TextChanged(object sender, EventArgs e) { }
         private void txtEmail_TextChanged(object sender, EventArgs e) { }
@@ -156,6 +167,13 @@ namespace CustomerManagementApp
         private void txtCompanyName_TextChanged(object sender, EventArgs e) { }
         private void txtNotes_TextChanged(object sender, EventArgs e) { }
         private void button1_Click(object sender, EventArgs e) { }
+    }
 
+    public class ActivityLog
+    {
+        public string CustomerName { get; set; }
+        public string ActivityType { get; set; }
+        public DateTime ActivityDateTime { get; set; }
+        public string Details { get; set; }
     }
 }
