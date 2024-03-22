@@ -21,7 +21,9 @@
             this.dgvActivityLogs = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvActivityLogs)).BeginInit();
             this.SuspendLayout();
-            
+            // 
+            // dgvActivityLogs
+            // 
             this.dgvActivityLogs.AllowUserToAddRows = false;
             this.dgvActivityLogs.AllowUserToDeleteRows = false;
             this.dgvActivityLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -31,13 +33,15 @@
             this.dgvActivityLogs.ReadOnly = true;
             this.dgvActivityLogs.RowHeadersWidth = 51;
             this.dgvActivityLogs.RowTemplate.Height = 24;
-            this.dgvActivityLogs.Size = new System.Drawing.Size(493, 332);
+            this.dgvActivityLogs.Size = new System.Drawing.Size(634, 256);
             this.dgvActivityLogs.TabIndex = 0;
             this.dgvActivityLogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvActivityLogs_CellContentClick);
-             
+            // 
+            // ActivityCenterForm
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 332);
+            this.ClientSize = new System.Drawing.Size(634, 256);
             this.Controls.Add(this.dgvActivityLogs);
             this.Name = "ActivityCenterForm";
             this.Text = "Activity Center";

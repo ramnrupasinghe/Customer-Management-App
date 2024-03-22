@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Kernel.Pdf;
+using System.Net.Mail;
+using System.Net;
 
 namespace CustomerManagementApp
 {
@@ -167,13 +169,50 @@ namespace CustomerManagementApp
         private void txtCompanyName_TextChanged(object sender, EventArgs e) { }
         private void txtNotes_TextChanged(object sender, EventArgs e) { }
         private void button1_Click(object sender, EventArgs e) { }
-    }
 
-    public class ActivityLog
-    {
-        public string CustomerName { get; set; }
-        public string ActivityType { get; set; }
-        public DateTime ActivityDateTime { get; set; }
-        public string Details { get; set; }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+
+                
+                smtpServer.Port = 587;
+                smtpServer.EnableSsl = true;
+
+                smtpServer.Credentials = new NetworkCredential("manurirupasinghe100@gmail.com", "your password");
+
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("manurirupasinghe100@gmail.com");
+                mail.To.Add(Customer.Email);
+                mail.Subject = "A reminder about the latest Transaction";
+                mail.Body = "Dear " + Customer.Name + ",\n\n" + "This is a test email sent from your Customer Management App.\n" +
+                    "I hope this email finds you well. We wanted to take a moment to remind you about the latest transaction associated with your account. \n" +
+                    "Below are the details:\n" +
+                    "Transaction ID: ABC123456\r\nDate of Transaction: March 25, 2024\r\nAmount: $100.00\r\nDescription: Purchase of Product X\n" +
+                    "If you have any questions or concerns regarding this transaction or if you need any assistance,\n" +
+                    " please don't hesitate to contact us. We're here to help!\r\n\r\nThank you for choosing our services. We appreciate your business and look forward to continuing to serve you.\r\n\r\n" +
+                    "Best regards,\n\n" +
+                    "Nimaya Rupasinghe\n" +
+                    "manurirupasinghe100@gmail.com";
+
+                smtpServer.Send(mail);
+
+                MessageBox.Show("Email sent successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while sending the email: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public class ActivityLog
+        {
+            public string CustomerName { get; set; }
+            public string ActivityType { get; set; }
+            public DateTime ActivityDateTime { get; set; }
+            public string Details { get; set; }
+        }
     }
 }

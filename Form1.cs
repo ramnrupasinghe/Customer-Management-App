@@ -185,7 +185,7 @@ namespace CustomerManagementApp
             else if (dataGridViewCustomers.SelectedRows.Count == 1)
             {
                 int selectedIndex = dataGridViewCustomers.SelectedRows[0].Index;
-                CustomerDetailsForm customerForm = new CustomerDetailsForm(customers[selectedIndex]); // Fix here
+                CustomerDetailsForm customerForm = new CustomerDetailsForm(customers[selectedIndex]);
                 if (customerForm.ShowDialog() == DialogResult.OK)
                 {
                     customers[selectedIndex] = customerForm.Customer;
