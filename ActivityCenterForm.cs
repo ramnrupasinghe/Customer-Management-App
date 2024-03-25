@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using static CustomerManagementApp.CustomerDetailsForm;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using System.Linq;
+using static CustomerManagementApp.CustomerDetailsForm;
 
 namespace CustomerManagementApp
 {
     public partial class ActivityCenterForm : Form
     {
         private List<ActivityLog> activityLogs;
-        private List<ActivityLog> filteredLogs; 
+        private List<ActivityLog> filteredLogs;
 
         public ActivityCenterForm(List<ActivityLog> activityLogs)
         {
@@ -99,12 +100,11 @@ namespace CustomerManagementApp
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string searchText = txtSearch.Text.ToLower(); 
+            string searchText = txtSearch.Text.ToLower();
             filteredLogs = new List<ActivityLog>();
 
             foreach (ActivityLog log in activityLogs)
             {
-                
                 if (log.CustomerName.ToLower().Contains(searchText) ||
                     log.ActivityType.ToLower().Contains(searchText) ||
                     log.ActivityDateTime.ToString().ToLower().Contains(searchText) ||
@@ -114,10 +114,9 @@ namespace CustomerManagementApp
                 }
             }
 
-            PopulateActivityLogGrid(filteredLogs); 
+            PopulateActivityLogGrid(filteredLogs);
         }
 
-      
         private void PopulateActivityLogGrid(List<ActivityLog> logs)
         {
             dgvActivityLogs.Rows.Clear();
@@ -125,6 +124,55 @@ namespace CustomerManagementApp
             {
                 dgvActivityLogs.Rows.Add(log.CustomerName, log.ActivityType, log.ActivityDateTime.ToString(), log.Details);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string sortingCriteria = button3.Tag.ToString();
+
+            switch (sortingCriteria)
+            {
+                case "Name":
+                    activityLogs = activityLogs.OrderBy(log => log.CustomerName).ToList();
+                    break;
+                case "ActivityType":
+                    activityLogs = activityLogs.OrderBy(log => log.ActivityType).ToList();
+                    break;
+                case "ActivityDateTime":
+                    activityLogs = activityLogs.OrderBy(log => log.ActivityDateTime).ToList();
+                    break;
+            }
+
+            PopulateActivityLogGrid(activityLogs);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            foreach (DataGridViewRow row in dgvActivityLogs.SelectedRows)
+            {
+                dgvActivityLogs.Rows.Remove(row);
+            }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            button3.Text = "Sort by Name";
+        }
+
+        private void rbSortByEmail_CheckedChanged(object sender, EventArgs e)
+        {
+            button3.Text = "Sort by ActivityType";
+
+            button3.Tag = "ActivityType";
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            button3.Text = "Sort by ActivityDateTime";
+
+           
+            button3.Tag = "ActivityDateTime";
         }
     }
 }

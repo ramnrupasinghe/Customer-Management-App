@@ -75,7 +75,7 @@ namespace CustomerManagementApp
             this.dataGridViewCustomers.Size = new System.Drawing.Size(671, 218);
             this.dataGridViewCustomers.TabIndex = 0;
             this.dataGridViewCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustomers_CellContentClick);
-            
+           
             this.btnAdd.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAdd.Location = new System.Drawing.Point(46, 280);
@@ -86,7 +86,7 @@ namespace CustomerManagementApp
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            
+           
             this.btnEdit.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnEdit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnEdit.Location = new System.Drawing.Point(223, 280);
@@ -97,7 +97,7 @@ namespace CustomerManagementApp
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-           
+            
             this.btnDelete.BackColor = System.Drawing.Color.OrangeRed;
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnDelete.Location = new System.Drawing.Point(565, 447);
@@ -115,7 +115,7 @@ namespace CustomerManagementApp
             this.txtSearch.Size = new System.Drawing.Size(205, 22);
             this.txtSearch.TabIndex = 4;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            
+             
             this.lblSearch.AutoSize = true;
             this.lblSearch.Location = new System.Drawing.Point(13, 15);
             this.lblSearch.Name = "lblSearch";
@@ -132,7 +132,7 @@ namespace CustomerManagementApp
             this.rbSortByName.Text = "Name";
             this.rbSortByName.UseVisualStyleBackColor = true;
             this.rbSortByName.CheckedChanged += new System.EventHandler(this.rbSortByName_CheckedChanged);
-           
+          
             this.rbSortByEmail.AutoSize = true;
             this.rbSortByEmail.Location = new System.Drawing.Point(383, 14);
             this.rbSortByEmail.Name = "rbSortByEmail";
@@ -159,7 +159,7 @@ namespace CustomerManagementApp
             this.btnSort.Text = "Sort";
             this.btnSort.UseVisualStyleBackColor = true;
             this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
-            
+           
             this.btnExport.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnExport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnExport.Location = new System.Drawing.Point(395, 280);
@@ -169,7 +169,7 @@ namespace CustomerManagementApp
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            
+           
             this.button1.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(42, 447);
@@ -179,10 +179,10 @@ namespace CustomerManagementApp
             this.button1.Text = "View Detail";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            
+           
             this.btnViewReminder.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnViewReminder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnViewReminder.Location = new System.Drawing.Point(229, 438);
+            this.btnViewReminder.Location = new System.Drawing.Point(229, 447);
             this.btnViewReminder.Name = "btnViewReminder";
             this.btnViewReminder.Size = new System.Drawing.Size(121, 56);
             this.btnViewReminder.TabIndex = 12;
@@ -199,7 +199,7 @@ namespace CustomerManagementApp
             this.button3.Text = "Add Reminder";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-           
+          
             this.button2.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(565, 356);
@@ -209,7 +209,7 @@ namespace CustomerManagementApp
             this.button2.Text = "Export Reminders";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
-           
+            
             this.button4.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button4.Location = new System.Drawing.Point(46, 356);
@@ -229,7 +229,7 @@ namespace CustomerManagementApp
             this.button5.Text = "Transaction History";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-           
+            
             this.button6.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button6.Location = new System.Drawing.Point(565, 280);
@@ -242,14 +242,14 @@ namespace CustomerManagementApp
            
             this.button7.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button7.Location = new System.Drawing.Point(395, 438);
+            this.button7.Location = new System.Drawing.Point(395, 447);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(122, 56);
             this.button7.TabIndex = 22;
             this.button7.Text = "chat";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
-             
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(720, 530);

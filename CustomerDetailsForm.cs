@@ -209,7 +209,7 @@ namespace CustomerManagementApp
 
         public class ActivityLog
         {
-            public string CustomerName { get; set; }
+            public string CustomerName { get; set; }         
             public string ActivityType { get; set; }
             public DateTime ActivityDateTime { get; set; }
             public string Details { get; set; }
