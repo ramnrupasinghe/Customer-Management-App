@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace CustomerManagementApp
 {
@@ -13,6 +17,7 @@ namespace CustomerManagementApp
         private Button btnEdit;
         private Button btnImport;
         private Button btnSort;
+        private Button btnIntegrateWithCRM;
         private TextBox txtSearch;
         private ComboBox cmbSortOptions;
 
@@ -25,6 +30,7 @@ namespace CustomerManagementApp
             InitializeSearchTextBox();
             InitializeSortButton();
             InitializeSortComboBox();
+            InitializeCRMIntegrationButton(); 
         }
 
         private void InitializeSortComboBox()
@@ -77,6 +83,15 @@ namespace CustomerManagementApp
             btnSort.Location = new Point(170, 330);
             btnSort.Click += btnSort_Click;
             this.Controls.Add(btnSort);
+        }
+
+        private void InitializeCRMIntegrationButton()
+        {
+            btnIntegrateWithCRM = new Button();
+            btnIntegrateWithCRM.Text = "Integrate with CRM";
+            btnIntegrateWithCRM.Location = new Point(415, 297);
+            btnIntegrateWithCRM.Click += btnIntegrateWithCRM_Click;
+            this.Controls.Add(btnIntegrateWithCRM);
         }
 
         private void TxtSearch_GotFocus(object sender, EventArgs e)
@@ -350,6 +365,65 @@ namespace CustomerManagementApp
             }
 
             UpdateCustomerDetails(string.Join(Environment.NewLine + Environment.NewLine, sortedDetails));
+        }
+
+        private async void IntegrateWithCRMAsync()
+        {
+            string crmBaseUrl = "YOUR_CRM_BASE_URL";
+            string accessToken = "YOUR_ACCESS_TOKEN";
+
+            string createLeadEndpoint = $"{crmBaseUrl}/services/data/v52.0/sobjects/Lead/";
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is Panel && control.Name == "dynamicPanel")
+                {
+                    TextBox textBox = control.Controls.OfType<TextBox>().FirstOrDefault();
+                    if (textBox != null)
+                    {
+                   
+                        string[] customerInfo = textBox.Text.Split('\n');
+                        string customerName = customerInfo[0];
+                        string customerEmail = customerInfo[1];
+                        string customerPhone = customerInfo[2];
+
+                     
+                        var leadData = new
+                        {
+                            LastName = customerName,
+                            Email = customerEmail,
+                            Phone = customerPhone
+                        };
+
+                      
+                        string jsonLeadData = JsonConvert.SerializeObject(leadData);
+
+                     
+                        using (HttpClient client = new HttpClient())
+                        {
+                            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+                            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+
+                           
+                            var response = await client.PostAsync(createLeadEndpoint, new StringContent(jsonLeadData, Encoding.UTF8, "application/json"));
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                MessageBox.Show("Customer details integrated with CRM successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to integrate customer details with CRM.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnIntegrateWithCRM_Click(object sender, EventArgs e)
+        {
+            IntegrateWithCRMAsync();
         }
 
         private void MultipleCustomerDetailsForm_Load(object sender, EventArgs e)
