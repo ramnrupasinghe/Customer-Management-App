@@ -17,9 +17,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBoxPriority = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
-           
+          
             this.numericUpDown1.Location = new System.Drawing.Point(106, 52);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.numericUpDown1.Name = "numericUpDown1";
@@ -39,7 +41,7 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-          
+            
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
@@ -51,7 +53,7 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            
+           
             this.lblSelectDuration.AutoSize = true;
             this.lblSelectDuration.Location = new System.Drawing.Point(109, 18);
             this.lblSelectDuration.Name = "lblSelectDuration";
@@ -71,7 +73,7 @@
             this.comboBoxUnits.Size = new System.Drawing.Size(150, 24);
             this.comboBoxUnits.TabIndex = 3;
             this.comboBoxUnits.SelectedIndexChanged += new System.EventHandler(this.comboBoxUnits_SelectedIndexChanged);
-           
+            
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(118, 84);
             this.label1.Name = "label1";
@@ -110,10 +112,36 @@
             this.label2.Size = new System.Drawing.Size(48, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Priority";
+           
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(164)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(82, 273);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 30);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Repeat";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(164)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(212, 273);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 30);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Sound";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+             
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 278);
+            this.ClientSize = new System.Drawing.Size(378, 327);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBoxPriority);
             this.Controls.Add(this.button1);
@@ -147,5 +175,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBoxPriority;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
