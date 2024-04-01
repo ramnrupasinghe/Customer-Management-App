@@ -1,29 +1,23 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
-
 
 namespace CustomerManagementApp
 {
-    public enum RecurrenceFrequency
-    {
-        None,
-        Daily,
-        Weekly,
-        Monthly,
-        Yearly
-    }
-
     public partial class AddReminderForm : Form
     {
-        public Reminder Reminder { get; private set; }
+        public RReminder Reminder { get; private set; }
         private Customer customer;
 
         private const int MaxDescriptionLength = 100;
 
-       
         private CheckBox chkRecurring;
         private ComboBox cbRecurrenceFrequency;
         private DateTimePicker datePickerEndDate;
+        private CheckBox chkSetEndDate;
+        private ColorDialog colorDialog;
+        private Button btnChooseColor;
+        private Panel colorPanel;
 
         public AddReminderForm(Customer customer)
         {
@@ -37,7 +31,6 @@ namespace CustomerManagementApp
 
             timePickerReminderTime.Value = DateTime.Now.AddHours(1);
 
-           
             chkRecurring = new CheckBox();
             chkRecurring.Text = "Recurring";
             chkRecurring.AutoSize = true;
@@ -52,17 +45,56 @@ namespace CustomerManagementApp
             cbRecurrenceFrequency.Enabled = false;
             Controls.Add(cbRecurrenceFrequency);
 
+            chkSetEndDate = new CheckBox();
+            chkSetEndDate.Text = "Set End Date";
+            chkSetEndDate.AutoSize = true;
+            chkSetEndDate.Location = new System.Drawing.Point(20, 250);
+            chkSetEndDate.CheckedChanged += ChkSetEndDate_CheckedChanged;
+            chkSetEndDate.Enabled = false;
+            Controls.Add(chkSetEndDate);
+
             datePickerEndDate = new DateTimePicker();
-            datePickerEndDate.Location = new System.Drawing.Point(20, 250);
+            datePickerEndDate.Location = new System.Drawing.Point(150, 250);
             datePickerEndDate.Enabled = false;
             Controls.Add(datePickerEndDate);
+
+            colorDialog = new ColorDialog();
+            btnChooseColor = new Button();
+            btnChooseColor.Text = "Choose Color";
+            btnChooseColor.Location = new Point(20, 280);
+            btnChooseColor.Click += BtnChooseColor_Click;
+            Controls.Add(btnChooseColor);
+
+            colorPanel = new Panel();
+            colorPanel.BackColor = Color.White; // Default color
+            colorPanel.Size = new Size(50, 20);
+            colorPanel.Location = new Point(150, 280);
+            Controls.Add(colorPanel);
         }
 
         private void ChkRecurring_CheckedChanged(object sender, EventArgs e)
         {
-           
             cbRecurrenceFrequency.Enabled = chkRecurring.Checked;
-            datePickerEndDate.Enabled = chkRecurring.Checked;
+            chkSetEndDate.Enabled = chkRecurring.Checked;
+            if (!chkRecurring.Checked)
+            {
+                chkSetEndDate.Checked = false;
+                datePickerEndDate.Enabled = false;
+            }
+        }
+
+        private void ChkSetEndDate_CheckedChanged(object sender, EventArgs e)
+        {
+            datePickerEndDate.Enabled = chkSetEndDate.Checked;
+        }
+
+        private void BtnChooseColor_Click(object sender, EventArgs e)
+        {
+            DialogResult result = colorDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                colorPanel.BackColor = colorDialog.Color;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -96,14 +128,12 @@ namespace CustomerManagementApp
             string priority = cbPriority.SelectedItem.ToString();
             string category = cbCategory.SelectedItem.ToString();
 
-           
             bool isRecurring = chkRecurring.Checked;
             RecurrenceFrequency recurrenceFrequency = RecurrenceFrequency.None;
             DateTime? endDate = null;
 
             if (isRecurring)
             {
-             
                 if (cbRecurrenceFrequency.SelectedItem == null)
                 {
                     MessageBox.Show("Please select a recurrence frequency.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -114,12 +144,12 @@ namespace CustomerManagementApp
                     Enum.TryParse(cbRecurrenceFrequency.SelectedItem.ToString(), out recurrenceFrequency);
                 }
 
-                
-                endDate = datePickerEndDate.Value;
+                endDate = chkSetEndDate.Checked ? (DateTime?)datePickerEndDate.Value : null;
             }
 
-           
-            Reminder = new Reminder
+            Color reminderColor = colorPanel.BackColor;
+
+            Reminder = new RReminder
             {
                 Description = description,
                 DueDate = datePickerDueDate.Value,
@@ -127,7 +157,10 @@ namespace CustomerManagementApp
                 Priority = priority,
                 Category = category,
                 ReminderTime = timePickerReminderTime.Value,
-                
+                IsRecurring = isRecurring,
+                RecurrenceFrequency = recurrenceFrequency,
+                EndDate = endDate,
+                Color = reminderColor
             };
 
             DialogResult = DialogResult.OK;
@@ -151,17 +184,15 @@ namespace CustomerManagementApp
             lblCharacterCounter.Text = $"{remainingCharacters} characters remaining";
         }
 
-        private void cbPriority_SelectedIndexChanged(object sender, EventArgs e)
+        private void timePickerReminderTime_ValueChanged(object sender, EventArgs e)
         {
-
+           
         }
-
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
-        private void timePickerReminderTime_ValueChanged(object sender, EventArgs e)
+        private void cbPriority_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
