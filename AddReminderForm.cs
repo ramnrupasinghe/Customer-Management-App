@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -66,7 +67,7 @@ namespace CustomerManagementApp
             Controls.Add(btnChooseColor);
 
             colorPanel = new Panel();
-            colorPanel.BackColor = Color.White; // Default color
+            colorPanel.BackColor = Color.White;
             colorPanel.Size = new Size(50, 20);
             colorPanel.Location = new Point(150, 280);
             Controls.Add(colorPanel);
@@ -147,7 +148,7 @@ namespace CustomerManagementApp
                 endDate = chkSetEndDate.Checked ? (DateTime?)datePickerEndDate.Value : null;
             }
 
-            Color reminderColor = colorPanel.BackColor;
+         Color reminderColor = colorPanel.BackColor;
 
             Reminder = new RReminder
             {
@@ -160,7 +161,10 @@ namespace CustomerManagementApp
                 IsRecurring = isRecurring,
                 RecurrenceFrequency = recurrenceFrequency,
                 EndDate = endDate,
-                Color = reminderColor
+                AttachedFiles = new List<string>(),
+                AttachedUrls = new List<string>(),
+                RecurrencePattern = new RecurrencePattern(),
+                
             };
 
             DialogResult = DialogResult.OK;
@@ -186,7 +190,7 @@ namespace CustomerManagementApp
 
         private void timePickerReminderTime_ValueChanged(object sender, EventArgs e)
         {
-           
+
         }
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {

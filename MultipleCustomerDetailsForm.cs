@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -30,7 +31,7 @@ namespace CustomerManagementApp
             InitializeSearchTextBox();
             InitializeSortButton();
             InitializeSortComboBox();
-            InitializeCRMIntegrationButton(); 
+            InitializeCRMIntegrationButton();
         }
 
         private void InitializeSortComboBox()
@@ -81,7 +82,6 @@ namespace CustomerManagementApp
             btnSort = new Button();
             btnSort.Text = "Sort";
             btnSort.Location = new Point(170, 330);
-            btnSort.Click += btnSort_Click;
             this.Controls.Add(btnSort);
         }
 
@@ -175,6 +175,115 @@ namespace CustomerManagementApp
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Error occurred while saving details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private async void btnIntegrateWithCRM_Click(object sender, EventArgs e)
+        {
+            bool isValidData = await ValidateCustomerData();
+            if (isValidData)
+            {
+                await IntegrateWithCRMAsync();
+            }
+            else
+            {
+                MessageBox.Show("Please ensure all customer details are valid before integrating with CRM.", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private async Task<bool> ValidateCustomerData()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Panel && control.Name == "dynamicPanel")
+                {
+                    TextBox textBox = control.Controls.OfType<TextBox>().FirstOrDefault();
+                    if (textBox != null)
+                    {
+                        string[] customerInfo = textBox.Text.Split('\n');
+                        string customerEmail = customerInfo[1];
+                        string customerPhone = customerInfo[2];
+
+                        bool isValidEmail = await ValidateEmail(customerEmail);
+                        bool isValidPhone = await ValidatePhoneNumber(customerPhone);
+
+                        if (!isValidEmail)
+                        {
+                            MessageBox.Show($"Invalid email format: {customerEmail}", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return false;
+                        }
+
+                        if (!isValidPhone)
+                        {
+                            MessageBox.Show($"Invalid phone number format: {customerPhone}", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        private async Task<bool> ValidateEmail(string email)
+        {
+            // Regular expression for email validation
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return await Task.Run(() => Regex.IsMatch(email, emailPattern));
+        }
+
+        private async Task<bool> ValidatePhoneNumber(string phoneNumber)
+        {
+            // Regular expression for phone number validation
+            string phonePattern = @"^\d{10}$"; // Assuming 10 digit phone numbers
+            return await Task.Run(() => Regex.IsMatch(phoneNumber, phonePattern));
+        }
+
+        private async Task IntegrateWithCRMAsync()
+        {
+            string crmBaseUrl = "YOUR_CRM_BASE_URL";
+            string accessToken = "YOUR_ACCESS_TOKEN";
+
+            string createLeadEndpoint = $"{crmBaseUrl}/services/data/v52.0/sobjects/Lead/";
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is Panel && control.Name == "dynamicPanel")
+                {
+                    TextBox textBox = control.Controls.OfType<TextBox>().FirstOrDefault();
+                    if (textBox != null)
+                    {
+                        string[] customerInfo = textBox.Text.Split('\n');
+                        string customerName = customerInfo[0];
+                        string customerEmail = customerInfo[1];
+                        string customerPhone = customerInfo[2];
+
+                        var leadData = new
+                        {
+                            LastName = customerName,
+                            Email = customerEmail,
+                            Phone = customerPhone
+                        };
+
+                        string jsonLeadData = JsonConvert.SerializeObject(leadData);
+
+                        using (HttpClient client = new HttpClient())
+                        {
+                            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+                            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+
+                            var response = await client.PostAsync(createLeadEndpoint, new StringContent(jsonLeadData, Encoding.UTF8, "application/json"));
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                MessageBox.Show("Customer details integrated with CRM successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to integrate customer details with CRM.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -275,161 +384,25 @@ namespace CustomerManagementApp
             }
         }
 
-        private void UpdateCustomerDetails(string updatedDetails)
+        private void UpdateCustomerDetails(string customerDetails)
         {
-            foreach (Control control in this.Controls)
-            {
-                if (control is Panel && control.Name == "dynamicPanel")
-                {
-                    this.Controls.Remove(control);
-                    control.Dispose();
-                }
-            }
-
-            DisplayCustomerDetails(updatedDetails);
+            throw new NotImplementedException();
         }
 
-        public void DisplayCustomerDetails(string details)
+        private void SortCustomerDetailsByCriterion(string selectedOption)
         {
-            string[] customerDetails = details.Split(new[] { Environment.NewLine + Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-            int panelWidth = 300;
-            int panelHeight = 100;
-            int panelMargin = 10;
-            int xPos = 10;
-            int yPos = 10;
-
-            foreach (string customerDetail in customerDetails)
-            {
-                Panel panel = new Panel();
-                panel.Size = new Size(panelWidth, panelHeight);
-                panel.Location = new Point(xPos, yPos);
-                panel.BorderStyle = BorderStyle.FixedSingle;
-                panel.Name = "dynamicPanel";
-                this.Controls.Add(panel);
-
-                TextBox textBox = new TextBox();
-                textBox.Multiline = true;
-                textBox.ReadOnly = true;
-                textBox.Text = customerDetail;
-                textBox.Dock = DockStyle.Fill;
-                textBox.BorderStyle = BorderStyle.None;
-                textBox.BackColor = Color.White;
-                panel.Controls.Add(textBox);
-
-                yPos += panelHeight + panelMargin;
-            }
+            throw new NotImplementedException();
         }
 
-        private void btnSort_Click(object sender, EventArgs e)
+        private void DisplayCustomerDetails(string sampleDetails)
         {
-            string[] sortOptions = { "Name", "Email", "Phone" };
-
-            DialogResult result = MessageBox.Show("Select a sorting criterion:", "Sort by", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-
-            if (result == DialogResult.OK)
-            {
-                string selectedOption = cmbSortOptions.SelectedItem.ToString();
-
-                SortCustomerDetailsByCriterion(selectedOption);
-            }
+            throw new NotImplementedException();
         }
-
-        private void SortCustomerDetailsByCriterion(string criterion)
-        {
-            List<string> sortedDetails = new List<string>();
-
-            foreach (Control control in this.Controls)
-            {
-                if (control is Panel && control.Name == "dynamicPanel")
-                {
-                    TextBox textBox = control.Controls.OfType<TextBox>().FirstOrDefault();
-                    if (textBox != null)
-                    {
-                        sortedDetails.Add(textBox.Text);
-                    }
-                }
-            }
-
-            switch (criterion)
-            {
-                case "Name":
-                    sortedDetails.Sort((x, y) => string.Compare(x.Split('\n')[0], y.Split('\n')[0]));
-                    break;
-                case "Email":
-                    sortedDetails.Sort((x, y) => string.Compare(x.Split('\n')[1], y.Split('\n')[1]));
-                    break;
-                case "Phone":
-                    sortedDetails.Sort((x, y) => string.Compare(x.Split('\n')[2], y.Split('\n')[2]));
-                    break;
-            }
-
-            UpdateCustomerDetails(string.Join(Environment.NewLine + Environment.NewLine, sortedDetails));
-        }
-
-        private async void IntegrateWithCRMAsync()
-        {
-            string crmBaseUrl = "YOUR_CRM_BASE_URL";
-            string accessToken = "YOUR_ACCESS_TOKEN";
-
-            string createLeadEndpoint = $"{crmBaseUrl}/services/data/v52.0/sobjects/Lead/";
-
-            foreach (Control control in this.Controls)
-            {
-                if (control is Panel && control.Name == "dynamicPanel")
-                {
-                    TextBox textBox = control.Controls.OfType<TextBox>().FirstOrDefault();
-                    if (textBox != null)
-                    {
-                   
-                        string[] customerInfo = textBox.Text.Split('\n');
-                        string customerName = customerInfo[0];
-                        string customerEmail = customerInfo[1];
-                        string customerPhone = customerInfo[2];
-
-                     
-                        var leadData = new
-                        {
-                            LastName = customerName,
-                            Email = customerEmail,
-                            Phone = customerPhone
-                        };
-
-                      
-                        string jsonLeadData = JsonConvert.SerializeObject(leadData);
-
-                     
-                        using (HttpClient client = new HttpClient())
-                        {
-                            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
-                            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
-
-                           
-                            var response = await client.PostAsync(createLeadEndpoint, new StringContent(jsonLeadData, Encoding.UTF8, "application/json"));
-
-                            if (response.IsSuccessStatusCode)
-                            {
-                                MessageBox.Show("Customer details integrated with CRM successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                MessageBox.Show("Failed to integrate customer details with CRM.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void btnIntegrateWithCRM_Click(object sender, EventArgs e)
-        {
-            IntegrateWithCRMAsync();
-        }
-
         private void MultipleCustomerDetailsForm_Load(object sender, EventArgs e)
         {
-            string sampleDetails = "Customer 1 Details" + Environment.NewLine + "Customer 2 Details" + Environment.NewLine + "Customer 3 Details";
-            DisplayCustomerDetails(sampleDetails);
+          
         }
+
+
     }
 }

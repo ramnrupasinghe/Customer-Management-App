@@ -1,8 +1,19 @@
-﻿using System;
+﻿using iText.Kernel.Colors;
+using System;
 using System.Collections.Generic;
 
 namespace CustomerManagementApp
 {
+
+
+    public enum RecurrenceFrequency
+    {
+        Daily,
+        Weekly,
+        Monthly,
+        Yearly,
+        None
+    }
     public class RReminder
     {
         public string Description { get; set; }
@@ -14,7 +25,8 @@ namespace CustomerManagementApp
         public List<string> AttachedFiles { get; set; }
         public List<string> AttachedUrls { get; set; } = new List<string>();
         public RecurrencePattern RecurrencePattern { get; set; }
-
+        public Color reminderColor { get; set; }
+       
 
         public RReminder()
         {
