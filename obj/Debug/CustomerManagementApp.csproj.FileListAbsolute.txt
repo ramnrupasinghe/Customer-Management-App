@@ -86,3 +86,5 @@ D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagemen
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.exe
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.pdb
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.ActivityCenterForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.Transaction.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.TTransaction.resources

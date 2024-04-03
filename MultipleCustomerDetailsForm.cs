@@ -227,15 +227,14 @@ namespace CustomerManagementApp
 
         private async Task<bool> ValidateEmail(string email)
         {
-            // Regular expression for email validation
             string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
             return await Task.Run(() => Regex.IsMatch(email, emailPattern));
         }
 
         private async Task<bool> ValidatePhoneNumber(string phoneNumber)
         {
-            // Regular expression for phone number validation
-            string phonePattern = @"^\d{10}$"; // Assuming 10 digit phone numbers
+            
+            string phonePattern = @"^\d{10}$"; 
             return await Task.Run(() => Regex.IsMatch(phoneNumber, phonePattern));
         }
 

@@ -185,9 +185,7 @@
     <Compile Include="EditCustomerForm.Designer.cs">
       <DependentUpon>EditCustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditTransactionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="EditTransactionForm.cs" />
     <Compile Include="EditTransactionForm.Designer.cs">
       <DependentUpon>EditTransactionForm.cs</DependentUpon>
     </Compile>
