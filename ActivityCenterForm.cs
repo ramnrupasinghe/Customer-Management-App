@@ -242,5 +242,16 @@ namespace CustomerManagementApp
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            PrintPreviewForm printPreviewForm = new PrintPreviewForm();
+
+            
+            printPreviewForm.LoadActivityLogs(activityLogs);
+
+      
+            printPreviewForm.ShowDialog();
+        }
     }
 }

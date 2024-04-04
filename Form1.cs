@@ -179,7 +179,7 @@ namespace CustomerManagementApp
                 }
 
                 MultipleCustomerDetailsForm detailsForm = new MultipleCustomerDetailsForm();
-                detailsForm.DisplayCustomerDetails(detailsBuilder.ToString());
+          
                 detailsForm.ShowDialog();
             }
             else if (dataGridViewCustomers.SelectedRows.Count == 1)
@@ -206,13 +206,10 @@ namespace CustomerManagementApp
             AddReminderForm addReminderForm = new AddReminderForm(customer);
             if (addReminderForm.ShowDialog() == DialogResult.OK)
             {
-                Reminder reminder = addReminderForm.Reminder;
-                reminder.AssociatedCustomer = customer;
-                reminders.Add(reminder);
-                RefreshDataGridView();
-                MessageBox.Show("Reminder added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
         }
+
 
         private void UpdateCustomerReminders(Customer customer)
         {

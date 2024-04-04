@@ -61,10 +61,10 @@ namespace CustomerManagementApp
                 previousCategory != null || previousCurrency != null)
             {
                 
-                Transaction transactionToEdit = new Transaction(previousDate, previousAmount, previousDescription, previousCategory, previousCurrency);
+                Transaction ToEdit = new Transaction(previousDate, previousAmount, previousDescription, previousCategory, previousCurrency);
 
                
-                using (EditTransactionForm editForm = new EditTransactionForm(transactionToEdit))
+                using (EditTransactionForm editForm = new EditTransactionForm(ToEdit))
                 {
                   
                     if (editForm.ShowDialog() == DialogResult.OK)

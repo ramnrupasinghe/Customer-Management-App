@@ -32,6 +32,8 @@ namespace CustomerManagementApp
 
     public partial class EditTransactionForm : Form
     {
+        private Transaction toEdit;
+
         public TTransaction editedTransaction { get; private set; }
 
         public EditTransactionForm(TTransaction transaction)
@@ -47,6 +49,11 @@ namespace CustomerManagementApp
             cboTransactionType.SelectedItem = editedTransaction.Type.ToString();
 
             txtTransactionTags.Text = string.Join(", ", editedTransaction.Tags);
+        }
+
+        public EditTransactionForm(Transaction toEdit)
+        {
+            this.toEdit = toEdit;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
