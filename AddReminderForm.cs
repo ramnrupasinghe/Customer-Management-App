@@ -20,6 +20,9 @@ namespace CustomerManagementApp
         private Button btnChooseColor;
         private Panel colorPanel;
 
+        private List<string> attachedFiles = new List<string>();
+        private List<string> attachedUrls = new List<string>();
+
         public AddReminderForm(Customer customer)
         {
             InitializeComponent();
@@ -148,7 +151,7 @@ namespace CustomerManagementApp
                 endDate = chkSetEndDate.Checked ? (DateTime?)datePickerEndDate.Value : null;
             }
 
-         Color reminderColor = colorPanel.BackColor;
+            Color reminderColor = colorPanel.BackColor;
 
             Reminder = new RReminder
             {
@@ -161,10 +164,9 @@ namespace CustomerManagementApp
                 IsRecurring = isRecurring,
                 RecurrenceFrequency = recurrenceFrequency,
                 EndDate = endDate,
-                AttachedFiles = new List<string>(),
-                AttachedUrls = new List<string>(),
+                AttachedFiles = attachedFiles,
+                AttachedUrls = attachedUrls,
                 RecurrencePattern = new RecurrencePattern(),
-                
             };
 
             DialogResult = DialogResult.OK;
@@ -192,18 +194,47 @@ namespace CustomerManagementApp
         {
 
         }
-        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
         private void cbPriority_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
+        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
         private void AddReminderForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+
+      
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            DialogResult result = openFileDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                foreach (string file in openFileDialog.FileNames)
+                {
+                    attachedFiles.Add(file);
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string url = Microsoft.VisualBasic.Interaction.InputBox("Please enter the URL:", "Attach URL", "");
+            if (!string.IsNullOrEmpty(url))
+            {
+                attachedUrls.Add(url);
+            }
         }
     }
 }

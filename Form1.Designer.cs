@@ -189,7 +189,7 @@ namespace CustomerManagementApp
             this.btnViewReminder.Text = "View Reminder";
             this.btnViewReminder.UseVisualStyleBackColor = false;
             this.btnViewReminder.Click += new System.EventHandler(this.btnViewReminder_Click);
-           
+
             this.button3.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button3.Location = new System.Drawing.Point(395, 356);
@@ -199,7 +199,8 @@ namespace CustomerManagementApp
             this.button3.Text = "Add Reminder";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-          
+
+
             this.button2.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(565, 356);
@@ -289,6 +290,36 @@ namespace CustomerManagementApp
         {
            
         }
+        private Customer GetSelectedCustomer()
+        {
+            if (dataGridViewCustomers.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewCustomers.SelectedRows[0];
+
+                Customer selectedCustomer = new Customer();
+
+                try
+                {
+                   
+                    selectedCustomer.Name = selectedRow.Cells["NameColumn"].Value.ToString();
+                    selectedCustomer.Email = selectedRow.Cells["EmailColumn"].Value.ToString();
+                    selectedCustomer.Phone = selectedRow.Cells["PhoneColumn"].Value.ToString();
+                }
+                catch (Exception ex)
+                {
+                    
+                    Console.WriteLine("Error retrieving values from DataGridView: " + ex.Message);
+                    return null;
+                }
+
+                return selectedCustomer;
+            }
+            else
+            {
+               
+                return null;
+            }
+        }
 
         private void rbSortByName_CheckedChanged(object sender, EventArgs e)
         {
@@ -307,7 +338,28 @@ namespace CustomerManagementApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+            Customer selectedCustomer = GetSelectedCustomer();
+
+            if (selectedCustomer != null)
+            {
+              
+                Console.WriteLine("Selected Customer: " + selectedCustomer.Name);
+
+                
+                try
+                {
+                    AddReminderForm addReminderForm = new AddReminderForm(selectedCustomer);
+                    addReminderForm.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error creating AddReminderForm: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer to add a reminder.", "No Customer Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private Button button7;

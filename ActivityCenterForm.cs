@@ -6,6 +6,7 @@ using iTextSharp.text.pdf;
 using System.IO;
 using System.Linq;
 using static CustomerManagementApp.CustomerDetailsForm;
+using System.Data;
 
 namespace CustomerManagementApp
 {
@@ -242,15 +243,25 @@ namespace CustomerManagementApp
         {
 
         }
-
+        public void LoadActivityLogs(DataTable dataTable)
+        {
+         
+        }
         private void button5_Click(object sender, EventArgs e)
         {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("CustomerName");
+            dataTable.Columns.Add("ActivityType");
+            dataTable.Columns.Add("ActivityDateTime");
+            dataTable.Columns.Add("Details");
+
+            foreach (ActivityLog log in activityLogs)
+            {
+                dataTable.Rows.Add(log.CustomerName, log.ActivityType, log.ActivityDateTime.ToString(), log.Details);
+            }
+
             PrintPreviewForm printPreviewForm = new PrintPreviewForm();
 
-            
-            printPreviewForm.LoadActivityLogs(activityLogs);
-
-      
             printPreviewForm.ShowDialog();
         }
     }
