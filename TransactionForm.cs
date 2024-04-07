@@ -141,5 +141,10 @@ namespace CustomerManagementApp
         {
 
         }
+
+        private void cboTransactionCurrency_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

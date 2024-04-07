@@ -70,5 +70,10 @@ namespace CustomerManagementApp
         {
 
         }
+
+        private void cboTransactionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
