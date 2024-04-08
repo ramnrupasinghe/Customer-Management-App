@@ -87,3 +87,4 @@ D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagemen
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.ActivityCenterForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.PrintPreviewForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.EditTransactionForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.RecurrencePatternHelpForm.resources

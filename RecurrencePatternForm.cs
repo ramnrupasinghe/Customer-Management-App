@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace CustomerManagementApp
 {
@@ -49,6 +50,28 @@ namespace CustomerManagementApp
         private void groupBoxRecurrencePattern_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            RecurrencePatternHelpForm helpForm = new RecurrencePatternHelpForm();
+
+            helpForm.BackColor = Color.White;
+
+            helpForm.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            radioButtonDaily.Checked = false;
+            radioButtonWeekly.Checked = false;
+            radioButtonMonthly.Checked = false;
+
+           
+            SelectedRecurrencePattern = RecurrencePattern.Daily; 
+
+            MessageBox.Show("Form reset successfully.", "Reset", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 
