@@ -209,6 +209,12 @@
     <Compile Include="MultipleCustomerDetailsForm.Designer.cs">
       <DependentUpon>MultipleCustomerDetailsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PatternPreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatternPreviewForm.Designer.cs">
+      <DependentUpon>PatternPreviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrintPreviewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MultipleCustomerDetailsForm.resx">
       <DependentUpon>MultipleCustomerDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatternPreviewForm.resx">
+      <DependentUpon>PatternPreviewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintPreviewForm.resx">
       <DependentUpon>PrintPreviewForm.cs</DependentUpon>
