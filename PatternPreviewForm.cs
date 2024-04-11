@@ -40,5 +40,10 @@ namespace CustomerManagementApp
         {
 
         }
+
+        private void PatternPreviewForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
