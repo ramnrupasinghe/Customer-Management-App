@@ -172,16 +172,16 @@ namespace CustomerManagementApp
         {
             string url = Microsoft.VisualBasic.Interaction.InputBox("Enter URL:", "Add URL", "");
 
-           
+
             if (!string.IsNullOrWhiteSpace(url))
             {
-                
+
                 listBoxAttachedUrls.Items.Add(url);
             }
         }
         private void listBoxAttachedUrls_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
         private void cmbPriority_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -191,6 +191,33 @@ namespace CustomerManagementApp
         private void button4_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string selectedOption = comboBox1.SelectedItem?.ToString();
+
+            if (selectedOption == "Location")
+            {
+                
+                using (var locationReminderForm = new LocationReminderForm())
+                {
+                    locationReminderForm.ShowDialog();
+                }
+            }
+            else if (selectedOption == "Email")
+            {
+               
+                using (var emailReminderForm = new EmailReminderForm())
+                {
+                    emailReminderForm.ShowDialog();
+                }
+            }
         }
     }
 }
