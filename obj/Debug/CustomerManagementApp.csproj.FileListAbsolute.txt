@@ -89,3 +89,5 @@ D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagemen
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.EditTransactionForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.RecurrencePatternHelpForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.PatternPreviewForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.EmailReminderForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.LocationReminderForm.resources

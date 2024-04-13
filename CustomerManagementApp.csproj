@@ -191,6 +191,12 @@
     <Compile Include="EditTransactionForm.Designer.cs">
       <DependentUpon>EditTransactionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmailReminderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailReminderForm.Designer.cs">
+      <DependentUpon>EmailReminderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,12 @@
     </Compile>
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocationReminderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LocationReminderForm.Designer.cs">
+      <DependentUpon>LocationReminderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MultipleCustomerDetailsForm.cs">
       <SubType>Form</SubType>
@@ -275,11 +287,17 @@
     <EmbeddedResource Include="EditTransactionForm.resx">
       <DependentUpon>EditTransactionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmailReminderForm.resx">
+      <DependentUpon>EmailReminderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocationReminderForm.resx">
+      <DependentUpon>LocationReminderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultipleCustomerDetailsForm.resx">
       <DependentUpon>MultipleCustomerDetailsForm.cs</DependentUpon>

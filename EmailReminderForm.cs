@@ -39,7 +39,7 @@ namespace CustomerManagementApp
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
                  
-                    smtp.Credentials = new NetworkCredential("your-smtp-username", "your-smtp-password");
+                    smtp.Credentials = new NetworkCredential("your-smtp-username", "your-smtp-password"); 
                     
                     smtp.Send(mail);
 
