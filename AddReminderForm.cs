@@ -236,5 +236,10 @@ namespace CustomerManagementApp
                 attachedUrls.Add(url);
             }
         }
+
+        private void datePickerDueDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

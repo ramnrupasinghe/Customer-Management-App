@@ -119,24 +119,24 @@ namespace CustomerManagementApp
 
         private void StartRecording()
         {
-           
             MessageBox.Show("Recording started...");
         }
 
         private void StopRecording()
         {
-          
             MessageBox.Show("Recording stopped.");
         }
+
         private void picAttach_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void picRecord_Click(object sender, EventArgs e)
         {
-          
+
         }
+
         private void btnAttach_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -149,6 +149,7 @@ namespace CustomerManagementApp
                 MessageBox.Show("File attached: " + attachedFilePath);
             }
         }
+
         private void lstChat_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -159,21 +160,18 @@ namespace CustomerManagementApp
             string messageText = txtUserMessage.Text.Trim();
             if (!string.IsNullOrEmpty(messageText) || !string.IsNullOrEmpty(audioFilePath) || !string.IsNullOrEmpty(attachedFilePath))
             {
-               
                 if (!string.IsNullOrEmpty(messageText))
                 {
                     ChatMessage userMessage = new ChatMessage("Customer Support", messageText, DateTime.Now);
                     chatMessages.Add(userMessage);
                 }
 
-               
                 if (!string.IsNullOrEmpty(audioFilePath))
                 {
                     ChatMessage audioMessage = new ChatMessage("Customer Support", "Audio Message", DateTime.Now);
                     chatMessages.Add(audioMessage);
                 }
 
-               
                 if (!string.IsNullOrEmpty(attachedFilePath))
                 {
                     ChatMessage fileMessage = new ChatMessage("Customer Support", "File Attachment", DateTime.Now);
@@ -188,6 +186,43 @@ namespace CustomerManagementApp
             else
             {
                 MessageBox.Show("Please enter a message or attach a file.");
+            }
+        }
+
+    
+        private void btnAddEmoji_Click(object sender, EventArgs e)
+        {
+           
+            txtUserMessage.Text += " 😊";
+            txtUserMessage.Focus();
+            txtUserMessage.SelectionStart = txtUserMessage.Text.Length;
+        }
+
+       
+        private void lstChat_DoubleClick(object sender, EventArgs e)
+        {
+            
+            if (lstChat.SelectedItem != null)
+            {
+                string selectedMessage = lstChat.SelectedItem.ToString();
+                string[] parts = selectedMessage.Split(':');
+                string senderName = parts[0].Trim();
+                string messageText = parts.Length > 1 ? parts[1].Trim() : "";
+
+
+                if (senderName.Equals("You", StringComparison.OrdinalIgnoreCase))
+                {
+                  
+                    txtUserMessage.Text = messageText;
+
+                    chatMessages.RemoveAt(lstChat.SelectedIndex);
+
+                    DisplayChatMessages();
+                }
+                else
+                {
+                    MessageBox.Show("You can only edit your messages.");
+                }
             }
         }
     }
