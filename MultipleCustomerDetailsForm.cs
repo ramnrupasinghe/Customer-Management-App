@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography; 
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace CustomerManagementApp
         private Button btnImport;
         private Button btnSort;
         private Button btnIntegrateWithCRM;
+        private Button btnExportToPDF; 
         private TextBox txtSearch;
         private ComboBox cmbSortOptions;
 
@@ -32,6 +34,9 @@ namespace CustomerManagementApp
             InitializeSortButton();
             InitializeSortComboBox();
             InitializeCRMIntegrationButton();
+            InitializeExportToPDFButton(); 
+            InitializeRealTimeCollaboration(); 
+            InitializePaymentGatewayIntegration(); 
         }
 
         private void InitializeSortComboBox()
@@ -92,6 +97,25 @@ namespace CustomerManagementApp
             btnIntegrateWithCRM.Location = new Point(415, 297);
             btnIntegrateWithCRM.Click += btnIntegrateWithCRM_Click;
             this.Controls.Add(btnIntegrateWithCRM);
+        }
+
+        private void InitializeExportToPDFButton() 
+        {
+            btnExportToPDF = new Button();
+            btnExportToPDF.Text = "Export to PDF";
+            btnExportToPDF.Location = new Point(510, 297);
+            btnExportToPDF.Click += btnExportToPDF_Click;
+            this.Controls.Add(btnExportToPDF);
+        }
+
+        private void InitializeRealTimeCollaboration() 
+        {
+            
+        }
+
+        private void InitializePaymentGatewayIntegration() 
+        {
+           
         }
 
         private void TxtSearch_GotFocus(object sender, EventArgs e)
@@ -233,8 +257,8 @@ namespace CustomerManagementApp
 
         private async Task<bool> ValidatePhoneNumber(string phoneNumber)
         {
-            
-            string phonePattern = @"^\d{10}$"; 
+
+            string phonePattern = @"^\d{10}$";
             return await Task.Run(() => Regex.IsMatch(phoneNumber, phonePattern));
         }
 
@@ -397,11 +421,17 @@ namespace CustomerManagementApp
         {
             throw new NotImplementedException();
         }
-        private void MultipleCustomerDetailsForm_Load(object sender, EventArgs e)
-        {
-          
+
+        private void btnExportToPDF_Click(object sender, EventArgs e) { 
+
+            
         }
 
-      
+        private void MultipleCustomerDetailsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
