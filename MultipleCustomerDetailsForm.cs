@@ -4,12 +4,14 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Cryptography; 
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+
 
 namespace CustomerManagementApp
 {
@@ -20,9 +22,12 @@ namespace CustomerManagementApp
         private Button btnImport;
         private Button btnSort;
         private Button btnIntegrateWithCRM;
-        private Button btnExportToPDF; 
+        private Button btnExportToPDF;
         private TextBox txtSearch;
         private ComboBox cmbSortOptions;
+        private System.Timers.Timer backupTimer;
+        private HttpClient httpClient;
+     
 
         public MultipleCustomerDetailsForm()
         {
@@ -34,10 +39,146 @@ namespace CustomerManagementApp
             InitializeSortButton();
             InitializeSortComboBox();
             InitializeCRMIntegrationButton();
-            InitializeExportToPDFButton(); 
-            InitializeRealTimeCollaboration(); 
-            InitializePaymentGatewayIntegration(); 
+            InitializeExportToPDFButton();
+            InitializeRealTimeCollaboration();
+            InitializePaymentGatewayIntegration();
+            InitializeDataEncryption();
+            InitializeDataBackup();
         }
+
+        private void InitializeDataEncryption()
+        {
+            using (Aes aesAlg = Aes.Create())
+            {
+               
+                aesAlg.GenerateKey();
+                aesAlg.GenerateIV();
+
+                byte[] encryptedData = EncryptStringToBytes_Aes("customermanagementapp", aesAlg.Key, aesAlg.IV); 
+
+              
+                string decryptedData = DecryptStringFromBytes_Aes(encryptedData, aesAlg.Key, aesAlg.IV);
+
+                MessageBox.Show($"Encrypted Data: {BitConverter.ToString(encryptedData)}\nDecrypted Data: {decryptedData}", "Data Encryption", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+        {
+       
+            if (plainText == null || plainText.Length <= 0)
+                throw new ArgumentNullException("plainText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+            byte[] encrypted;
+     
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Key;
+                aesAlg.IV = IV;
+
+     
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+           
+                using (MemoryStream msEncrypt = new MemoryStream())
+                {
+                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            swEncrypt.Write(plainText);
+                        }
+                        encrypted = msEncrypt.ToArray();
+                    }
+                }
+            }
+
+            return encrypted;
+        }
+
+        private string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+        {
+       
+            if (cipherText == null || cipherText.Length <= 0)
+                throw new ArgumentNullException("cipherText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+
+            
+            string plaintext = null;
+
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Key;
+                aesAlg.IV = IV;
+
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+           
+                using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+                {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        {
+                          
+                            plaintext = srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+            }
+
+           
+            return plaintext;
+        }
+
+
+        private void InitializeDataBackup()
+        {
+            backupTimer = new System.Timers.Timer();
+            backupTimer.Interval = 24 * 60 * 60 * 1000;
+            backupTimer.Elapsed += BackupTimer_Elapsed;
+            backupTimer.AutoReset = true;
+            backupTimer.Start();
+        }
+
+        private void BackupTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            
+            string backupFilePath = "customer_data_backup.csv";
+
+            try
+            {
+               
+                using (var writer = new StreamWriter(backupFilePath))
+                {
+                    foreach (Control control in this.Controls)
+                    {
+                        if (control is Panel && control.Name == "dynamicPanel")
+                        {
+                            foreach (Control innerControl in control.Controls)
+                            {
+                                if (innerControl is TextBox)
+                                {
+                                    writer.WriteLine(((TextBox)innerControl).Text);
+                                }
+                            }
+                        }
+                    }
+                }
+                MessageBox.Show("Automatic data backup completed successfully!", "Backup Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error occurred during automatic data backup: {ex.Message}", "Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void InitializeSortComboBox()
         {
@@ -99,7 +240,7 @@ namespace CustomerManagementApp
             this.Controls.Add(btnIntegrateWithCRM);
         }
 
-        private void InitializeExportToPDFButton() 
+        private void InitializeExportToPDFButton()
         {
             btnExportToPDF = new Button();
             btnExportToPDF.Text = "Export to PDF";
@@ -108,17 +249,60 @@ namespace CustomerManagementApp
             this.Controls.Add(btnExportToPDF);
         }
 
-        private void InitializeRealTimeCollaboration() 
+        private void InitializeRealTimeCollaboration()
         {
+        }
+
+        private void InitializePaymentGatewayIntegration()
+        {
+         
+            httpClient = new HttpClient();
+
+            MakePaymentAsync("customer@example.com", 100.00m).Wait();
+        }
+
+        private async Task<bool> MakePaymentAsync(string customerEmail, decimal amount)
+        {
+            try
+            {
+             
+                string paymentGatewayUrl = "https://paymentgateway.com/api/payment";
+
+                var paymentRequest = new
+                {
+                    CustomerEmail = customerEmail,
+                    Amount = amount
+                };
+
             
-        }
+                string jsonPaymentRequest = Newtonsoft.Json.JsonConvert.SerializeObject(paymentRequest);
 
-        private void InitializePaymentGatewayIntegration() 
-        {
-           
-        }
+            
+                HttpResponseMessage response = await httpClient.PostAsync(paymentGatewayUrl, new StringContent(jsonPaymentRequest));
 
-        private void TxtSearch_GotFocus(object sender, EventArgs e)
+              
+                if (response.IsSuccessStatusCode)
+                {
+                 
+                    Console.WriteLine("Payment successful.");
+                    return true;
+                }
+                else
+                {
+                  
+                    Console.WriteLine("Payment failed. Status code: " + response.StatusCode);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while processing payment: " + ex.Message);
+                return false;
+            }
+        }
+    
+
+    private void TxtSearch_GotFocus(object sender, EventArgs e)
         {
             if (txtSearch.Text == "Search by name...")
             {
@@ -422,16 +606,11 @@ namespace CustomerManagementApp
             throw new NotImplementedException();
         }
 
-        private void btnExportToPDF_Click(object sender, EventArgs e) { 
-
-            
-        }
+        private void btnExportToPDF_Click(object sender, EventArgs e) { }
 
         private void MultipleCustomerDetailsForm_Load(object sender, EventArgs e)
         {
 
         }
-
-
     }
 }

@@ -92,12 +92,14 @@ namespace CustomerManagementApp
             public string Sender { get; }
             public string Message { get; }
             public DateTime Timestamp { get; }
+            public List<string> Reactions { get; set; }
 
             public ChatMessage(string sender, string message, DateTime timestamp)
             {
                 Sender = sender;
                 Message = message;
                 Timestamp = timestamp;
+                Reactions = new List<string>();
             }
         }
 
@@ -189,19 +191,19 @@ namespace CustomerManagementApp
             }
         }
 
-    
+
         private void btnAddEmoji_Click(object sender, EventArgs e)
         {
-           
+
             txtUserMessage.Text += " 😊";
             txtUserMessage.Focus();
             txtUserMessage.SelectionStart = txtUserMessage.Text.Length;
         }
 
-       
+
         private void lstChat_DoubleClick(object sender, EventArgs e)
         {
-            
+
             if (lstChat.SelectedItem != null)
             {
                 string selectedMessage = lstChat.SelectedItem.ToString();
@@ -212,7 +214,7 @@ namespace CustomerManagementApp
 
                 if (senderName.Equals("You", StringComparison.OrdinalIgnoreCase))
                 {
-                  
+
                     txtUserMessage.Text = messageText;
 
                     chatMessages.RemoveAt(lstChat.SelectedIndex);
@@ -223,6 +225,66 @@ namespace CustomerManagementApp
                 {
                     MessageBox.Show("You can only edit your messages.");
                 }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            string searchTerm = txtSearch.Text.Trim();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                List<ChatMessage> filteredMessages = chatMessages
+                    .Where(message => message.Message.Contains(searchTerm))
+                    .ToList();
+
+                if (filteredMessages.Any())
+                {
+                    lstChat.Items.Clear();
+                    foreach (var message in filteredMessages)
+                    {
+                        lstChat.Items.Add($"{message.Sender}: {message.Message}");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No messages found matching the search term.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a search term.");
+            }
+        }
+
+        private void txtMessage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddReaction(string selectedMessage, string reaction)
+        {
+            foreach (var message in chatMessages)
+            {
+                if (selectedMessage.Contains(message.Message))
+                {
+                    message.Reactions.Add(reaction);
+                    break;
+                }
+            }
+        }
+
+        private void lstChat_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lstChat.SelectedItem != null)
+            {
+                string selectedMessage = lstChat.SelectedItem.ToString();
+                string[] parts = selectedMessage.Split(':');
+                string messageText = parts.Length > 1 ? parts[1].Trim() : "";
+
+                AddReaction(selectedMessage, "😊");
+                DisplayChatMessages();
             }
         }
     }
