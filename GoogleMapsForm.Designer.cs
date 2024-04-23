@@ -22,14 +22,15 @@
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.btnConfirmLocation = new System.Windows.Forms.Button();
             this.SuspendLayout();
-             
+            
             this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(800, 400);
+            this.webBrowser.Size = new System.Drawing.Size(800, 450);
             this.webBrowser.TabIndex = 0;
-           
+            this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted);
+          
             this.btnConfirmLocation.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnConfirmLocation.Location = new System.Drawing.Point(0, 400);
             this.btnConfirmLocation.Name = "btnConfirmLocation";
@@ -38,7 +39,7 @@
             this.btnConfirmLocation.Text = "Confirm Location";
             this.btnConfirmLocation.UseVisualStyleBackColor = true;
             this.btnConfirmLocation.Click += new System.EventHandler(this.btnConfirmLocation_Click);
-           
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
