@@ -122,3 +122,4 @@ D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\Microsoft.AspNetC
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.xml
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\Microsoft.Bcl.TimeProvider.xml
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.Threading.Channels.xml
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.GoogleMapsForm.resources

@@ -302,6 +302,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="GoogleMapsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoogleMapsForm.Designer.cs">
+      <DependentUpon>GoogleMapsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LocationReminderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -388,6 +394,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoogleMapsForm.resx">
+      <DependentUpon>GoogleMapsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LocationReminderForm.resx">
       <DependentUpon>LocationReminderForm.cs</DependentUpon>

@@ -54,7 +54,7 @@ namespace CustomerManagementApp
                 aesAlg.GenerateKey();
                 aesAlg.GenerateIV();
 
-                byte[] encryptedData = EncryptStringToBytes_Aes("customermanagementapp", aesAlg.Key, aesAlg.IV); 
+                byte[] encryptedData = EncryptStringToBytes_Aes("customermanagementapp", aesAlg.Key, aesAlg.IV); //in here i added some random value for as the data to encrypt. if you are trying this code then replace this with any value that you want to encrypt.
 
               
                 string decryptedData = DecryptStringFromBytes_Aes(encryptedData, aesAlg.Key, aesAlg.IV);
