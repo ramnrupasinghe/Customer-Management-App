@@ -8,6 +8,9 @@ namespace CustomerManagementApp
         public int SnoozeDuration { get; private set; }
         public string CustomLabel { get; private set; }
         public string PriorityLevel { get; private set; }
+        public string SelectedSoundFilePath { get; private set; }
+        public string RecurrencePattern { get; private set; }
+        public string CustomMessage { get; private set; }
 
         public SnoozeDurationForm()
         {
@@ -45,7 +48,9 @@ namespace CustomerManagementApp
                     break;
             }
 
-            PriorityLevel = comboBoxPriority.SelectedItem.ToString(); 
+            CustomLabel = txtCustomLabel.Text;
+            PriorityLevel = comboBoxPriority.SelectedItem.ToString();
+            CustomMessage = txtCustomMessage.Text; 
             DialogResult = DialogResult.OK;
             Close();
 
@@ -56,7 +61,10 @@ namespace CustomerManagementApp
         {
             SnoozeDuration = 0;
             CustomLabel = "";
-            PriorityLevel = ""; 
+            PriorityLevel = "";
+            SelectedSoundFilePath = "";
+            RecurrencePattern = "";
+            CustomMessage = "";
             DialogResult = DialogResult.Cancel;
             Close();
         }
@@ -69,24 +77,25 @@ namespace CustomerManagementApp
 
         private void SnoozeDurationForm_Load(object sender, EventArgs e)
         {
-          
+            numericUpDown1.Value = 0;
+            comboBoxUnits.SelectedIndex = 0;
         }
-
-        private void comboBoxUnits_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBoxPriority_SelectedIndexChanged(object sender, EventArgs e)
         {
+            numericUpDown1.Value = 0;
+            comboBoxUnits.SelectedIndex = 0;
 
         }
-
+        private void comboBoxUnits_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            numericUpDown1.Value = 0;
+            comboBoxUnits.SelectedIndex = 0;
+        }
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown1.Value = 0;
+            comboBoxUnits.SelectedIndex = 0;
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             RecurrencePatternForm recurrencePatternForm = new RecurrencePatternForm();
@@ -96,6 +105,7 @@ namespace CustomerManagementApp
             }
         }
 
+
         private void button3_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -104,10 +114,8 @@ namespace CustomerManagementApp
 
             if (result == DialogResult.OK)
             {
-
-                string selectedSoundFilePath = openFileDialog.FileName;
-
-                MessageBox.Show($"Custom sound selected: {selectedSoundFilePath}", "Custom Sound Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SelectedSoundFilePath = openFileDialog.FileName;
+                MessageBox.Show($"Custom sound selected: {SelectedSoundFilePath}", "Custom Sound Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
