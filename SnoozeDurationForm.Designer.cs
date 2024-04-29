@@ -169,6 +169,7 @@
             this.txtCustomLabel.Name = "txtCustomLabel";
             this.txtCustomLabel.Size = new System.Drawing.Size(150, 22);
             this.txtCustomLabel.TabIndex = 10;
+            this.txtCustomLabel.TextChanged += new System.EventHandler(this.txtCustomLabel_TextChanged);
             // 
             // lblCustomLabel
             // 
@@ -186,6 +187,7 @@
             this.txtCustomMessage.Name = "txtCustomMessage";
             this.txtCustomMessage.Size = new System.Drawing.Size(354, 50);
             this.txtCustomMessage.TabIndex = 12;
+            this.txtCustomMessage.TextChanged += new System.EventHandler(this.txtCustomMessage_TextChanged);
             // 
             // lblCustomMessage
             // 

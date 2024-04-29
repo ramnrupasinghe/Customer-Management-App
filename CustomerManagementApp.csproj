@@ -314,6 +314,12 @@
     <Compile Include="LocationReminderForm.Designer.cs">
       <DependentUpon>LocationReminderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapPreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapPreviewForm.Designer.cs">
+      <DependentUpon>MapPreviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultipleCustomerDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -400,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LocationReminderForm.resx">
       <DependentUpon>LocationReminderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapPreviewForm.resx">
+      <DependentUpon>MapPreviewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultipleCustomerDetailsForm.resx">
       <DependentUpon>MultipleCustomerDetailsForm.cs</DependentUpon>

@@ -74,5 +74,45 @@ namespace CustomerManagementApp
                 MessageBox.Show($"Error loading last location: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnPreviewMap_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(SelectedLocation))
+            {
+                using (var mapPreviewForm = new MapPreviewForm(SelectedLocation))
+                {
+                    mapPreviewForm.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No location selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+       
+        private void btnSaveAdditionalInfo_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(SelectedLocation))
+            {
+                string additionalInfo = Microsoft.VisualBasic.Interaction.InputBox("Enter additional information about the location:", "Additional Information", "");
+
+                if (!string.IsNullOrWhiteSpace(additionalInfo))
+                {
+                  
+                    SelectedLocation += Environment.NewLine + "Additional Info: " + additionalInfo;
+                    SaveLastLocation();
+                    MessageBox.Show("Additional information saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No additional information entered.", "Information Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No location selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

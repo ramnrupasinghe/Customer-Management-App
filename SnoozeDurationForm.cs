@@ -118,5 +118,15 @@ namespace CustomerManagementApp
                 MessageBox.Show($"Custom sound selected: {SelectedSoundFilePath}", "Custom Sound Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void txtCustomLabel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCustomMessage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
