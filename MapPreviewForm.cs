@@ -17,5 +17,10 @@ namespace CustomerManagementApp
         {
             webBrowserMap.Navigate($"https://www.google.com/maps?q={_selectedLocation}");
         }
+
+        private void webBrowserMap_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+        }
     }
 }

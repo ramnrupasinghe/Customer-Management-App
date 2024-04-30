@@ -28,6 +28,7 @@
             this.webBrowserMap.Name = "webBrowserMap";
             this.webBrowserMap.Size = new System.Drawing.Size(800, 450);
             this.webBrowserMap.TabIndex = 0;
+            this.webBrowserMap.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowserMap_DocumentCompleted);
            
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
