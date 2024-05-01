@@ -25,9 +25,7 @@ namespace CustomerManagementApp
         public List<string> AttachedFiles { get; set; }
         public List<string> AttachedUrls { get; set; } = new List<string>();
         public RecurrencePattern RecurrencePattern { get; set; }
-        public Color reminderColor { get; set; }
-       
-
+        public Color ReminderColor { get; set; }
         public RReminder()
         {
             AttachedFiles = new List<string>();

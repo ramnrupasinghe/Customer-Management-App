@@ -19,6 +19,8 @@ namespace CustomerManagementApp
         private ColorDialog colorDialog;
         private Button btnChooseColor;
         private Panel colorPanel;
+        private Button btnPreviewAttachments;
+        private Button btnCustomizeColor;
 
         private List<string> attachedFiles = new List<string>();
         private List<string> attachedUrls = new List<string>();
@@ -74,6 +76,20 @@ namespace CustomerManagementApp
             colorPanel.Size = new Size(50, 20);
             colorPanel.Location = new Point(150, 280);
             Controls.Add(colorPanel);
+
+           
+            btnPreviewAttachments = new Button();
+            btnPreviewAttachments.Text = "Preview Attachments";
+            btnPreviewAttachments.Location = new Point(150, 310);
+            btnPreviewAttachments.Click += BtnPreviewAttachments_Click;
+            Controls.Add(btnPreviewAttachments);
+
+           
+            btnCustomizeColor = new Button();
+            btnCustomizeColor.Text = "Customize Color";
+            btnCustomizeColor.Location = new Point(20, 310);
+            btnCustomizeColor.Click += BtnCustomizeColor_Click;
+            Controls.Add(btnCustomizeColor);
         }
 
         private void ChkRecurring_CheckedChanged(object sender, EventArgs e)
@@ -167,6 +183,8 @@ namespace CustomerManagementApp
                 AttachedFiles = attachedFiles,
                 AttachedUrls = attachedUrls,
                 RecurrencePattern = new RecurrencePattern(),
+              
+
             };
 
             DialogResult = DialogResult.OK;
@@ -205,14 +223,48 @@ namespace CustomerManagementApp
 
         }
 
+        private void BtnPreviewAttachments_Click(object sender, EventArgs e)
+        {
+          
+            var attachmentInfo = new System.Text.StringBuilder();
 
+       
+            attachmentInfo.AppendLine("Attached Files:");
+            foreach (var file in attachedFiles)
+            {
+                attachmentInfo.AppendLine(file);
+            }
+
+        
+            attachmentInfo.AppendLine("\nAttached URLs:");
+            foreach (var url in attachedUrls)
+            {
+                attachmentInfo.AppendLine(url);
+            }
+
+        
+            MessageBox.Show(attachmentInfo.ToString(), "Attachment Preview", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void BtnCustomizeColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            DialogResult result = colorDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                colorPanel.BackColor = colorDialog.Color;
+            }
+        }
+
+        private void datePickerDueDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
         private void AddReminderForm_Load(object sender, EventArgs e)
         {
 
         }
-
-
-      
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -235,11 +287,6 @@ namespace CustomerManagementApp
             {
                 attachedUrls.Add(url);
             }
-        }
-
-        private void datePickerDueDate_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
