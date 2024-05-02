@@ -14,6 +14,7 @@ namespace CustomerManagementApp
     {
         private List<ActivityLog> activityLogs;
         private List<ActivityLog> filteredLogs;
+        private Stack<List<ActivityLog>> logHistory; 
 
         public ActivityCenterForm(List<ActivityLog> activityLogs)
         {
@@ -21,6 +22,7 @@ namespace CustomerManagementApp
             this.activityLogs = activityLogs;
             InitializeActivityLogGrid();
             PopulateActivityLogGrid();
+            logHistory = new Stack<List<ActivityLog>>();
         }
 
         private void InitializeActivityLogGrid()
@@ -179,6 +181,7 @@ namespace CustomerManagementApp
                 }
             }
         }
+
         private void PopulateActivityLogGrid(List<ActivityLog> logs)
         {
             dgvActivityLogs.Rows.Clear();
@@ -187,6 +190,7 @@ namespace CustomerManagementApp
                 dgvActivityLogs.Rows.Add(log.CustomerName, log.ActivityType, log.ActivityDateTime.ToString(), log.Details);
             }
         }
+
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             button3.Text = "Sort by Name";
@@ -195,17 +199,15 @@ namespace CustomerManagementApp
         private void rbSortByEmail_CheckedChanged(object sender, EventArgs e)
         {
             button3.Text = "Sort by ActivityType";
-
             button3.Tag = "ActivityType";
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             button3.Text = "Sort by ActivityDateTime";
-
-
             button3.Tag = "ActivityDateTime";
         }
+
         private List<ActivityLog> FilterLogsByDateRange(DateTime startDate, DateTime endDate)
         {
             return activityLogs.Where(log => log.ActivityDateTime >= startDate && log.ActivityDateTime <= endDate).ToList();
@@ -243,26 +245,62 @@ namespace CustomerManagementApp
         {
 
         }
-        public void LoadActivityLogs(DataTable dataTable)
-        {
-         
-        }
+
         private void button5_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("CustomerName");
-            dataTable.Columns.Add("ActivityType");
-            dataTable.Columns.Add("ActivityDateTime");
-            dataTable.Columns.Add("Details");
+            ExportActivityLogsToTextFile();
+        }
 
-            foreach (ActivityLog log in activityLogs)
+        private void ExportActivityLogsToTextFile()
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                dataTable.Rows.Add(log.CustomerName, log.ActivityType, log.ActivityDateTime.ToString(), log.Details);
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt";
+                saveFileDialog.FilterIndex = 2;
+                saveFileDialog.RestoreDirectory = true;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        foreach (ActivityLog log in activityLogs)
+                        {
+                            writer.WriteLine($"{log.CustomerName},{log.ActivityType},{log.ActivityDateTime},{log.Details}");
+                        }
+                    }
+
+                    MessageBox.Show("Activity logs exported to text file successfully!");
+                }
             }
+        }
 
-            PrintPreviewForm printPreviewForm = new PrintPreviewForm();
+        private void button6_Click(object sender, EventArgs e)
+        {
+            UndoLastAction();
+        }
 
-            printPreviewForm.ShowDialog();
+        private void UndoLastAction()
+        {
+            if (logHistory.Count > 0)
+            {
+                activityLogs = logHistory.Pop();
+                PopulateActivityLogGrid(activityLogs);
+            }
+            else
+            {
+                MessageBox.Show("No actions to undo.");
+            }
+        }
+
+        private void dgvActivityLogs_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                
+                logHistory.Push(new List<ActivityLog>(activityLogs));
+            }
         }
     }
 }
