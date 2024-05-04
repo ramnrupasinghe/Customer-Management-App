@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace CustomerManagementApp
 {
@@ -32,8 +34,8 @@ namespace CustomerManagementApp
         private void LoadCustomerData(Customer customer)
         {
             txtName.Text = customer.Name;
-            txtEmail.Text = customer.Email;
-            txtPhone.Text = customer.Phone;
+            txtEmail.Text = DecryptData(customer.Email);
+            txtPhone.Text = DecryptData(customer.Phone);
             txtAddress.Text = customer.Address;
             txtCompanyName.Text = customer.CompanyName;
             txtNotes.Text = customer.Notes;
@@ -176,8 +178,8 @@ namespace CustomerManagementApp
                 Customer = new Customer
                 {
                     Name = txtName.Text,
-                    Email = txtEmail.Text,
-                    Phone = txtPhone.Text,
+                    Email = EncryptData(txtEmail.Text),
+                    Phone = EncryptData(txtPhone.Text),
                     Address = txtAddress.Text,
                     CompanyName = txtCompanyName.Text,
                     Notes = txtNotes.Text
@@ -236,14 +238,7 @@ namespace CustomerManagementApp
                 UpdateLanguageTranslation();
             }
         }
-        private void txtNotes_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-          
-        }
+
 
         private void UpdateLanguageTranslation()
         {
@@ -267,5 +262,69 @@ namespace CustomerManagementApp
                 }
             }
         }
+
+        private string EncryptData(string data)
+        {
+            string key = "yourEncryptionKey"; 
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Encoding.UTF8.GetBytes(key);
+                aesAlg.IV = new byte[aesAlg.BlockSize / 8];
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                using (MemoryStream msEncrypt = new MemoryStream())
+                {
+                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            swEncrypt.Write(data);
+                        }
+                    }
+                    return Convert.ToBase64String(msEncrypt.ToArray());
+                }
+            }
+        }
+
+       
+        private string MaskData(string data)
+        {
+            if (!string.IsNullOrEmpty(data))
+            {
+                int lengthToMask = Math.Max(data.Length / 2, 1);
+                return data.Substring(0, lengthToMask) + new string('*', data.Length - lengthToMask);
+            }
+            return string.Empty;
+        }
+
+        private string DecryptData(string encryptedData)
+        {
+            string key = "yourEncryptionKey"; \
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Encoding.UTF8.GetBytes(key);
+                aesAlg.IV = new byte[aesAlg.BlockSize / 8];
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+                using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(encryptedData)))
+                {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        {
+                            return srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void txtNotes_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
