@@ -15,7 +15,8 @@ namespace CustomerManagementApp
         private TextBox txtRecurrenceRule;
         private Button btnValidateRule;
         private Button btnParseRule;
-
+        private Button btnGenerateRule;
+        private Button btnEditRule;
         public RecurrencePatternHelpForm()
         {
             InitializeComponent();
@@ -170,6 +171,32 @@ namespace CustomerManagementApp
 
             return parsedRule;
         }
+        private void btnGenerateRule_Click(object sender, EventArgs e)
+        {
+            string generatedRule = GenerateRecurrenceRule();
+            MessageBox.Show("Generated Recurrence Rule:\n" + generatedRule, "Rule Generation Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
+       
+        private string GenerateRecurrenceRule()
+        {
+          
+            return "RRULE:FREQ=DAILY;COUNT=10";
+        }
+        private void btnEditRule_Click(object sender, EventArgs e)
+        {
+            if (txtRecurrenceRule.Enabled)
+            {
+             
+                txtRecurrenceRule.Enabled = false;
+                btnEditRule.Text = "Edit Rule";
+            }
+            else
+            {
+                
+                txtRecurrenceRule.Enabled = true;
+                btnEditRule.Text = "Finish Editing";
+            }
+        }
     }
 }

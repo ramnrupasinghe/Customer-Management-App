@@ -298,7 +298,7 @@ namespace CustomerManagementApp
 
         private string DecryptData(string encryptedData)
         {
-            string key = "yourEncryptionKey"; \
+            string key = "yourEncryptionKey"; 
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = Encoding.UTF8.GetBytes(key);
@@ -316,7 +316,7 @@ namespace CustomerManagementApp
                 }
             }
         }
-
+        //should be after encrypt data,decrypt data and mask data 
         private void txtNotes_TextChanged(object sender, EventArgs e)
         {
 
