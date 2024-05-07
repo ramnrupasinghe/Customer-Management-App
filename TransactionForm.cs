@@ -1,18 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using LiveCharts;
+using LiveCharts.WinForms;
+using System.Linq;
+using System.Collections.Generic;
+using LiveCharts.Wpf;
 
 namespace CustomerManagementApp
 {
     public partial class TransactionForm : Form
     {
+
+        private void PopulateListView(List<Transaction> transactions)
+        {
+    
+            listViewTransactions.Items.Clear();
+
+           
+            foreach (var transaction in transactions)
+            {
+                ListViewItem item = new ListViewItem(transaction.TransactionDate.ToShortDateString());
+                item.SubItems.Add(transaction.Descriptionn);
+                item.SubItems.Add(transaction.Transactionn.ToString());
+                item.SubItems.Add(transaction.Currency);
+                item.SubItems.Add(transaction.Category);
+                listViewTransactions.Items.Add(item);
+            }
+        }
+
         private decimal previousAmount;
         private string previousDescription;
         private DateTime previousDate;
         private string previousCategory;
         private string previousCurrency;
-
+        private List<Transaction> transactionList = new List<Transaction>();
+        private ListView listViewTransactions;
         public TransactionForm()
         {
             InitializeComponent();
@@ -128,9 +153,9 @@ namespace CustomerManagementApp
             return true;
         }
 
-        
 
        
+
         public decimal TransactionAmount { get; private set; }
         public string TransactionDescription { get; private set; }
         public DateTime TransactionDate { get; private set; }
@@ -145,6 +170,90 @@ namespace CustomerManagementApp
         private void cboTransactionCurrency_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void btnSortTransactions_Click(object sender, EventArgs e)
+        {
+
+            if (transactionList.Count > 0)
+            {
+                transactionList = transactionList.OrderBy(t => t.TransactionDate).ToList();
+                PopulateListView(transactionList);
+            }
+            else
+            {
+                MessageBox.Show("No transactions to sort.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnShowGraph_Click(object sender, EventArgs e)
+        {
+            if (transactionList.Count > 0)
+            {
+                var transactionDates = transactionList.Select(t => t.TransactionDate).ToArray();
+                var transactionAmounts = transactionList.Select(t => (double)t.Transactionn).ToArray();
+
+                var chart = new LiveCharts.WinForms.CartesianChart
+                {
+                    Series = new LiveCharts.SeriesCollection
+            {
+                new LiveCharts.Wpf.LineSeries
+                {
+                    Title = "Transaction Amount",
+                    Values = new LiveCharts.ChartValues<double>(transactionAmounts)
+                }
+            },
+                  
+                };
+
+                var form = new Form();
+                form.Controls.Add(chart);
+                form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No transactions to display.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void btnExportToPDF_Click(object sender, EventArgs e)
+        {
+
+
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (PdfWriter writer = new PdfWriter(saveFileDialog.FileName))
+                        {
+                            using (PdfDocument pdf = new PdfDocument(writer))
+                            {
+                                Document document = new Document(pdf);
+                                document.Add(new Paragraph("Transaction Report"));
+
+                                foreach (var transaction in transactionList)
+                                {
+                                    document.Add(new Paragraph($"{transaction.TransactionDate.ToShortDateString()} - {transaction.Descriptionn} - {transaction.Transactionn} {transaction.Currency}"));
+                                }
+                            }
+                        }
+
+                        MessageBox.Show("Transactions exported successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error exporting transactions: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }
