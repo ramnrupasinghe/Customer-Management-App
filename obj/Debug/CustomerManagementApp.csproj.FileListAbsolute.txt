@@ -107,7 +107,6 @@ D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.IO.Pipelin
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.Text.Encodings.Web.xml
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.Text.Json.xml
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\websocket-sharp.xml
-D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.exe.config
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\Microsoft.AspNetCore.Http.Connections.Client.dll
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.dll
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\Microsoft.AspNetCore.SignalR.Client.Core.dll
@@ -124,3 +123,13 @@ D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\Microsoft.Bcl.Tim
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\System.Threading.Channels.xml
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.GoogleMapsForm.resources
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.MapPreviewForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.dll
+D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.WinForms.dll
+D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.Wpf.dll
+D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.pdb
+D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.xml
+D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.WinForms.pdb
+D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.WinForms.xml
+D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.Wpf.pdb
+D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.Wpf.xml
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.SelectRecipientForm.resources

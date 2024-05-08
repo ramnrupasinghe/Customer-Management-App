@@ -54,7 +54,8 @@ namespace CustomerManagementApp
             lstChat.Items.Clear();
             foreach (var message in chatMessages)
             {
-                lstChat.Items.Add($"{message.Sender}: {message.Message} ");
+                string reactions = string.Join(", ", message.Reactions);
+                lstChat.Items.Add($"{message.Sender}: {message.Message} {(reactions != "" ? $"Reactions: {reactions}" : "")}");
             }
             lstChat.ForeColor = Color.White;
         }
@@ -281,10 +282,44 @@ namespace CustomerManagementApp
             {
                 string selectedMessage = lstChat.SelectedItem.ToString();
                 string[] parts = selectedMessage.Split(':');
-                string messageText = parts.Length > 1 ? parts[1].Trim() : "";
+                string senderName = parts[0].Trim();
 
-                AddReaction(selectedMessage, "😊");
-                DisplayChatMessages();
+                if (senderName.Equals("You", StringComparison.OrdinalIgnoreCase))
+                {
+                    txtUserMessage.Text = parts.Length > 1 ? parts[1].Trim() : "";
+                    chatMessages.RemoveAt(lstChat.SelectedIndex);
+                    DisplayChatMessages();
+                }
+                else
+                {
+                    ForwardMessage(selectedMessage);
+                }
+            }
+        }
+
+        private void ForwardMessage(string selectedMessage)
+        {
+            string[] parts = selectedMessage.Split(':');
+            string messageText = parts.Length > 1 ? parts[1].Trim() : "";
+
+
+            List<string> contactsList = new List<string> { "Recipient1", "Recipient2", "Recipient3" }; 
+
+            SelectRecipientForm selectRecipientForm = new SelectRecipientForm(contactsList);
+            DialogResult result = selectRecipientForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string selectedRecipient = selectRecipientForm.SelectedRecipient;
+                if (!string.IsNullOrEmpty(selectedRecipient))
+                {
+
+                    ChatMessage forwardedMessage = new ChatMessage(selectedRecipient, messageText, DateTime.Now);
+                    chatMessages.Add(forwardedMessage);
+
+
+                    DisplayChatMessages();
+                }
             }
         }
     }

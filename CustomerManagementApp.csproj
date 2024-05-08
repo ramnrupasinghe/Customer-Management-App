@@ -367,6 +367,12 @@
       <DependentUpon>RecurrencePatternHelpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RReminder.cs" />
+    <Compile Include="SelectRecipientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectRecipientForm.Designer.cs">
+      <DependentUpon>SelectRecipientForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SnoozeDurationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -446,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecurrencePatternHelpForm.resx">
       <DependentUpon>RecurrencePatternHelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectRecipientForm.resx">
+      <DependentUpon>SelectRecipientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SnoozeDurationForm.resx">
       <DependentUpon>SnoozeDurationForm.cs</DependentUpon>
