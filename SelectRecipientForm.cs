@@ -12,17 +12,25 @@ namespace CustomerManagementApp
         {
             InitializeComponent();
             PopulateContacts(contactsList);
+            DisableSelectButtonIfNoRecipientSelected();
         }
 
         private void PopulateContacts(List<string> contactsList)
         {
-            foreach (string contact in contactsList)
-            {
-                lstContacts.Items.Add(contact);
-            }
+            lstContacts.Items.AddRange(contactsList.ToArray());
+        }
+
+        private void DisableSelectButtonIfNoRecipientSelected()
+        {
+            btnSelect.Enabled = false;
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
+        {
+            SelectRecipient();
+        }
+
+        private void SelectRecipient()
         {
             if (lstContacts.SelectedItem != null)
             {
@@ -31,7 +39,7 @@ namespace CustomerManagementApp
             }
             else
             {
-                MessageBox.Show("Please select a recipient.");
+                MessageBox.Show("Please select a recipient.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -42,7 +50,12 @@ namespace CustomerManagementApp
 
         private void lstContacts_SelectedIndexChanged(object sender, EventArgs e)
         {
+            EnableSelectButtonIfRecipientSelected();
+        }
 
+        private void EnableSelectButtonIfRecipientSelected()
+        {
+            btnSelect.Enabled = lstContacts.SelectedItem != null;
         }
     }
 }

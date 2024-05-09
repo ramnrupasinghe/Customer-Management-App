@@ -278,49 +278,58 @@ namespace CustomerManagementApp
 
         private void lstChat_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (lstChat.SelectedItem != null)
-            {
-                string selectedMessage = lstChat.SelectedItem.ToString();
-                string[] parts = selectedMessage.Split(':');
-                string senderName = parts[0].Trim();
+            if (lstChat.SelectedItem == null)
+                return;
 
-                if (senderName.Equals("You", StringComparison.OrdinalIgnoreCase))
-                {
-                    txtUserMessage.Text = parts.Length > 1 ? parts[1].Trim() : "";
-                    chatMessages.RemoveAt(lstChat.SelectedIndex);
-                    DisplayChatMessages();
-                }
-                else
-                {
-                    ForwardMessage(selectedMessage);
-                }
+            string selectedMessage = lstChat.SelectedItem.ToString();
+            string[] parts = selectedMessage.Split(':');
+
+            if (parts.Length < 2)
+            {
+                MessageBox.Show("Invalid message format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string senderName = parts[0].Trim();
+            string messageText = string.Join(":", parts.Skip(1)).Trim();
+
+            if (senderName.Equals("You", StringComparison.OrdinalIgnoreCase))
+            {
+                txtUserMessage.Text = messageText;
+                chatMessages.RemoveAt(lstChat.SelectedIndex);
+                DisplayChatMessages();
+            }
+            else
+            {
+                ForwardMessage(senderName, messageText);
             }
         }
 
-        private void ForwardMessage(string selectedMessage)
+
+        private void ForwardMessage(string senderName, string messageText)
         {
-            string[] parts = selectedMessage.Split(':');
-            string messageText = parts.Length > 1 ? parts[1].Trim() : "";
+            string selectedRecipient = SelectRecipient();
+            if (string.IsNullOrEmpty(selectedRecipient))
+                return;
 
+            ChatMessage forwardedMessage = new ChatMessage(selectedRecipient, messageText, DateTime.Now);
+            chatMessages.Add(forwardedMessage);
 
-            List<string> contactsList = new List<string> { "Recipient1", "Recipient2", "Recipient3" }; 
+            DisplayChatMessages();
+        }
+
+        private string SelectRecipient()
+        {
+            List<string> contactsList = new List<string> { "Recipient1", "Recipient2", "Recipient3" };
 
             SelectRecipientForm selectRecipientForm = new SelectRecipientForm(contactsList);
             DialogResult result = selectRecipientForm.ShowDialog();
 
             if (result == DialogResult.OK)
-            {
-                string selectedRecipient = selectRecipientForm.SelectedRecipient;
-                if (!string.IsNullOrEmpty(selectedRecipient))
-                {
-
-                    ChatMessage forwardedMessage = new ChatMessage(selectedRecipient, messageText, DateTime.Now);
-                    chatMessages.Add(forwardedMessage);
-
-
-                    DisplayChatMessages();
-                }
-            }
+                return selectRecipientForm.SelectedRecipient;
+            else
+                return null; 
         }
+
     }
 }
