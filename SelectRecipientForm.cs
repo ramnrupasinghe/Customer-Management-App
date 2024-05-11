@@ -57,5 +57,10 @@ namespace CustomerManagementApp
         {
             btnSelect.Enabled = lstContacts.SelectedItem != null;
         }
+
+        private void SelectRecipientForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

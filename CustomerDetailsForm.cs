@@ -7,6 +7,7 @@ using iText.Layout.Element;
 using iText.Kernel.Pdf;
 using System.Net.Mail;
 using System.Net;
+using Excel = Microsoft.Office.Interop.Excel; 
 
 namespace CustomerManagementApp
 {
@@ -95,12 +96,6 @@ namespace CustomerManagementApp
             }
         }
 
-        private void AddCell(Table table, string text)
-        {
-            Cell cell = new Cell().Add(new Paragraph(text));
-            table.AddCell(cell);
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DisplayCustomerDetails(Customer);
@@ -153,34 +148,22 @@ namespace CustomerManagementApp
         private void button4_Click(object sender, EventArgs e)
         {
             List<ActivityLog> dummyActivityLogs = new List<ActivityLog>
-    {
-        new ActivityLog { CustomerName = "John Doe", ActivityType = "Call", ActivityDateTime = DateTime.Now.AddDays(-2), Details = "Called customer regarding product inquiry" },
-        new ActivityLog { CustomerName = "Jane Smith", ActivityType = "Email", ActivityDateTime = DateTime.Now.AddDays(-1), Details = "Sent follow-up email to customer" },
-        new ActivityLog { CustomerName = "John Doe", ActivityType = "Meeting", ActivityDateTime = DateTime.Now.AddDays(-3), Details = "Scheduled meeting with customer for next week" }
-    };
+            {
+                new ActivityLog { CustomerName = "John Doe", ActivityType = "Call", ActivityDateTime = DateTime.Now.AddDays(-2), Details = "Called customer regarding product inquiry" },
+                new ActivityLog { CustomerName = "Jane Smith", ActivityType = "Email", ActivityDateTime = DateTime.Now.AddDays(-1), Details = "Sent follow-up email to customer" },
+                new ActivityLog { CustomerName = "John Doe", ActivityType = "Meeting", ActivityDateTime = DateTime.Now.AddDays(-3), Details = "Scheduled meeting with customer for next week" }
+            };
             ActivityCenterForm activityCenterForm = new ActivityCenterForm(dummyActivityLogs);
             activityCenterForm.ShowDialog();
         }
-
-        private void txtName_TextChanged(object sender, EventArgs e) { }
-        private void txtPhone_TextChanged(object sender, EventArgs e) { }
-        private void txtEmail_TextChanged(object sender, EventArgs e) { }
-        private void txtAddress_TextChanged(object sender, EventArgs e) { }
-        private void txtCompanyName_TextChanged(object sender, EventArgs e) { }
-        private void txtNotes_TextChanged(object sender, EventArgs e) { }
-        private void button1_Click(object sender, EventArgs e) { }
 
         private void button5_Click(object sender, EventArgs e)
         {
             try
             {
-                
                 SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
-
-                
                 smtpServer.Port = 587;
                 smtpServer.EnableSsl = true;
-
                 smtpServer.Credentials = new NetworkCredential("manurirupasinghe100@gmail.com", "your password");
 
                 MailMessage mail = new MailMessage();
@@ -207,9 +190,74 @@ namespace CustomerManagementApp
             }
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+         
+            LogCustomerInteraction(); //calling
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+         
+            BackupCustomerData();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+          
+            RestoreCustomerData();
+        }
+
+        private void LogCustomerInteraction()
+        {
+         
+            string activityType = cmbActivityType.SelectedItem.ToString();
+
+     
+            string interactionDetails = txtInteractionDetails.Text;
+
+          
+            ActivityLog newActivity = new ActivityLog
+            {
+                CustomerName = Customer.Name,
+                ActivityType = activityType,
+                ActivityDateTime = DateTime.Now,
+                Details = interactionDetails
+            };
+
+            activityLogs.Add(newActivity);
+
+           
+            MessageBox.Show("Interaction logged successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void BackupCustomerData()
+        {
+          
+        }
+
+        private void RestoreCustomerData()
+        {
+           
+        }
+
+        private void AddCell(Table table, string text)
+        {
+            Cell cell = new Cell().Add(new Paragraph(text));
+            table.AddCell(cell);
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e) { }
+        private void txtPhone_TextChanged(object sender, EventArgs e) { }
+        private void txtEmail_TextChanged(object sender, EventArgs e) { }
+        private void txtAddress_TextChanged(object sender, EventArgs e) { }
+        private void txtCompanyName_TextChanged(object sender, EventArgs e) { }
+        private void txtNotes_TextChanged(object sender, EventArgs e) { }
+
         public class ActivityLog
         {
-            public string CustomerName { get; set; }         
+            public string CustomerName { get; set; }
             public string ActivityType { get; set; }
             public DateTime ActivityDateTime { get; set; }
             public string Details { get; set; }
