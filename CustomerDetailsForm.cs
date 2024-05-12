@@ -7,7 +7,9 @@ using iText.Layout.Element;
 using iText.Kernel.Pdf;
 using System.Net.Mail;
 using System.Net;
-using Excel = Microsoft.Office.Interop.Excel; 
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Data.SqlClient;
+
 
 namespace CustomerManagementApp
 {
@@ -210,17 +212,13 @@ namespace CustomerManagementApp
 
         private void LogCustomerInteraction()
         {
-         
-            string activityType = cmbActivityType.SelectedItem.ToString();
-
      
             string interactionDetails = txtInteractionDetails.Text;
 
           
             ActivityLog newActivity = new ActivityLog
             {
-                CustomerName = Customer.Name,
-                ActivityType = activityType,
+                CustomerName = Customer.Name,             
                 ActivityDateTime = DateTime.Now,
                 Details = interactionDetails
             };
@@ -234,13 +232,78 @@ namespace CustomerManagementApp
 
         private void BackupCustomerData()
         {
+            try
+            {
           
+                using (var connection = new SqlConnection("your_connection_string_here"))
+                {
+                    connection.Open();
+
+            
+                    string selectQuery = "SELECT * FROM Customers";
+
+                
+                    using (var command = new SqlCommand(selectQuery, connection))
+                    {
+                     
+                        using (var reader = command.ExecuteReader())
+                        {
+                            SaveDataToBackupFile(reader);
+                        }
+                    }
+                }
+
+               
+                Console.WriteLine("Customer data backup completed successfully.");
+            }
+            catch (Exception ex)
+            {
+              
+                Console.WriteLine("Error occurred while backing up customer data: " + ex.Message);
+            }
         }
+
+     
+        private void SaveDataToBackupFile(SqlDataReader reader)
+        {
+          
+            string backupFilePath = "backup_file_path_here";
+
+     
+            using (var writer = new StreamWriter(backupFilePath))
+            {
+    
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        writer.Write(reader[i].ToString() + ",");
+                    }
+                    writer.WriteLine();
+                }
+            }
+        }
+
 
         private void RestoreCustomerData()
         {
-           
+       
+            using (var connection = new SqlConnection("your_connection_string"))
+            {
+            
+                connection.Open();
+
+          
+                string sqlCommandText = "RESTORE DATABASE YourDatabaseName FROM disk = 'C:\\YourBackupPath\\YourBackupFile.bak'";
+                SqlCommand command = new SqlCommand(sqlCommandText, connection);
+
+            
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
         }
+
 
         private void AddCell(Table table, string text)
         {
@@ -261,6 +324,11 @@ namespace CustomerManagementApp
             public string ActivityType { get; set; }
             public DateTime ActivityDateTime { get; set; }
             public string Details { get; set; }
+        }
+
+        private void txtInteractionDetails_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

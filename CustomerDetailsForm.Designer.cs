@@ -38,7 +38,9 @@ namespace CustomerManagementApp
             this.button5 = new System.Windows.Forms.Button();
             this.txtInteractionDetails = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-           
+            // 
+            // btnSave
+            // 
             this.btnSave.Location = new System.Drawing.Point(12, 259);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 42);
@@ -46,7 +48,9 @@ namespace CustomerManagementApp
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            
+            // 
+            // btnCancel
+            // 
             this.btnCancel.Location = new System.Drawing.Point(374, 259);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 48);
@@ -54,84 +58,108 @@ namespace CustomerManagementApp
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-           
+            // 
+            // lblName
+            // 
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(13, 13);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(47, 16);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name:";
-             
+            // 
+            // lblEmail
+            // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Location = new System.Drawing.Point(13, 43);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(44, 16);
             this.lblEmail.TabIndex = 1;
             this.lblEmail.Text = "Email:";
-           
+            // 
+            // lblPhone
+            // 
             this.lblPhone.AutoSize = true;
             this.lblPhone.Location = new System.Drawing.Point(13, 73);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(49, 16);
             this.lblPhone.TabIndex = 2;
             this.lblPhone.Text = "Phone:";
-          
+            // 
+            // lblAddress
+            // 
             this.lblAddress.AutoSize = true;
             this.lblAddress.Location = new System.Drawing.Point(13, 103);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(61, 16);
             this.lblAddress.TabIndex = 3;
             this.lblAddress.Text = "Address:";
-            
+            // 
+            // lblCompanyName
+            // 
             this.lblCompanyName.AutoSize = true;
             this.lblCompanyName.Location = new System.Drawing.Point(13, 133);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(105, 16);
             this.lblCompanyName.TabIndex = 4;
             this.lblCompanyName.Text = "Company Name";
-           
+            // 
+            // lblNotes
+            // 
             this.lblNotes.AutoSize = true;
             this.lblNotes.Location = new System.Drawing.Point(13, 163);
             this.lblNotes.Name = "lblNotes";
             this.lblNotes.Size = new System.Drawing.Size(46, 16);
             this.lblNotes.TabIndex = 5;
             this.lblNotes.Text = "Notes:";
-           
+            // 
+            // txtName
+            // 
             this.txtName.Location = new System.Drawing.Point(130, 10);
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(319, 22);
             this.txtName.TabIndex = 6;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-          
+            // 
+            // txtEmail
+            // 
             this.txtEmail.Location = new System.Drawing.Point(130, 38);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(319, 22);
             this.txtEmail.TabIndex = 7;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
-            
+            // 
+            // txtPhone
+            // 
             this.txtPhone.Location = new System.Drawing.Point(130, 70);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.ReadOnly = true;
             this.txtPhone.Size = new System.Drawing.Size(319, 22);
             this.txtPhone.TabIndex = 8;
             this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
-          
+            // 
+            // txtAddress
+            // 
             this.txtAddress.Location = new System.Drawing.Point(130, 97);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ReadOnly = true;
             this.txtAddress.Size = new System.Drawing.Size(319, 22);
             this.txtAddress.TabIndex = 9;
             this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
-          
+            // 
+            // txtCompanyName
+            // 
             this.txtCompanyName.Location = new System.Drawing.Point(130, 130);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.ReadOnly = true;
             this.txtCompanyName.Size = new System.Drawing.Size(319, 22);
             this.txtCompanyName.TabIndex = 10;
             this.txtCompanyName.TextChanged += new System.EventHandler(this.txtCompanyName_TextChanged);
-         
+            // 
+            // txtNotes
+            // 
             this.txtNotes.Location = new System.Drawing.Point(130, 158);
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
@@ -139,7 +167,9 @@ namespace CustomerManagementApp
             this.txtNotes.Size = new System.Drawing.Size(319, 60);
             this.txtNotes.TabIndex = 11;
             this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
-           
+            // 
+            // button1
+            // 
             this.button1.Location = new System.Drawing.Point(130, 259);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 42);
@@ -147,7 +177,9 @@ namespace CustomerManagementApp
             this.button1.Text = "Clear";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-          
+            // 
+            // button2
+            // 
             this.button2.Location = new System.Drawing.Point(12, 356);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(169, 42);
@@ -155,7 +187,9 @@ namespace CustomerManagementApp
             this.button2.Text = "Calculate Statistics";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-           
+            // 
+            // button3
+            // 
             this.button3.Location = new System.Drawing.Point(247, 259);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 42);
@@ -163,7 +197,9 @@ namespace CustomerManagementApp
             this.button3.Text = "Undo Changes";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-             
+            // 
+            // button4
+            // 
             this.button4.Location = new System.Drawing.Point(190, 356);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(165, 42);
@@ -171,7 +207,9 @@ namespace CustomerManagementApp
             this.button4.Text = "Activity Center";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-           
+            // 
+            // button5
+            // 
             this.button5.Location = new System.Drawing.Point(374, 350);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 48);
@@ -179,13 +217,18 @@ namespace CustomerManagementApp
             this.button5.Text = "Send Email";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            
+            // 
+            // txtInteractionDetails
+            // 
             this.txtInteractionDetails.Location = new System.Drawing.Point(130, 160);
             this.txtInteractionDetails.Multiline = true;
             this.txtInteractionDetails.Name = "txtInteractionDetails";
             this.txtInteractionDetails.Size = new System.Drawing.Size(319, 60);
             this.txtInteractionDetails.TabIndex = 20;
-          
+            this.txtInteractionDetails.TextChanged += new System.EventHandler(this.txtInteractionDetails_TextChanged);
+            // 
+            // CustomerDetailsForm
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 420);
