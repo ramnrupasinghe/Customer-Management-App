@@ -19,9 +19,7 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // lstContacts
-            // 
+          
             this.lstContacts.FormattingEnabled = true;
             this.lstContacts.ItemHeight = 16;
             this.lstContacts.Location = new System.Drawing.Point(16, 15);
@@ -30,9 +28,7 @@
             this.lstContacts.Size = new System.Drawing.Size(265, 196);
             this.lstContacts.TabIndex = 0;
             this.lstContacts.SelectedIndexChanged += new System.EventHandler(this.lstContacts_SelectedIndexChanged);
-            // 
-            // btnSelect
-            // 
+           
             this.btnSelect.Location = new System.Drawing.Point(65, 235);
             this.btnSelect.Margin = new System.Windows.Forms.Padding(4);
             this.btnSelect.Name = "btnSelect";
@@ -41,9 +37,7 @@
             this.btnSelect.Text = "Select";
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // btnCancel
-            // 
+        
             this.btnCancel.Location = new System.Drawing.Point(173, 235);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
@@ -52,9 +46,7 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // SelectRecipientForm
-            // 
+        
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(299, 278);

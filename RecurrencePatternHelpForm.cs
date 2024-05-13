@@ -17,10 +17,18 @@ namespace CustomerManagementApp
         private Button btnParseRule;
         private Button btnGenerateRule;
         private Button btnEditRule;
+        private Button btnUndoRule;
+        private Button btnSuggestRule;
+
+        private Stack<string> ruleUndoStack;
+        private List<string> suggestedRules;
+
         public RecurrencePatternHelpForm()
         {
             InitializeComponent();
             DisplayWelcomeMessage();
+            ruleUndoStack = new Stack<string>();
+            suggestedRules = new List<string>() { "RRULE:FREQ=DAILY;COUNT=5", "RRULE:FREQ=WEEKLY;COUNT=10", "RRULE:FREQ=MONTHLY;COUNT=3" };
         }
 
         private void DisplayWelcomeMessage()
@@ -46,7 +54,14 @@ namespace CustomerManagementApp
 
         private void RecurrencePatternHelpForm_Load(object sender, EventArgs e)
         {
+          
+            txtRecurrenceRule.Text = "RRULE:FREQ=DAILY;COUNT=5";
 
+         
+            button3.Visible = false;
+
+            suggestedRules.Add("RRULE:FREQ=WEEKLY;COUNT=10");
+            suggestedRules.Add("RRULE:FREQ=MONTHLY;COUNT=3");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -77,9 +92,9 @@ namespace CustomerManagementApp
                 MessageBox.Show("Recurrence rule is not valid!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private bool IsValidRecurrenceRule(string rule)
         {
-          
             rule = rule.Trim();
 
             if (string.IsNullOrEmpty(rule))
@@ -88,20 +103,15 @@ namespace CustomerManagementApp
             if (!rule.StartsWith("RRULE:", StringComparison.OrdinalIgnoreCase))
                 return false;
 
-
             string ruleValue = rule.Substring("RRULE:".Length);
-
             string[] ruleParts = ruleValue.Split(';');
 
-        
             bool freqPresent = false;
 
             foreach (var part in ruleParts)
             {
-             
                 string[] keyValue = part.Split('=');
 
-               
                 if (keyValue.Length != 2)
                     return false;
 
@@ -111,13 +121,11 @@ namespace CustomerManagementApp
                 switch (key)
                 {
                     case "FREQ":
-                  
                         if (value != "SECONDLY" && value != "MINUTELY" && value != "HOURLY" &&
                             value != "DAILY" && value != "WEEKLY" && value != "MONTHLY" && value != "YEARLY")
                             return false;
                         freqPresent = true;
                         break;
-                       
                 }
             }
 
@@ -126,7 +134,6 @@ namespace CustomerManagementApp
 
             return true;
         }
-
 
         private void btnParseRule_Click(object sender, EventArgs e)
         {
@@ -143,14 +150,12 @@ namespace CustomerManagementApp
                 return "Invalid recurrence rule format.";
 
             string ruleValue = rule.Substring("RRULE:".Length);
-
             string[] ruleParts = ruleValue.Split(';');
 
             Dictionary<string, string> parsedComponents = new Dictionary<string, string>();
 
             foreach (var part in ruleParts)
             {
-                
                 string[] keyValue = part.Split('=');
 
                 if (keyValue.Length != 2)
@@ -159,7 +164,6 @@ namespace CustomerManagementApp
                 string key = keyValue[0].Trim().ToUpper();
                 string value = keyValue[1].Trim();
 
-             
                 parsedComponents[key] = value;
             }
 
@@ -171,32 +175,55 @@ namespace CustomerManagementApp
 
             return parsedRule;
         }
+
         private void btnGenerateRule_Click(object sender, EventArgs e)
         {
             string generatedRule = GenerateRecurrenceRule();
             MessageBox.Show("Generated Recurrence Rule:\n" + generatedRule, "Rule Generation Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-       
         private string GenerateRecurrenceRule()
         {
-          
             return "RRULE:FREQ=DAILY;COUNT=10";
         }
+
         private void btnEditRule_Click(object sender, EventArgs e)
         {
             if (txtRecurrenceRule.Enabled)
             {
-             
                 txtRecurrenceRule.Enabled = false;
                 btnEditRule.Text = "Edit Rule";
             }
             else
             {
-                
                 txtRecurrenceRule.Enabled = true;
                 btnEditRule.Text = "Finish Editing";
             }
+        }
+
+        private void btnUndoRule_Click(object sender, EventArgs e)
+        {
+            if (ruleUndoStack.Count > 0)
+            {
+                txtRecurrenceRule.Text = ruleUndoStack.Pop();
+            }
+        }
+
+        private void btnSuggestRule_Click(object sender, EventArgs e)
+        {
+       
+            SuggestionForm suggestionForm = new SuggestionForm(suggestedRules);
+            suggestionForm.ShowDialog();
+            if (suggestionForm.SelectedRule != null)
+            {
+                txtRecurrenceRule.Text = suggestionForm.SelectedRule;
+            }
+        }
+
+        private void btnCustomPattern_Click(object sender, EventArgs e)
+        {
+            CustomPatternForm customPatternForm = new CustomPatternForm();
+            customPatternForm.ShowDialog();
         }
     }
 }
