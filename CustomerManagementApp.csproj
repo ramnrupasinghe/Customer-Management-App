@@ -37,8 +37,8 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus, Version=7.0.9.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>packages\EPPlus.7.0.9\lib\net462\EPPlus.dll</HintPath>
+    <Reference Include="EPPlus, Version=7.1.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.7.1.2\lib\net462\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
       <HintPath>packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
@@ -289,6 +289,12 @@
     <Compile Include="CustomerDetailsForm.Designer.cs">
       <DependentUpon>CustomerDetailsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomPatternForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomPatternForm.Designer.cs">
+      <DependentUpon>CustomPatternForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,6 +389,12 @@
     <Compile Include="SnoozeDurationForm.Designer.cs">
       <DependentUpon>SnoozeDurationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuggestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuggestionForm.Designer.cs">
+      <DependentUpon>SuggestionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionForm.cs">
       <SubType>Form</SubType>
@@ -408,6 +420,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerDetailsForm.resx">
       <DependentUpon>CustomerDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomPatternForm.resx">
+      <DependentUpon>CustomPatternForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditCustomerForm.resx">
       <DependentUpon>EditCustomerForm.cs</DependentUpon>
@@ -462,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SnoozeDurationForm.resx">
       <DependentUpon>SnoozeDurationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuggestionForm.resx">
+      <DependentUpon>SuggestionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TransactionForm.resx">
       <DependentUpon>TransactionForm.cs</DependentUpon>

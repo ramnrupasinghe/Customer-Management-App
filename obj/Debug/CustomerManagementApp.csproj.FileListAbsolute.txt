@@ -133,3 +133,5 @@ D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.WinFor
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.Wpf.pdb
 D:\visual studio 2022 projects\CustomerManagementApp\bin\Debug\LiveCharts.Wpf.xml
 D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.SelectRecipientForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.CustomPatternForm.resources
+D:\visual studio 2022 projects\CustomerManagementApp\obj\Debug\CustomerManagementApp.SuggestionForm.resources

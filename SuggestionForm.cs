@@ -54,5 +54,10 @@ namespace CustomerManagementApp
         {
            
         }
+
+        private void listBoxSuggestions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
