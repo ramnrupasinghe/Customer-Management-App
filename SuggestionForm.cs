@@ -57,7 +57,43 @@ namespace CustomerManagementApp
 
         private void listBoxSuggestions_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
 
+       
+        private void HighlightSuggestions(string keyword)
+        {
+            foreach (var item in listBoxSuggestions.Items)
+            {
+                if (item.ToString().Contains(keyword))
+                {
+                    listBoxSuggestions.SelectedItem = item;
+                    listBoxSuggestions.Focus();
+                    break;
+                }
+            }
+        }
+
+        private void SortSuggestions()
+        {
+            listBoxSuggestions.Sorted = true;
+        }
+
+        private void FilterSuggestions(string filter)
+        {
+            listBoxSuggestions.Items.Clear();
+            foreach (var rule in suggestedRules)
+            {
+                if (rule.ToLower().Contains(filter.ToLower()))
+                {
+                    listBoxSuggestions.Items.Add(rule);
+                }
+            }
+        }
+
+        private int CountSuggestions()
+        {
+            return listBoxSuggestions.Items.Count;
         }
     }
 }
