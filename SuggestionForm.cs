@@ -60,7 +60,7 @@ namespace CustomerManagementApp
             
         }
 
-       
+       //highlight suggestion feature
         private void HighlightSuggestions(string keyword)
         {
             foreach (var item in listBoxSuggestions.Items)
@@ -73,12 +73,12 @@ namespace CustomerManagementApp
                 }
             }
         }
-
+        //sort suggestion
         private void SortSuggestions()
         {
             listBoxSuggestions.Sorted = true;
         }
-
+        //filter the suggestions
         private void FilterSuggestions(string filter)
         {
             listBoxSuggestions.Items.Clear();
@@ -90,7 +90,7 @@ namespace CustomerManagementApp
                 }
             }
         }
-
+        //count suggestion feature
         private int CountSuggestions()
         {
             return listBoxSuggestions.Items.Count;

@@ -25,57 +25,41 @@ namespace CustomerManagementApp
             txtPattern.Focus();
         }
 
-
         private bool ValidatePattern(string pattern)
         {
-           
             if (string.IsNullOrEmpty(pattern))
                 return false;
 
-           
             string regexPattern = @"^[a-zA-Z0-9]+$";
 
-            
             return System.Text.RegularExpressions.Regex.IsMatch(pattern, regexPattern);
         }
+       
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            string customPattern = txtPattern.Text;
-
-            
-            if (!ValidatePattern(customPattern))
-            {
-                MessageBox.Show("Please enter a valid custom pattern.", "Invalid Pattern", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-      
-            ExportToExcel(customPattern);
-        }
-
-        private void ExportToExcel(string customPattern)
+        private void ExportToExcel(string customPattern, string savePath)
         {
             try
             {
-              
                 Excel.Application excelApp = new Excel.Application();
                 excelApp.Visible = true;
 
-      
                 Excel.Workbook workbook = excelApp.Workbooks.Add();
 
-       
                 Excel.Worksheet worksheet = workbook.Worksheets[1];
                 worksheet.Name = "Custom Pattern";
 
-     
                 worksheet.Cells[1, 1].Value = "Custom Pattern:";
                 worksheet.Cells[1, 2].Value = customPattern;
 
-                workbook.SaveAs(@"C:\CustomPattern.xlsx");
+                
+                string[] columnHeaders = txtHeaders.Text.Split(',');
+                for (int i = 0; i < columnHeaders.Length; i++)
+                {
+                    worksheet.Cells[2, i + 1].Value = columnHeaders[i];
+                }
 
-    
+                workbook.SaveAs(savePath);
+
                 workbook.Close();
                 excelApp.Quit();
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
@@ -83,6 +67,32 @@ namespace CustomerManagementApp
             catch (Exception ex)
             {
                 MessageBox.Show("Error occurred while exporting to Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }         
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string customPattern = txtPattern.Text;
+
+            if (!ValidatePattern(customPattern))
+            {
+                MessageBox.Show("Please enter a valid custom pattern.", "Invalid Pattern", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files|*.xlsx;*.xls";
+            saveFileDialog.Title = "Save Excel File";
+            saveFileDialog.FileName = "CustomPattern.xlsx";
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string savePath = saveFileDialog.FileName;
+                ExportToExcel(customPattern, savePath);
             }
         }
     }
