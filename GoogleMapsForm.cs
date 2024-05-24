@@ -14,27 +14,75 @@ namespace CustomerManagementApp
 
         private void GoogleMapsForm_Load(object sender, EventArgs e)
         {
-          
             webBrowser.Navigate("https://www.google.com/maps");
         }
 
         private void btnConfirmLocation_Click(object sender, EventArgs e)
         {
-           
-            SelectedLocation = $"Latitude: {webBrowser.Document.GetElementById("latitude").InnerText}, Longitude: {webBrowser.Document.GetElementById("longitude").InnerText}";
-            DialogResult = DialogResult.OK;
+            // Retrieving latitude and longitude from hidden elements
+            HtmlElement latitudeElement = webBrowser.Document.GetElementById("latitude");
+            HtmlElement longitudeElement = webBrowser.Document.GetElementById("longitude");
+
+            if (latitudeElement != null && longitudeElement != null)
+            {
+                string latitude = latitudeElement.InnerText;
+                string longitude = longitudeElement.InnerText;
+                SelectedLocation = $"Latitude: {latitude}, Longitude: {longitude}";
+                DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Please select a location first.");
+            }
         }
 
         private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-          
             webBrowser.Document.InvokeScript("navigator.geolocation.getCurrentPosition", new object[] { new GeolocationCallback(this) });
 
-     
-            webBrowser.Document.InvokeScript("function enableAutocomplete() { var input = document.getElementsByClassName('tactile-searchbox-input')[0]; var autocomplete = new google.maps.places.Autocomplete(input); }");
-            webBrowser.Document.InvokeScript("enableAutocomplete");
+            webBrowser.Document.InvokeScript(@"
+                function enableAutocomplete() { 
+                    var input = document.getElementsByClassName('tactile-searchbox-input')[0]; 
+                    var autocomplete = new google.maps.places.Autocomplete(input); 
+                    autocomplete.addListener('place_changed', function() { 
+                        var place = autocomplete.getPlace(); 
+                        if (!place.geometry) { 
+                            return; 
+                        } 
+                        map.setCenter(place.geometry.location); 
+                        addMarker(place.geometry.location.lat(), place.geometry.location.lng()); 
+                    }); 
+                }
+                function addMarker(lat, lon) { 
+                    var marker = new google.maps.Marker({ 
+                        position: {lat: lat, lng: lon}, 
+                        map: map, 
+                        title: 'Selected Location' 
+                    }); 
+                    document.getElementById('latitude').innerText = lat;
+                    document.getElementById('longitude').innerText = lon;
+                }
+                function addClickListener() { 
+                    map.addListener('click', function(e) { 
+                        addMarker(e.latLng.lat(), e.latLng.lng()); 
+                    }); 
+                }
+                enableAutocomplete();
+                addClickListener();
+            ");
 
-            webBrowser.Document.InvokeScript("function addCustomMarker(lat, lon, iconUrl) { var marker = new google.maps.Marker({ position: {lat: lat, lng: lon}, map: map, title: 'Selected Location', icon: iconUrl }); }");
+            // Adding the hidden elements to store selected latitude and longitude
+            webBrowser.Document.InvokeScript(@"
+                var latElement = document.createElement('div');
+                latElement.id = 'latitude';
+                latElement.style.display = 'none';
+                document.body.appendChild(latElement);
+
+                var lonElement = document.createElement('div');
+                lonElement.id = 'longitude';
+                lonElement.style.display = 'none';
+                document.body.appendChild(lonElement);
+            ");
         }
 
         private void SetCustomMarker(string latitude, string longitude, string iconUrl)
@@ -57,8 +105,6 @@ namespace CustomerManagementApp
                 double lat = loc.coords.latitude;
                 double lon = loc.coords.longitude;
 
-               
-                _parentForm.webBrowser.Document.InvokeScript("function addMarker(lat, lon) { var marker = new google.maps.Marker({ position: {lat: lat, lng: lon}, map: map, title: 'Selected Location' }); }");
                 _parentForm.webBrowser.Document.InvokeScript("addMarker", new object[] { lat, lon });
             }
         }
