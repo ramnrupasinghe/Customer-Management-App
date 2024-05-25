@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Windows.Forms;
 
 namespace CustomerManagementApp
@@ -12,9 +13,12 @@ namespace CustomerManagementApp
         public string RecurrencePattern { get; private set; }
         public string CustomMessage { get; private set; }
 
+        private SoundPlayer soundPlayer;
+
         public SnoozeDurationForm()
         {
             InitializeComponent();
+            soundPlayer = new SoundPlayer();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -50,7 +54,7 @@ namespace CustomerManagementApp
 
             CustomLabel = txtCustomLabel.Text;
             PriorityLevel = comboBoxPriority.SelectedItem.ToString();
-            CustomMessage = txtCustomMessage.Text; 
+            CustomMessage = txtCustomMessage.Text;
             DialogResult = DialogResult.OK;
             Close();
 
@@ -80,31 +84,34 @@ namespace CustomerManagementApp
             numericUpDown1.Value = 0;
             comboBoxUnits.SelectedIndex = 0;
         }
+
         private void comboBoxPriority_SelectedIndexChanged(object sender, EventArgs e)
         {
             numericUpDown1.Value = 0;
             comboBoxUnits.SelectedIndex = 0;
-
         }
+
         private void comboBoxUnits_SelectedIndexChanged(object sender, EventArgs e)
         {
             numericUpDown1.Value = 0;
             comboBoxUnits.SelectedIndex = 0;
         }
+
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             numericUpDown1.Value = 0;
             comboBoxUnits.SelectedIndex = 0;
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             RecurrencePatternForm recurrencePatternForm = new RecurrencePatternForm();
             if (recurrencePatternForm.ShowDialog() == DialogResult.OK)
             {
-
+                
+                MessageBox.Show($"Recurrence pattern set to: {RecurrencePattern}", "Recurrence Pattern Set", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -116,6 +123,27 @@ namespace CustomerManagementApp
             {
                 SelectedSoundFilePath = openFileDialog.FileName;
                 MessageBox.Show($"Custom sound selected: {SelectedSoundFilePath}", "Custom Sound Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void buttonPreview_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(SelectedSoundFilePath))
+            {
+                try
+                {
+                    soundPlayer.SoundLocation = SelectedSoundFilePath;
+                    soundPlayer.Play();
+                    MessageBox.Show("Playing sound preview...", "Sound Preview", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error playing sound: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No sound file selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

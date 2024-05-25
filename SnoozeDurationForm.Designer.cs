@@ -25,9 +25,7 @@
             this.lblCustomMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // numericUpDown1
-            // 
+          
             this.numericUpDown1.Location = new System.Drawing.Point(106, 52);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.numericUpDown1.Name = "numericUpDown1";
@@ -35,9 +33,7 @@
             this.numericUpDown1.TabIndex = 0;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
-            // 
-            // btnOK
-            // 
+          
             this.btnOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.ForeColor = System.Drawing.Color.White;
@@ -49,9 +45,7 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnCancel
-            // 
+          
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
@@ -63,18 +57,14 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // lblSelectDuration
-            // 
+           
             this.lblSelectDuration.AutoSize = true;
             this.lblSelectDuration.Location = new System.Drawing.Point(109, 18);
             this.lblSelectDuration.Name = "lblSelectDuration";
             this.lblSelectDuration.Size = new System.Drawing.Size(147, 16);
             this.lblSelectDuration.TabIndex = 2;
             this.lblSelectDuration.Text = "Select Snooze Duration";
-            // 
-            // comboBoxUnits
-            // 
+          
             this.comboBoxUnits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUnits.FormattingEnabled = true;
             this.comboBoxUnits.Items.AddRange(new object[] {
@@ -87,18 +77,14 @@
             this.comboBoxUnits.Size = new System.Drawing.Size(150, 24);
             this.comboBoxUnits.TabIndex = 3;
             this.comboBoxUnits.SelectedIndexChanged += new System.EventHandler(this.comboBoxUnits_SelectedIndexChanged);
-            // 
-            // label1
-            // 
+            
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(118, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Select Duration Unit";
-            // 
-            // button1
-            // 
+             
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(164)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
@@ -110,9 +96,7 @@
             this.button1.Text = "Reset";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // comboBoxPriority
-            // 
+            
             this.comboBoxPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPriority.FormattingEnabled = true;
             this.comboBoxPriority.Items.AddRange(new object[] {
@@ -125,18 +109,14 @@
             this.comboBoxPriority.Size = new System.Drawing.Size(150, 24);
             this.comboBoxPriority.TabIndex = 6;
             this.comboBoxPriority.SelectedIndexChanged += new System.EventHandler(this.comboBoxPriority_SelectedIndexChanged);
-            // 
-            // label2
-            // 
+            
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(155, 143);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Priority";
-            // 
-            // button2
-            // 
+           
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(164)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
@@ -148,9 +128,7 @@
             this.button2.Text = "Repeat";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
+            
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(164)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.White;
@@ -162,44 +140,34 @@
             this.button3.Text = "Sound";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // txtCustomLabel
-            // 
+           
             this.txtCustomLabel.Location = new System.Drawing.Point(106, 247);
             this.txtCustomLabel.Name = "txtCustomLabel";
             this.txtCustomLabel.Size = new System.Drawing.Size(150, 22);
             this.txtCustomLabel.TabIndex = 10;
             this.txtCustomLabel.TextChanged += new System.EventHandler(this.txtCustomLabel_TextChanged);
-            // 
-            // lblCustomLabel
-            // 
+         
             this.lblCustomLabel.AutoSize = true;
             this.lblCustomLabel.Location = new System.Drawing.Point(139, 211);
             this.lblCustomLabel.Name = "lblCustomLabel";
             this.lblCustomLabel.Size = new System.Drawing.Size(89, 16);
             this.lblCustomLabel.TabIndex = 11;
             this.lblCustomLabel.Text = "Custom Label";
-            // 
-            // txtCustomMessage
-            // 
+           
             this.txtCustomMessage.Location = new System.Drawing.Point(12, 335);
             this.txtCustomMessage.Multiline = true;
             this.txtCustomMessage.Name = "txtCustomMessage";
             this.txtCustomMessage.Size = new System.Drawing.Size(354, 50);
             this.txtCustomMessage.TabIndex = 12;
             this.txtCustomMessage.TextChanged += new System.EventHandler(this.txtCustomMessage_TextChanged);
-            // 
-            // lblCustomMessage
-            // 
+           
             this.lblCustomMessage.AutoSize = true;
             this.lblCustomMessage.Location = new System.Drawing.Point(130, 301);
             this.lblCustomMessage.Name = "lblCustomMessage";
             this.lblCustomMessage.Size = new System.Drawing.Size(112, 16);
             this.lblCustomMessage.TabIndex = 13;
             this.lblCustomMessage.Text = "Custom Message";
-            // 
-            // SnoozeDurationForm
-            // 
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(378, 550);
