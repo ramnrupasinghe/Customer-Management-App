@@ -29,7 +29,9 @@
             this.button3 = new System.Windows.Forms.Button();
             this.groupBoxRecurrencePattern.SuspendLayout();
             this.SuspendLayout();
-             
+            // 
+            // groupBoxRecurrencePattern
+            // 
             this.groupBoxRecurrencePattern.Controls.Add(this.radioButtonMonthly);
             this.groupBoxRecurrencePattern.Controls.Add(this.radioButtonWeekly);
             this.groupBoxRecurrencePattern.Controls.Add(this.radioButtonDaily);
@@ -42,7 +44,9 @@
             this.groupBoxRecurrencePattern.TabStop = false;
             this.groupBoxRecurrencePattern.Text = "Recurrence Pattern";
             this.groupBoxRecurrencePattern.Enter += new System.EventHandler(this.groupBoxRecurrencePattern_Enter);
-          
+            // 
+            // radioButtonMonthly
+            // 
             this.radioButtonMonthly.AutoSize = true;
             this.radioButtonMonthly.Location = new System.Drawing.Point(8, 80);
             this.radioButtonMonthly.Margin = new System.Windows.Forms.Padding(4);
@@ -52,7 +56,9 @@
             this.radioButtonMonthly.TabStop = true;
             this.radioButtonMonthly.Text = "Monthly";
             this.radioButtonMonthly.UseVisualStyleBackColor = true;
-          
+            // 
+            // radioButtonWeekly
+            // 
             this.radioButtonWeekly.AutoSize = true;
             this.radioButtonWeekly.Location = new System.Drawing.Point(8, 52);
             this.radioButtonWeekly.Margin = new System.Windows.Forms.Padding(4);
@@ -62,7 +68,9 @@
             this.radioButtonWeekly.TabStop = true;
             this.radioButtonWeekly.Text = "Weekly";
             this.radioButtonWeekly.UseVisualStyleBackColor = true;
-         
+            // 
+            // radioButtonDaily
+            // 
             this.radioButtonDaily.AutoSize = true;
             this.radioButtonDaily.Location = new System.Drawing.Point(8, 23);
             this.radioButtonDaily.Margin = new System.Windows.Forms.Padding(4);
@@ -72,7 +80,9 @@
             this.radioButtonDaily.TabStop = true;
             this.radioButtonDaily.Text = "Daily";
             this.radioButtonDaily.UseVisualStyleBackColor = true;
-        
+            // 
+            // btnCancel
+            // 
             this.btnCancel.Location = new System.Drawing.Point(101, 271);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
@@ -81,7 +91,9 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-        
+            // 
+            // btnOK
+            // 
             this.btnOK.Location = new System.Drawing.Point(24, 146);
             this.btnOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnOK.Name = "btnOK";
@@ -90,7 +102,9 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-          
+            // 
+            // button1
+            // 
             this.button1.Location = new System.Drawing.Point(186, 146);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
@@ -99,7 +113,9 @@
             this.button1.Text = "Reset";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-           
+            // 
+            // button2
+            // 
             this.button2.Location = new System.Drawing.Point(24, 216);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
@@ -108,7 +124,9 @@
             this.button2.Text = "Help";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-          
+            // 
+            // button3
+            // 
             this.button3.Location = new System.Drawing.Point(183, 216);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
@@ -117,7 +135,9 @@
             this.button3.Text = "Recurrence Exclusions";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-           
+            // 
+            // RecurrencePatternForm
+            // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -135,6 +155,7 @@
             this.Name = "RecurrencePatternForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Recurrence Pattern";
+            this.Load += new System.EventHandler(this.RecurrencePatternForm_Load);
             this.groupBoxRecurrencePattern.ResumeLayout(false);
             this.groupBoxRecurrencePattern.PerformLayout();
             this.ResumeLayout(false);

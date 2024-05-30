@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
-using System.Linq;
 using static CustomerManagementApp.CustomerDetailsForm;
-using System.Data;
 
 namespace CustomerManagementApp
 {
@@ -14,7 +15,7 @@ namespace CustomerManagementApp
     {
         private List<ActivityLog> activityLogs;
         private List<ActivityLog> filteredLogs;
-        private Stack<List<ActivityLog>> logHistory; 
+        private Stack<List<ActivityLog>> logHistory;
 
         public ActivityCenterForm(List<ActivityLog> activityLogs)
         {
@@ -134,10 +135,7 @@ namespace CustomerManagementApp
 
         private void button4_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dgvActivityLogs.SelectedRows)
-            {
-                dgvActivityLogs.Rows.Remove(row);
-            }
+            BulkDeleteActivityLogs();
         }
 
         private void chkFilterByDateRange_CheckedChanged(object sender, EventArgs e)
@@ -194,6 +192,7 @@ namespace CustomerManagementApp
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             button3.Text = "Sort by Name";
+            button3.Tag = "Name";
         }
 
         private void rbSortByEmail_CheckedChanged(object sender, EventArgs e)
@@ -298,8 +297,65 @@ namespace CustomerManagementApp
         {
             if (e.RowIndex >= 0)
             {
-                
                 logHistory.Push(new List<ActivityLog>(activityLogs));
+                SendEmailNotification(activityLogs[e.RowIndex]);
+            }
+        }
+
+        private void BulkDeleteActivityLogs()
+        {
+            if (dgvActivityLogs.SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to delete the selected activity logs?", "Confirm Deletion", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow row in dgvActivityLogs.SelectedRows)
+                    {
+                        activityLogs.RemoveAt(row.Index);
+                        dgvActivityLogs.Rows.Remove(row);
+                    }
+                    MessageBox.Show("Selected activity logs deleted successfully!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No activity logs selected for deletion.");
+            }
+        }
+
+        private void SendEmailNotification(ActivityLog log)
+        {
+            try
+            {
+                var fromAddress = new MailAddress("your-email@example.com", "Activity Center");
+                var toAddress = new MailAddress("recipient@example.com", "Recipient");
+                const string fromPassword = "your-email-password";
+                const string subject = "New Activity Log Added";
+                string body = $"A new activity log has been added:\n\nCustomer Name: {log.CustomerName}\nActivity Type: {log.ActivityType}\nActivity Date/Time: {log.ActivityDateTime}\nDetails: {log.Details}";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.example.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+
+                MessageBox.Show("Email notification sent successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to send email notification: {ex.Message}");
             }
         }
     }

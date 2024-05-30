@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CustomerManagementApp
 {
@@ -17,11 +18,14 @@ namespace CustomerManagementApp
         private bool isRecording = false;
         private string audioFilePath;
         private string attachedFilePath;
+        private Timer draftSaveTimer;
 
         public ChatForm()
         {
             InitializeComponent();
             InitializeChatInput();
+            InitializeAutoSaveFeature();
+            InitializeReactionsMenu();
         }
 
         private void InitializeChatInput()
@@ -34,9 +38,54 @@ namespace CustomerManagementApp
             Controls.Add(txtUserMessage);
         }
 
+        private void InitializeAutoSaveFeature()
+        {
+            draftSaveTimer = new Timer();
+            draftSaveTimer.Interval = 5000; //save draft in every 5 seconds
+            draftSaveTimer.Tick += DraftSaveTimer_Tick;
+            draftSaveTimer.Start();
+        }
+
+        private void DraftSaveTimer_Tick(object sender, EventArgs e)
+        {
+            string draftMessage = txtUserMessage.Text.Trim();
+            if (!string.IsNullOrEmpty(draftMessage))
+            {
+                File.WriteAllText("draftMessage.txt", draftMessage);
+            }
+        }
+
+        private void LoadDraftMessage()
+        {
+            if (File.Exists("draftMessage.txt"))
+            {
+                txtUserMessage.Text = File.ReadAllText("draftMessage.txt");
+            }
+        }
+
+        private void InitializeReactionsMenu()
+        {
+            ContextMenu reactionMenu = new ContextMenu();
+            reactionMenu.MenuItems.Add("Like", (s, e) => AddReactionToSelectedMessage("👍"));
+            reactionMenu.MenuItems.Add("Love", (s, e) => AddReactionToSelectedMessage("❤️"));
+            reactionMenu.MenuItems.Add("Laugh", (s, e) => AddReactionToSelectedMessage("😂"));
+            lstChat.ContextMenu = reactionMenu;
+        }
+
+        private void AddReactionToSelectedMessage(string reaction)
+        {
+            if (lstChat.SelectedItem != null)
+            {
+                string selectedMessage = lstChat.SelectedItem.ToString();
+                AddReaction(selectedMessage, reaction);
+                DisplayChatMessages();
+            }
+        }
+
         private void ChatForm_Load(object sender, EventArgs e)
         {
             LoadChatHistory();
+            LoadDraftMessage();
         }
 
         private void LoadChatHistory()
@@ -192,19 +241,15 @@ namespace CustomerManagementApp
             }
         }
 
-
         private void btnAddEmoji_Click(object sender, EventArgs e)
         {
-
             txtUserMessage.Text += " 😊";
             txtUserMessage.Focus();
             txtUserMessage.SelectionStart = txtUserMessage.Text.Length;
         }
 
-
         private void lstChat_DoubleClick(object sender, EventArgs e)
         {
-
             if (lstChat.SelectedItem != null)
             {
                 string selectedMessage = lstChat.SelectedItem.ToString();
@@ -212,14 +257,10 @@ namespace CustomerManagementApp
                 string senderName = parts[0].Trim();
                 string messageText = parts.Length > 1 ? parts[1].Trim() : "";
 
-
                 if (senderName.Equals("You", StringComparison.OrdinalIgnoreCase))
                 {
-
                     txtUserMessage.Text = messageText;
-
                     chatMessages.RemoveAt(lstChat.SelectedIndex);
-
                     DisplayChatMessages();
                 }
                 else
@@ -231,7 +272,6 @@ namespace CustomerManagementApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             string searchTerm = txtSearch.Text.Trim();
 
             if (!string.IsNullOrEmpty(searchTerm))
@@ -305,7 +345,6 @@ namespace CustomerManagementApp
             }
         }
 
-
         private void ForwardMessage(string senderName, string messageText)
         {
             string selectedRecipient = SelectRecipient();
@@ -328,8 +367,7 @@ namespace CustomerManagementApp
             if (result == DialogResult.OK)
                 return selectRecipientForm.SelectedRecipient;
             else
-                return null; 
+                return null;
         }
-
     }
 }

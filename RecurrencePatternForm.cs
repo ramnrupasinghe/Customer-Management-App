@@ -16,6 +16,7 @@ namespace CustomerManagementApp
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+
             if (radioButtonDaily.Checked)
             {
                 SelectedRecurrencePattern = RecurrencePattern.Daily;
@@ -74,6 +75,11 @@ namespace CustomerManagementApp
               
                 MessageBox.Show("Excluded dates: " + string.Join(", ", excludedDates), "Exclusions Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void RecurrencePatternForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
